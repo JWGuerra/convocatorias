@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\type;
+
     if (!isset($_SESSION['ADMIN_USERID'])){
       redirect(web_root."admin/index.php");
      }
@@ -122,7 +125,12 @@
                       <label class="col-md-4 control-label" for=
                       "QUALIFICATION_WORKEXPERIENCE">Experiencia Laboral:</label> 
                       <div class="col-md-8">
-                        <textarea class="form-control input-sm" id="QUALIFICATION_WORKEXPERIENCE" name="QUALIFICATION_WORKEXPERIENCE" placeholder="Experiencia Laboral"   autocomplete="none" ><?php echo $res->QUALIFICATION_WORKEXPERIENCE ?></textarea> 
+                        <textarea class="form-control input-sm" id="QUALIFICATION_WORKEXPERIENCE" name="QUALIFICATION_WORKEXPERIENCE" placeholder="Experiencia Laboral" autocomplete="none" >
+                          <?php
+                            //echo str_replace('<br>', ' ', $res->QUALIFICATION_WORKEXPERIENCE);
+                            echo $res->QUALIFICATION_WORKEXPERIENCE;
+                          ?>
+                        </textarea> 
                       </div>
                     </div>
                   </div> 
@@ -132,7 +140,9 @@
                       <label class="col-md-4 control-label" for=
                       "JOBDESCRIPTION">Funciones:</label> 
                       <div class="col-md-8">
-                        <textarea class="form-control input-sm" id="JOBDESCRIPTION" name="JOBDESCRIPTION" placeholder="Funciones"   autocomplete="none"><?php echo $res->JOBDESCRIPTION ?></textarea> 
+                        <textarea class="form-control input-sm" id="JOBDESCRIPTION" name="JOBDESCRIPTION" placeholder="Funciones"   autocomplete="none">
+                          <?php echo $res->JOBDESCRIPTION ?>
+                        </textarea> 
                       </div>
                     </div>
                   </div>  

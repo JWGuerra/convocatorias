@@ -104,7 +104,7 @@
                       <label class="col-md-4 control-label" for=
                       "QUALIFICATION_WORKEXPERIENCE">Experiencia Laboral:</label> 
                       <div class="col-md-8">
-                        <textarea class="form-control input-sm" id="QUALIFICATION_WORKEXPERIENCE" name="QUALIFICATION_WORKEXPERIENCE" placeholder="Experiencia Laboral"   autocomplete="none"></textarea> 
+                        <textarea class="form-control input-sm" id="QUALIFICATION_WORKEXPERIENCE" name="QUALIFICATION_WORKEXPERIENCE" placeholder="Experiencia Laboral" autocomplete="none"></textarea> 
                       </div>
                     </div>
                   </div> 

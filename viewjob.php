@@ -54,8 +54,11 @@
                                             </div>
                                             <div class="col-sm-12"> 
                                                 <p>Funciones:</p>
-                                                <ul style="list-style: none;"> 
-                                                     <li><?php echo $result->JOBDESCRIPTION ;?></li> 
+                                                <ul style="list-style: none;">
+                                                    <li><?php
+                                                            echo $result -> JOBDESCRIPTION;;
+                                                            ?>
+                                                    </li> 
                                                 </ul> 
                                              </div>
                                             <div class="col-sm-12">
@@ -65,7 +68,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <a href="<?php echo web_root; ?>index.php?q=apply&job=<?php echo $result->JOBID;?>&view=personalinfo" class="btn btn-main btn-next-tab">POSTULAR!</a>
+                                        <a href="<?php echo web_root; ?>index.php?q=apply&job=<?php echo $result->JOBID;?>&view=" class="btn btn-main btn-next-tab">POSTULAR!</a>
                                     </div>
                                 </div>
                             </div> 

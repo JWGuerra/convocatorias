@@ -1,15 +1,4 @@
 
-<!-- <div class="form-group">
-  <div class="col-md-11">
-  <label class="col-md-4 control-label" for=
-    "NATIONALID">NationalID:</label>
-
-    <div class="col-md-8"> 
-       <input class="form-control input-sm" id="NATIONALID" name="NATIONALID" placeholder=
-          "00-000000000000" type="text" value=""  onkeyup="javascript:capitalize(this.id, this.value);" autocomplete="off">
-    </div>
-  </div>
-</div> -->
 <div class="form-group">
 	<div class="col-md-11">
 	<label class="col-md-4 control-label" for=
@@ -45,8 +34,6 @@
 		  <input name="deptid" type="hidden" value="">
 		  <input  class="form-control input-sm" id="MNAME" name="MNAME" placeholder=
 		      "Nombres"    onkeyup="javascript:capitalize(this.id, this.value);" autocomplete="off">
-		   <!-- <input class="form-control input-sm" id="DEPARTMENT_DESC" name="DEPARTMENT_DESC" placeholder=
-		      "Description" type="text" value=""> -->
 		</div>
 	</div>
 </div> 
@@ -179,7 +166,6 @@
           <option value="Single">Soltero(a)</option>
           <option value="Married">Casado(a)</option>
           <option value="Widow" >Viudo(a)</option>
-          <!-- <option value="Fourth" >Fourth</option> -->
       </select> 
     </div>
   </div>
