@@ -30,11 +30,6 @@ CREATE TABLE `tblapplicants` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblapplicants`
---
-
--- --------------------------------------------------------
---
 -- Table structure for table `tblattachmentfile`
 --
 

@@ -9,65 +9,49 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
--- Table para los postulantes `tblpostulantes`
-
-CREATE TABLE `tblapplicants` (
-  `APPLICANTID` int(11) NOT NULL,
-  `FNAME` varchar(90) NOT NULL,
-  `LNAME` varchar(90) NOT NULL,
-  `MNAME` varchar(90) NOT NULL,
-  `ADDRESS` varchar(255) NOT NULL,
-  `SEX` varchar(11) NOT NULL,
-  `CIVILSTATUS` varchar(30) NOT NULL,
-  `BIRTHDATE` date NOT NULL,
-  `BIRTHPLACE` varchar(255) NOT NULL,
-  `AGE` int(2) NOT NULL,
-  `USERNAME` varchar(90) NOT NULL,
-  `PASS` varchar(90) NOT NULL,
-  `EMAILADDRESS` varchar(90) NOT NULL,
-  `CONTACTNO` varchar(90) NOT NULL,
-  `DEGREE` text NOT NULL,
-  `APPLICANTPHOTO` varchar(255) NOT NULL,
-  `NATIONALID` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
+-- -----------------------------------------------------
+-- Tabla para los postulantes `tblpostulantes`
 --
--- Dumping data for table `tblapplicants`
---
+CREATE TABLE tblPostulantes (
+  IDPOSTULANTE        int(11) NOT NULL,
+  DNI                 VARCHAR(8) NOT NULL,
+  APELLIDOS           varchar(90) NOT NULL,
+  NOMBRES             varchar(90) NOT NULL,
+  DIRECCION           varchar(255) NOT NULL,
+  EDAD                int(2) NOT NULL,
+  NOMBREUSUARIO       varchar(90) NOT NULL,
+  CONTRASENA          varchar(90) NOT NULL,
+  CORREO              varchar(90) NOT NULL,
+  CELULAR             varchar(90) NOT NULL,
+  FORMACIONACADEMICA  text NOT NULL,
+  FOTO                varchar(255) NOT NULL
+)  ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 --
 -- Table structure for table `tblattachmentfile`
 --
 
-CREATE TABLE `tblattachmentfile` (
-  `ID` int(11) NOT NULL,
-  `FILEID` varchar(30) DEFAULT NULL,
-  `JOBID` int(11) NOT NULL,
-  `FILE_NAME` varchar(90) NOT NULL,
-  `FILE_LOCATION` varchar(255) NOT NULL,
-  `USERATTACHMENTID` int(11) NOT NULL
+CREATE TABLE tblArchivoAdjunto (
+  ID                  int(11) NOT NULL,
+  IDARCHIVO           varchar(30) DEFAULT NULL,
+  IDTRABAJO           int(11) NOT NULL,
+  NOMBREARCHIVO       varchar(90) NOT NULL,
+  UBICACIONARCHIVO    varchar(255) NOT NULL,
+  IDUSARIOARCHIVO     int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tblattachmentfile`
---
-
-INSERT INTO `tblattachmentfile` (`ID`, `FILEID`, `JOBID`, `FILE_NAME`, `FILE_LOCATION`, `USERATTACHMENTID`) VALUES
-(2, '2147483647', 2, 'Resume', 'photos/27052018124027PLATENO FE95483.docx', 2018013);
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `tblautonumbers`
 --
 
-CREATE TABLE `tblautonumbers` (
-  `AUTOID` int(11) NOT NULL,
-  `AUTOSTART` varchar(30) NOT NULL,
-  `AUTOEND` int(11) NOT NULL,
-  `AUTOINC` int(11) NOT NULL,
-  `AUTOKEY` varchar(30) NOT NULL
+CREATE TABLE tblautonumbers (
+  AUTOID      int(11) NOT NULL,
+  AUTOSTART   varchar(30) NOT NULL,
+  AUTOEND     int(11) NOT NULL,
+  AUTOINC     int(11) NOT NULL,
+  AUTOKEY     varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -81,18 +65,16 @@ INSERT INTO `tblautonumbers` (`AUTOID`, `AUTOSTART`, `AUTOEND`, `AUTOINC`, `AUTO
 (4, '69125', 29, 1, 'FILEID');
 
 -- --------------------------------------------------------
-
 --
--- Table structure for table `tblcategory`
+-- Table structure for table `tblServicio
 --
-
-CREATE TABLE `tblcategory` (
-  `CATEGORYID` int(11) NOT NULL,
-  `CATEGORY` varchar(250) NOT NULL
+CREATE TABLE tbServicio (
+  IDSERVICIO    int(11) NOT NULL,
+  SERVICIO      varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblcategory`
+-- Dumping data for table `tblServicio`
 --
 
 INSERT INTO `tblcategory` (`CATEGORYID`, `CATEGORY`) VALUES
