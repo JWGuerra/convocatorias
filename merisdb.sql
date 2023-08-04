@@ -1,365 +1,261 @@
--- Data:    MySQL Server
--- Autor:   Jhon Waldir Guerra Bellido
--- PHP V:   7.3.9
--- New Version : 01/08/2023
-CREATE DATABASE MerissDB;
+-- SGBD:          MySQL Server
+-- Autor:         Jhon Waldir Guerra Bellido
+-- PHP V:         7.3.9
+-- Descripción:   01/08/2023
 
+-- --------------------------------------------------------
+--                CREACIÓN DE LA BASE DE DATOS
+-- --------------------------------------------------------
+CREATE DATABASE merissdb;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
--- -----------------------------------------------------
--- Tabla para los postulantes `tblpostulantes`
---
-CREATE TABLE tblPostulantes (
-  IDPOSTULANTE        int(11) NOT NULL,
-  DNI                 VARCHAR(8) NOT NULL,
-  APELLIDOS           varchar(90) NOT NULL,
-  NOMBRES             varchar(90) NOT NULL,
-  DIRECCION           varchar(255) NOT NULL,
-  EDAD                int(2) NOT NULL,
-  NOMBREUSUARIO       varchar(90) NOT NULL,
-  CONTRASENA          varchar(90) NOT NULL,
-  CORREO              varchar(90) NOT NULL,
-  CELULAR             varchar(90) NOT NULL,
-  FORMACIONACADEMICA  text NOT NULL,
-  FOTO                varchar(255) NOT NULL
-)  ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- --------------------------------------------------------
+--                   TABLA POSTULANTES
+-- --------------------------------------------------------
+CREATE TABLE tblPostulante (
+  IDPOSTULANTE        int(11)       NOT NULL,
+  DNI                 VARCHAR(8)    NOT NULL,
+  APELLIDOS           varchar(90)   NOT NULL,
+  NOMBRES             varchar(90)   NOT NULL,
+  DIRECCION           varchar(255)  NOT NULL,
+  EDAD                int(2)        NOT NULL,
+  NOMBREUSUARIO       varchar(90)   NOT NULL,
+  CONTRASENA          varchar(90)   NOT NULL,
+  CORREO              varchar(90)   NOT NULL,
+  CELULAR             varchar(90)   NOT NULL,
+  FORMACIONACADEMICA  text          NOT NULL,
+  FOTO                varchar(255)  NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
---
--- Table structure for table `tblattachmentfile`
---
-
-CREATE TABLE tblArchivoAdjunto (
-  ID                  int(11) NOT NULL,
-  IDARCHIVO           varchar(30) DEFAULT NULL,
-  IDTRABAJO           int(11) NOT NULL,
+--                   TABLA ARCHIVO ADJUNTO
+-- --------------------------------------------------------
+CREATE TABLE tblArchivoAdjunto (              
+  IDARCHIVO           int(11) NOT NULL,
+  IDVACANTE           int(11) NOT NULL,
   NOMBREARCHIVO       varchar(90) NOT NULL,
   UBICACIONARCHIVO    varchar(255) NOT NULL,
   IDUSARIOARCHIVO     int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
 -- --------------------------------------------------------
---
--- Table structure for table `tblautonumbers`
---
-
-CREATE TABLE tblautonumbers (
-  AUTOID      int(11) NOT NULL,
+--                    TABLA AUTONUMBERS
+-- --------------------------------------------------------
+CREATE TABLE  tblautonumbers (
+  AUTOID      int(11)     NOT NULL,
   AUTOSTART   varchar(30) NOT NULL,
-  AUTOEND     int(11) NOT NULL,
-  AUTOINC     int(11) NOT NULL,
+  AUTOEND     int(11)     NOT NULL,
+  AUTOINC     int(11)     NOT NULL,
   AUTOKEY     varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
---
--- Dumping data for table `tblautonumbers`
---
-
-INSERT INTO `tblautonumbers` (`AUTOID`, `AUTOSTART`, `AUTOEND`, `AUTOINC`, `AUTOKEY`) VALUES
-(1, '02983', 7, 1, 'userid'),
-(2, '000', 78, 1, 'employeeid'),
-(3, '0', 16, 1, 'APPLICANT'),
-(4, '69125', 29, 1, 'FILEID');
+INSERT INTO tblautonumbers (AUTOID, AUTOSTART, AUTOEND, AUTOINC, AUTOKEY) VALUES
+(1, '02983', 7, 1, 'IDUSUARIO'),
+(3, '0', 16, 1, 'POSTULANTE'),
+(4, '69125', 29, 1, 'IDARCHIVO');
 
 -- --------------------------------------------------------
---
--- Table structure for table `tblServicio
---
-CREATE TABLE tbServicio (
+--                    TABLA SERVICIO
+-- --------------------------------------------------------
+CREATE TABLE tblServicio (
   IDSERVICIO    int(11) NOT NULL,
   SERVICIO      varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
---
--- Dumping data for table `tblServicio`
---
+INSERT INTO tblServicio (IDSERVICIO, SERVICIO) VALUES
+(10, 'INSPECTOR DE OBRA'),
+(11, 'ASISTENTE TÉCNICO'),
+(12, 'AUXILIAR TECNICO');
 
-INSERT INTO `tblcategory` (`CATEGORYID`, `CATEGORY`) VALUES
-(10, 'Technology'),
-(11, 'Managerial'),
-(12, 'Engineer'),
-(13, 'IT'),
-(14, 'Civil Engineer'),
-(15, 'HR'),
-(23, 'Sales'),
-(24, 'Banking'),
-(25, 'Finance'),
-(26, 'BPO'),
-(27, 'Degital Marketing'),
-(28, 'Shipping');
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `tblcompany`
---
-
-CREATE TABLE `tblcompany` (
-  `COMPANYID` int(11) NOT NULL,
-  `COMPANYNAME` varchar(90) NOT NULL,
-  `COMPANYADDRESS` varchar(90) NOT NULL,
-  `COMPANYCONTACTNO` varchar(30) NOT NULL,
-  `COMPANYSTATUS` varchar(90) NOT NULL,
-  `COMPANYMISSION` text NOT NULL
+--                    TABLA CATEGORIA
+-- --------------------------------------------------------
+CREATE TABLE tblCategoria (
+  IDCATEGORIA    int(11) NOT NULL,
+  CATEGORIA      varchar(50) NOT NULL,
+  REMUNERACION   VARCHAR(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tblcompany`
---
-
-
---
--- Table structure for table `tblemployees`
---
-
-CREATE TABLE `tblemployees` (
-  `INCID` int(11) NOT NULL,
-  `EMPLOYEEID` varchar(30) NOT NULL,
-  `FNAME` varchar(50) NOT NULL,
-  `LNAME` varchar(50) NOT NULL,
-  `MNAME` varchar(50) NOT NULL,
-  `ADDRESS` varchar(90) NOT NULL,
-  `BIRTHDATE` date NOT NULL,
-  `BIRTHPLACE` varchar(90) NOT NULL,
-  `AGE` int(11) NOT NULL,
-  `SEX` varchar(30) NOT NULL,
-  `CIVILSTATUS` varchar(30) NOT NULL,
-  `TELNO` varchar(40) NOT NULL,
-  `EMP_EMAILADDRESS` varchar(90) NOT NULL,
-  `CELLNO` varchar(30) NOT NULL,
-  `POSITION` varchar(50) NOT NULL,
-  `WORKSTATS` varchar(90) NOT NULL,
-  `EMPPHOTO` varchar(255) NOT NULL,
-  `EMPUSERNAME` varchar(90) NOT NULL,
-  `EMPPASSWORD` varchar(125) NOT NULL,
-  `DATEHIRED` date NOT NULL,
-  `COMPANYID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tblemployees`
---
-
-INSERT INTO `tblemployees` (`INCID`, `EMPLOYEEID`, `FNAME`, `LNAME`, `MNAME`, `ADDRESS`, `BIRTHDATE`, `BIRTHPLACE`, `AGE`, `SEX`, `CIVILSTATUS`, `TELNO`, `EMP_EMAILADDRESS`, `CELLNO`, `POSITION`, `WORKSTATS`, `EMPPHOTO`, `EMPUSERNAME`, `EMPPASSWORD`, `DATEHIRED`, `COMPANYID`)
-VALUES(76, '2018001', 'Chambe', 'Narciso', 'Captain', 'mabinay', '1992-01-23', 'Mabinay', 26, 'Male', 'Married', '032656', 'chambe@yahoo.com', '', 'Fuel Tender', '', '', '2018001', 'f3593fd40c55c33d1788309d4137e82f5eab0dea', '2018-05-23', 2);
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `tblfeedback`
---
-
-CREATE TABLE `tblfeedback` (
-  `FEEDBACKID` int(11) NOT NULL,
-  `APPLICANTID` int(11) NOT NULL,
-  `REGISTRATIONID` int(11) NOT NULL,
-  `FEEDBACK` text NOT NULL
+--                    TABLA CONVOCATORIA
+-- --------------------------------------------------------
+CREATE TABLE tblConvocatoria (
+  IDCONVOCATORIA        int(11)       NOT NULL,
+  NOMBRECONVOCATORIA    varchar(90)   NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `tbljob`
---
-
-CREATE TABLE `tbljob` (
-  `JOBID` int(11) NOT NULL,
-  `COMPANYID` int(11) NOT NULL,
-  `CATEGORY` varchar(250) NOT NULL,
-  `OCCUPATIONTITLE` varchar(90) NOT NULL,
-  `REQ_NO_EMPLOYEES` int(11) NOT NULL,
-  `SALARIES` double NOT NULL,
-  `DURATION_EMPLOYEMENT` varchar(90) NOT NULL,
-  `QUALIFICATION_WORKEXPERIENCE` text NOT NULL,
-  `JOBDESCRIPTION` text NOT NULL,
-  `PREFEREDSEX` varchar(30) NOT NULL,
-  `SECTOR_VACANCY` text NOT NULL,
-  `JOBSTATUS` varchar(90) NOT NULL,
-  `DATEPOSTED` datetime NOT NULL
+--                 TABLA RETROALIMENTACIÓN
+-- --------------------------------------------------------
+CREATE TABLE tblRetroalimentacion (
+  IDRETROALIMENTACION   int(11)   NOT NULL,
+  IDPOSTULANTE          int(11)   NOT NULL,
+  IDREGISTRO            int(11)   NOT NULL,
+  RETROALIMENTACION     text      NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tbljob`
---
-
-INSERT INTO `tbljob` (`JOBID`, `COMPANYID`, `CATEGORY`, `OCCUPATIONTITLE`, `REQ_NO_EMPLOYEES`, `SALARIES`, `DURATION_EMPLOYEMENT`, `QUALIFICATION_WORKEXPERIENCE`, `JOBDESCRIPTION`, `PREFEREDSEX`, `SECTOR_VACANCY`, `JOBSTATUS`, `DATEPOSTED`) VALUES
-(1, 2, 'Technology', 'ISD', 6, 15000, 'jan 30', 'Two year Experience', 'We are looking for bachelor of science in information technology.\r\nasdasdasd', 'Male/Female', 'yes', '', '2018-05-20 00:00:00'),
-(2, 2, 'Technology', 'Accounting', 1, 15000, 'may 20', 'Two years Experience', 'We are looking for bachelor of science in Acountancy', 'Female', 'yes', '', '2018-05-20 02:33:00');
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `tbljobregistration`
---
-
-CREATE TABLE `tbljobregistration` (
-  `REGISTRATIONID` int(11) NOT NULL,
-  `COMPANYID` int(11) NOT NULL,
-  `JOBID` int(11) NOT NULL,
-  `APPLICANTID` int(11) NOT NULL,
-  `APPLICANT` varchar(90) NOT NULL,
-  `REGISTRATIONDATE` date NOT NULL,
-  `REMARKS` varchar(255) NOT NULL DEFAULT 'Pending',
-  `FILEID` varchar(30) DEFAULT NULL,
-  `PENDINGAPPLICATION` tinyint(1) NOT NULL DEFAULT 1,
-  `HVIEW` tinyint(1) NOT NULL DEFAULT 1,
-  `DATETIMEAPPROVED` datetime NOT NULL
+--                    TABLA VACANTES
+-- --------------------------------------------------------
+CREATE TABLE tblVacante (
+  IDVACANTE           int(11)         NOT NULL,
+  IDCONVOCATORIA      int(11)         NOT NULL,
+  SERVICIO            varchar(250)    NOT NULL,
+  FORMACIONACADEMICA  varchar(90)     NOT NULL,
+  NROVACANTES         int(11)         NOT NULL,
+  CATEGORIA           VARCHAR(50)     NOT NULL,
+  REMUNERACION        double          NOT NULL,
+  DURACION            varchar(90)     NOT NULL,
+  EXPERIENCIA         text            NOT NULL,
+  FUNCIONES           text            NOT NULL,
+  LUGARTRABAJO        text            NOT NULL,
+  FECHAPUBLICACION    datetime         NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbljobregistration`
---
-
-INSERT INTO `tbljobregistration` (`REGISTRATIONID`, `COMPANYID`, `JOBID`, `APPLICANTID`, `APPLICANT`, `REGISTRATIONDATE`, `REMARKS`, `FILEID`, `PENDINGAPPLICATION`, `HVIEW`, `DATETIMEAPPROVED`) VALUES
-(1, 2, 2, 2018013, 'Kim Domingo', '2018-05-27', 'Ive seen your work and its really interesting', '2147483647', 0, 1, '2018-05-26 16:13:01'),
-(2, 2, 2, 2018015, 'Janry Tan', '2018-05-26', 'aasd', '2147483647', 0, 0, '2018-05-28 14:14:45');
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `tblusers`
---
-
-CREATE TABLE `tblusers` (
-  `USERID` varchar(30) NOT NULL,
-  `FULLNAME` varchar(40) NOT NULL,
-  `USERNAME` varchar(90) NOT NULL,
-  `PASS` varchar(90) NOT NULL,
-  `ROLE` varchar(30) NOT NULL,
-  `PICLOCATION` varchar(255) NOT NULL
+--                    REGISTRO DE POSTULACIÓN
+-- --------------------------------------------------------
+CREATE TABLE tblRegistroPostulacion (
+  IDREGISTRO          int(11)       NOT NULL,
+  IDCONVOCATORIA      int(11)       NOT NULL,
+  IDVACANTE           int(11)       NOT NULL,
+  IDPOSTULANTE        int(11)       NOT NULL,
+  POSTULANTE          varchar(90)   NOT NULL,
+  REGISTRATIONDATE    date          NOT NULL,
+  REMARKS             varchar(255)  NOT NULL DEFAULT 'Pending',
+  FILEID              varchar(30)   DEFAULT NULL,
+  PENDINGAPPLICATION  tinyint(1)    NOT NULL DEFAULT 1,
+  HVIEW               tinyint(1)    NOT NULL DEFAULT 1,
+  DATETIMEAPPROVED    datetime      NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tblusers`
---
+-- --------------------------------------------------------
+--                    TABLA USUARIOS
+-- --------------------------------------------------------
+CREATE TABLE tblUsuario (
+  IDUSUARIO     varchar(30)   NOT NULL,
+  NOMBRE        varchar(40)   NOT NULL,
+  NOMBREUSUARIO varchar(90)   NOT NULL,
+  CONTRASENA    varchar(90)   NOT NULL,
+  ROL           varchar(30)   NOT NULL,
+  FOTOPERFIL   varchar(255)  NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `tblusers` (`USERID`, `FULLNAME`, `USERNAME`, `PASS`, `ROLE`, `PICLOCATION`) VALUES
-('00018', 'Campcodes', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Administrator', 'photos/Koala.jpg'),
-('2018001', 'Chambe Narciso', 'Narciso', 'f3593fd40c55c33d1788309d4137e82f5eab0dea', 'Employee', '');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `tblapplicants`
---
-ALTER TABLE `tblapplicants`
-  ADD PRIMARY KEY (`APPLICANTID`);
+INSERT INTO tblUsuario (IDUSUARIO, NOMBRE, NOMBREUSUARIO, CONTRASENA, ROL, FOTOPERFIL) VALUES
+('00018', 'Admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Administrator', 'photos/Koala.jpg');
 
 --
--- Indexes for table `tblattachmentfile`
+-- Indexes para la tabla tblPostulante
 --
-ALTER TABLE `tblattachmentfile`
-  ADD PRIMARY KEY (`ID`);
+ALTER TABLE tblPostulante
+ADD PRIMARY KEY (IDPOSTULANTE);
 
 --
--- Indexes for table `tblautonumbers`
+-- Indexes para la tabla tblArchivoAdjunto
 --
-ALTER TABLE `tblautonumbers`
-  ADD PRIMARY KEY (`AUTOID`);
+ALTER TABLE tblArchivoAdjunto
+ADD PRIMARY KEY (IDARCHIVO);
 
 --
--- Indexes for table `tblcategory`
+-- Indexes para la tabla tblautonumbers
 --
-ALTER TABLE `tblcategory`
-  ADD PRIMARY KEY (`CATEGORYID`);
+ALTER TABLE tblautonumbers
+  ADD PRIMARY KEY (AUTOID);
 
 --
--- Indexes for table `tblcompany`
+-- Indexes para la tabla `tblServicio`
 --
-ALTER TABLE `tblcompany`
-  ADD PRIMARY KEY (`COMPANYID`);
+ALTER TABLE tblServicio
+ADD PRIMARY KEY (IDSERVICIO);
 
 --
--- Indexes for table `tblemployees`
+-- Indexes para la tabla `tblCategoria`
 --
-ALTER TABLE `tblemployees`
-  ADD PRIMARY KEY (`INCID`),
-  ADD UNIQUE KEY `EMPLOYEEID` (`EMPLOYEEID`);
+ALTER TABLE tblCategoria
+ADD PRIMARY KEY (IDCATEGORIA);
+
+-- Indexes para la tabla tblConvocatoria
+ALTER TABLE tblConvocatoria
+ADD PRIMARY KEY (IDCONVOCATORIA);
 
 --
--- Indexes for table `tblfeedback`
+-- Indexes para la tabla tblRetroalimentación
 --
-ALTER TABLE `tblfeedback`
-  ADD PRIMARY KEY (`FEEDBACKID`);
+ALTER TABLE tblRetroalimentacion
+ADD PRIMARY KEY (IDRETROALIMENTACION);
 
 --
--- Indexes for table `tbljob`
+-- Indexes para la tabla tblVacante`
 --
-ALTER TABLE `tbljob`
-  ADD PRIMARY KEY (`JOBID`);
+ALTER TABLE tblVacante
+ADD PRIMARY KEY (IDVACANTE);
 
 --
 -- Indexes for table `tbljobregistration`
 --
-ALTER TABLE `tbljobregistration`
-  ADD PRIMARY KEY (`REGISTRATIONID`);
+ALTER TABLE tblRegistroPostulacion
+ADD PRIMARY KEY (IDREGISTRO);
 
 --
 -- Indexes for table `tblusers`
 --
-ALTER TABLE `tblusers`
-  ADD PRIMARY KEY (`USERID`);
+ALTER TABLE tblUsuario
+ADD PRIMARY KEY (IDUSUARIO);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT para la tabla `tblPostulante
 --
+ALTER TABLE tblPostulante
+MODIFY IDPOSTULANTE int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2018016;
 
 --
--- AUTO_INCREMENT for table `tblapplicants`
+-- AUTO_INCREMENT para la tabla tblArchivoAdjunto
 --
-ALTER TABLE `tblapplicants`
-  MODIFY `APPLICANTID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2018016;
+ALTER TABLE tblArchivoAdjunto
+  MODIFY IDARCHIVO int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `tblattachmentfile`
+-- AUTO_INCREMENT para la tabla tblautonumbers
 --
-ALTER TABLE `tblattachmentfile`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE tblautonumbers
+  MODIFY AUTOID int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `tblautonumbers`
+-- AUTO_INCREMENT for table `tblcategoria`
 --
-ALTER TABLE `tblautonumbers`
-  MODIFY `AUTOID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE tblCategoria
+MODIFY IDCATEGORIA int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+--
+-- AUTO_INCREMENT para la tabla `tblServicio`
+--
+ALTER TABLE tblServicio
+  MODIFY IDSERVICIO int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+--
+-- AUTO_INCREMENT para la tabla `tblconvocatoria`
+--
+ALTER TABLE tblConvocatoria
+  MODIFY IDCONVOCATORIA int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+-- AUTO_INCREMENT para la tabla `tblRetroalimentacion`
+--
+ALTER TABLE tblRetroalimentacion
+  MODIFY IDRETROALIMENTACION int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `tblcategory`
+-- AUTO_INCREMENT para la tabla tblVacante
 --
-ALTER TABLE `tblcategory`
-  MODIFY `CATEGORYID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+ALTER TABLE tblVacante
+  MODIFY IDVACANTE int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `tblcompany`
+-- AUTO_INCREMENT para la tabla tblRegistroPostulacion
 --
-ALTER TABLE `tblcompany`
-  MODIFY `COMPANYID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `tblemployees`
---
-ALTER TABLE `tblemployees`
-  MODIFY `INCID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
-
---
--- AUTO_INCREMENT for table `tblfeedback`
---
-ALTER TABLE `tblfeedback`
-  MODIFY `FEEDBACKID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `tbljob`
---
-ALTER TABLE `tbljob`
-  MODIFY `JOBID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `tbljobregistration`
---
-ALTER TABLE `tbljobregistration`
-  MODIFY `REGISTRATIONID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE tblRegistroPostulacion
+  MODIFY IDREGISTRO int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
