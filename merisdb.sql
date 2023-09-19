@@ -6,7 +6,7 @@
 -- --------------------------------------------------------
 --                CREACIÓN DE LA BASE DE DATOS
 -- --------------------------------------------------------
-CREATE DATABASE merissdb;
+-- CREATE DATABASE merissdb;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -18,16 +18,32 @@ SET time_zone = "+00:00";
 CREATE TABLE tblPostulante (
   IDPOSTULANTE        int(11)       NOT NULL,
   DNI                 VARCHAR(8)    NOT NULL,
-  APELLIDOS           varchar(90)   NOT NULL,
-  NOMBRES             varchar(90)   NOT NULL,
-  DIRECCION           varchar(255)  NOT NULL,
-  EDAD                int(2)        NOT NULL,
-  NOMBREUSUARIO       varchar(90)   NOT NULL,
-  CONTRASENA          varchar(90)   NOT NULL,
-  CORREO              varchar(90)   NOT NULL,
-  CELULAR             varchar(90)   NOT NULL,
+  APELLIDOS           VARCHAR(90)   NOT NULL,
+  NOMBRES             VARCHAR(90)   NOT NULL,
+  DIRECCION           VARCHAR(255)  NOT NULL,
+  NOMBREUSUARIO       VARCHAR(90)   NOT NULL,
+  CONTRASENA          VARCHAR(90)   NOT NULL,
+  CORREO              VARCHAR(90)   NOT NULL,
+  CELULAR             VARCHAR(90)   NOT NULL,
   FORMACIONACADEMICA  text          NOT NULL,
-  FOTO                varchar(255)  NOT NULL
+  FOTO                VARCHAR(255)  NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+--                    REGISTRO DE POSTULACIÓN
+-- --------------------------------------------------------
+CREATE TABLE tblRegistroPostulacion (
+  IDREGISTRO          int(11)       NOT NULL,
+  IDCONVOCATORIA      int(11)       NOT NULL,
+  IDVACANTE           int(11)       NOT NULL,
+  IDPOSTULANTE        int(11)       NOT NULL,
+  POSTULANTE          VARCHAR(90)   NOT NULL,
+  FECHAREGISTRO       date          NOT NULL,
+  OBSERVACIONES       VARCHAR(255)  NOT NULL DEFAULT 'PENDIENTE',
+  IDARCHIVO           VARCHAR(30)   DEFAULT NULL,
+  SOLICITUDPENDIENTE  tinyint(1)    NOT NULL DEFAULT 1,
+  HVISTA              tinyint(1)    NOT NULL DEFAULT 1,
+  FECHAAPROBACION     datetime      NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -36,8 +52,8 @@ CREATE TABLE tblPostulante (
 CREATE TABLE tblArchivoAdjunto (              
   IDARCHIVO           int(11) NOT NULL,
   IDVACANTE           int(11) NOT NULL,
-  NOMBREARCHIVO       varchar(90) NOT NULL,
-  UBICACIONARCHIVO    varchar(255) NOT NULL,
+  NOMBREARCHIVO       VARCHAR(90) NOT NULL,
+  UBICACIONARCHIVO    VARCHAR(255) NOT NULL,
   IDUSARIOARCHIVO     int(11) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
@@ -46,14 +62,14 @@ CREATE TABLE tblArchivoAdjunto (
 -- --------------------------------------------------------
 CREATE TABLE  tblautonumbers (
   AUTOID      int(11)     NOT NULL,
-  AUTOSTART   varchar(30) NOT NULL,
+  AUTOSTART   VARCHAR(30) NOT NULL,
   AUTOEND     int(11)     NOT NULL,
   AUTOINC     int(11)     NOT NULL,
-  AUTOKEY     varchar(30) NOT NULL
+  AUTOKEY     VARCHAR(30) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
 INSERT INTO tblautonumbers (AUTOID, AUTOSTART, AUTOEND, AUTOINC, AUTOKEY) VALUES
-(1, '02983', 7, 1, 'IDUSUARIO'),
+(1, '02983', 7, 1, 'userid'),
 (3, '0', 16, 1, 'POSTULANTE'),
 (4, '69125', 29, 1, 'IDARCHIVO');
 
@@ -61,32 +77,47 @@ INSERT INTO tblautonumbers (AUTOID, AUTOSTART, AUTOEND, AUTOINC, AUTOKEY) VALUES
 --                    TABLA SERVICIO
 -- --------------------------------------------------------
 CREATE TABLE tblServicio (
-  IDSERVICIO    int(11) NOT NULL,
-  SERVICIO      varchar(250) NOT NULL
+  IDSERVICIO  int(11)       NOT NULL,
+  SERVICIO    VARCHAR(250)  NOT NULL,
+  CATEGORIA   VARCHAR(50)   NOT NULL,
+  REMUNERACIONCATEGORIA   VARCHAR(10) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
-
-INSERT INTO tblServicio (IDSERVICIO, SERVICIO) VALUES
-(10, 'INSPECTOR DE OBRA'),
-(11, 'ASISTENTE TÉCNICO'),
-(12, 'AUXILIAR TECNICO');
 
 
 -- --------------------------------------------------------
 --                    TABLA CATEGORIA
 -- --------------------------------------------------------
 CREATE TABLE tblCategoria (
-  IDCATEGORIA    int(11) NOT NULL,
-  CATEGORIA      varchar(50) NOT NULL,
-  REMUNERACION   VARCHAR(10) NOT NULL
+  IDCATEGORIA    VARCHAR(11) NOT NULL,
+  CATEGORIA      VARCHAR(50) NOT NULL,
+  REMUNERACIONCATEGORIA   VARCHAR(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
+INSERT INTO tblCategoria(IDCATEGORIA, CATEGORIA, REMUNERACIONCATEGORIA) VALUES
+('C001', 'A-4', 2051.00),
+('C002', 'A-5', 2198.00),
+('C003', 'T-2', 2472.00),
+('C004', 'T-3', 2655.00),
+('C005', 'T-4', 2838.00),
+('C006', 'T-5', 3022.00),
+('C007', 'P-2', 3113.00),
+('C008', 'P-3', 3296.00),
+('C009', 'P-4', 3479.00),
+('C010', 'P-5', 3663.00),
+('C011', 'P-6', 3846.00),
+('C012', 'D-2', 4212.00),
+('C013', 'D-3', 4578.00),
+('C014', 'D-4', 5494.00),
+('C015', 'D-5', 5769.00),
+('C016', 'D-6', 6135.00);
 
 -- --------------------------------------------------------
 --                    TABLA CONVOCATORIA
 -- --------------------------------------------------------
 CREATE TABLE tblConvocatoria (
   IDCONVOCATORIA        int(11)       NOT NULL,
-  NOMBRECONVOCATORIA    varchar(90)   NOT NULL
+  CONVOCATORIA          VARCHAR(90)   NOT NULL,
+  NROCONVOCATORIA       VARCHAR(2)    NOT NULL,
+  ANIO                  VARCHAR(4)    NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -104,53 +135,50 @@ CREATE TABLE tblRetroalimentacion (
 --                    TABLA VACANTES
 -- --------------------------------------------------------
 CREATE TABLE tblVacante (
-  IDVACANTE           int(11)         NOT NULL,
-  IDCONVOCATORIA      int(11)         NOT NULL,
-  SERVICIO            varchar(250)    NOT NULL,
-  FORMACIONACADEMICA  varchar(90)     NOT NULL,
-  NROVACANTES         int(11)         NOT NULL,
-  CATEGORIA           VARCHAR(50)     NOT NULL,
-  REMUNERACION        double          NOT NULL,
-  DURACION            varchar(90)     NOT NULL,
-  EXPERIENCIA         text            NOT NULL,
-  FUNCIONES           text            NOT NULL,
-  LUGARTRABAJO        text            NOT NULL,
-  FECHAPUBLICACION    datetime         NOT NULL
+  IDVACANTE               int(11)         NOT NULL,
+  IDCONVOCATORIA          int(11)         NOT NULL,
+  SERVICIO                VARCHAR(250)    NOT NULL,
+  CATEGORIA               VARCHAR(50)     NOT NULL,
+  REMUNERACION            double          NOT NULL,
+  FORMACIONACADEMICA      VARCHAR(90)     NOT NULL,
+  NROVACANTES             int(11)         NOT NULL,
+  DURACION                VARCHAR(90)     NOT NULL,
+  EXPERIENCIAGENERAL      int(11)         NOT NULL,
+  EXPERIENCIAESPECIFICA   int(11)         NOT NULL,
+  FUNCIONES               text            NOT NULL,
+  LUGARTRABAJO            VARCHAR(250)    NOT NULL,
+  FECHAPUBLICACION        datetime        NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
---                    REGISTRO DE POSTULACIÓN
--- --------------------------------------------------------
-CREATE TABLE tblRegistroPostulacion (
-  IDREGISTRO          int(11)       NOT NULL,
-  IDCONVOCATORIA      int(11)       NOT NULL,
-  IDVACANTE           int(11)       NOT NULL,
-  IDPOSTULANTE        int(11)       NOT NULL,
-  POSTULANTE          varchar(90)   NOT NULL,
-  REGISTRATIONDATE    date          NOT NULL,
-  REMARKS             varchar(255)  NOT NULL DEFAULT 'Pending',
-  FILEID              varchar(30)   DEFAULT NULL,
-  PENDINGAPPLICATION  tinyint(1)    NOT NULL DEFAULT 1,
-  HVIEW               tinyint(1)    NOT NULL DEFAULT 1,
-  DATETIMEAPPROVED    datetime      NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 --                    TABLA USUARIOS
 -- --------------------------------------------------------
-CREATE TABLE tblUsuario (
-  IDUSUARIO     varchar(30)   NOT NULL,
-  NOMBRE        varchar(40)   NOT NULL,
-  NOMBREUSUARIO varchar(90)   NOT NULL,
-  CONTRASENA    varchar(90)   NOT NULL,
-  ROL           varchar(30)   NOT NULL,
-  FOTOPERFIL   varchar(255)  NOT NULL
+CREATE TABLE tblusers (
+  USERID      varchar(30)   NOT NULL,
+  FULLNAME    varchar(40)   NOT NULL,
+  USERNAME    varchar(90)   NOT NULL,
+  PASS        varchar(90)   NOT NULL,
+  ROLE        varchar(30)   NOT NULL,
+  PICLOCATION varchar(255)  NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO tblUsuario (IDUSUARIO, NOMBRE, NOMBREUSUARIO, CONTRASENA, ROL, FOTOPERFIL) VALUES
-('00018', 'Admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Administrator', 'photos/Koala.jpg');
 
---
+INSERT INTO tblusers (USERID, FULLNAME, USERNAME, PASS, ROLE, PICLOCATION) VALUES
+('00018', 'Campcodes', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Administrator', 'photos/Koala.jpg'),
+('2018001', 'Chambe Narciso', 'Narciso', 'f3593fd40c55c33d1788309d4137e82f5eab0dea', 'Employee', '');
+
+CREATE TABLE tblComunicado (
+  IDCOMUNICADO          int(11)       NOT NULL,
+  CONVOCATORIA          VARCHAR(90)   NOT NULL,
+  TIPOCOMUNICADO        varchar(40)   NOT NULL,
+  DESCRIPCION           varchar(300)   NOT NULL,
+  UBICACIONCOMUNICADO   varchar(255)  NOT NULL,
+  FECHAPUBLICACION      datetime      NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
 -- Indexes para la tabla tblPostulante
 --
 ALTER TABLE tblPostulante
@@ -197,7 +225,7 @@ ALTER TABLE tblVacante
 ADD PRIMARY KEY (IDVACANTE);
 
 --
--- Indexes for table `tbljobregistration`
+-- Indexes for table `tblVacanteregistration`
 --
 ALTER TABLE tblRegistroPostulacion
 ADD PRIMARY KEY (IDREGISTRO);
@@ -205,9 +233,14 @@ ADD PRIMARY KEY (IDREGISTRO);
 --
 -- Indexes for table `tblusers`
 --
-ALTER TABLE tblUsuario
-ADD PRIMARY KEY (IDUSUARIO);
+ALTER TABLE tblusers
+ADD PRIMARY KEY (USERID);
 
+ALTER TABLE tblComunicado
+ADD PRIMARY KEY (IDCOMUNICADO);
+
+ALTER TABLE tblComunicado
+MODIFY IDCOMUNICADO int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000;
 --
 -- AUTO_INCREMENT para la tabla `tblPostulante
 --
@@ -218,44 +251,39 @@ MODIFY IDPOSTULANTE int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2018016;
 -- AUTO_INCREMENT para la tabla tblArchivoAdjunto
 --
 ALTER TABLE tblArchivoAdjunto
-  MODIFY IDARCHIVO int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+MODIFY IDARCHIVO int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT para la tabla tblautonumbers
 --
 ALTER TABLE tblautonumbers
-  MODIFY AUTOID int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+MODIFY AUTOID int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
---
--- AUTO_INCREMENT for table `tblcategoria`
---
-ALTER TABLE tblCategoria
-MODIFY IDCATEGORIA int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT para la tabla `tblServicio`
 --
 ALTER TABLE tblServicio
-  MODIFY IDSERVICIO int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+MODIFY IDSERVICIO int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT para la tabla `tblconvocatoria`
 --
 ALTER TABLE tblConvocatoria
-  MODIFY IDCONVOCATORIA int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+MODIFY IDCONVOCATORIA int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 -- AUTO_INCREMENT para la tabla `tblRetroalimentacion`
 --
 ALTER TABLE tblRetroalimentacion
-  MODIFY IDRETROALIMENTACION int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+MODIFY IDRETROALIMENTACION int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT para la tabla tblVacante
 --
 ALTER TABLE tblVacante
-  MODIFY IDVACANTE int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+MODIFY IDVACANTE int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT para la tabla tblRegistroPostulacion
 --
 ALTER TABLE tblRegistroPostulacion
-  MODIFY IDREGISTRO int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+MODIFY IDREGISTRO int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;

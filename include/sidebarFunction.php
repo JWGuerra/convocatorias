@@ -1,14 +1,12 @@
 <?php 
-function get_categories(){
-	$mydb->setQuery("SELECT * FROM `tblcategory`");
+function get_Convocatoria(){
+	$mydb->setQuery("SELECT * FROM `tblConvocatoria`");
 	$cur = $mydb->loadResultList();
 
 	foreach ($cur as $result) {
 		echo '<ul>
-				<li><a href="index.php?q=product&category='.$result->CATEGORIES.'" >'.$result->CATEGORIES.'</a></li> 
+				<li><a href="index.php?q=product&convocatoria='.$result->CONVOCATORIA.'" >'.$result->CONVOCATORIA.'</a></li> 
 			</ul>';
 	}
 }
-
-
 ?>

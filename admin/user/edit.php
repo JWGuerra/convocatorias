@@ -75,7 +75,7 @@
                       <div class="col-md-8">
                        <select class="form-control input-sm" name="U_ROLE" id="U_ROLE">
                           <option value="Administrator"  <?php echo ($singleuser->ROLE=='Administrator') ? 'selected="true"': '' ; ?>>Administrador</option>
-                          <option value="Staff" <?php echo ($singleuser->ROLE=='Staff') ? 'selected="true"': '' ; ?>>Trabajador</option>  
+                          <option value="Trabajador" <?php echo ($singleuser->ROLE=='Trabajador') ? 'selected="true"': '' ; ?>>Trabajador</option>  
                         </select> 
                       </div>
                     </div>

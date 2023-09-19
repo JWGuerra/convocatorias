@@ -8,7 +8,7 @@
         <div class="col-md-12">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Applied Jobs</h3> 
+              <h3 class="box-title">Servicios Postulados</h3> 
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
@@ -17,24 +17,22 @@
                 <table id="dash-table" class="table table-hover table-striped">
                   <thead> 
                     <tr>
-                      <th>Job Title</th>
-                      <th>Company</th>
-                      <th>Location</th>
-                      <th>Status</th>
+                      <th>Servicio Postulado</th>
+                      <th>Convocatoria</th>
+                      <th>Remuneración</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php 
-                      $sql="SELECT * FROM `tblcompany` c,`tbljobregistration` r, `tbljob` j WHERE c.`COMPANYID`=r.`COMPANYID` AND r.`JOBID`=j.`JOBID` and r.`APPLICANTID` = {$_SESSION['APPLICANTID']}";
+                      $sql="SELECT * FROM `tblConvocatoria` c,`tblRegistroPostulacion` r, `tblVacante` j WHERE c.`IDCONVOCATORIA`=r.`IDCONVOCATORIA` AND r.`IDVACANTE`=j.`IDVACANTE` and r.`IDPOSTULANTE` = {$_SESSION['IDPOSTULANTE']}";
                       $mydb->setQuery($sql);
                       $cur = $mydb->loadResultList();  
                       foreach ($cur as $result) {
                         # code...
                           echo '<tr>';
-                          echo '<td class="mailbox-star"><a href="index.php?view=appliedjobs&p=job&id='.$result->REGISTRATIONID.'"><i class="fa fa-pencil-o text-yellow"></i> '.$result->OCCUPATIONTITLE.'</a></td>';
-                          echo '<td class="mailbox-attachment">'.$result->COMPANYNAME.'</td>';
-                          echo '<td class="mailbox-attachment">'.$result->COMPANYADDRESS.'</td>';
-                          echo '<td class="mailbox-attachment">'.$result->REMARKS.'</td>'; 
+                          echo '<td class="mailbox-star"><a href="index.php?view=appliedjobs&p=job&id='.$result->IDREGISTRO.'"><i class="fa fa-pencil-o text-yellow"></i> '.$result->FORMACIONACADEMICA.'</a></td>';
+                          echo '<td class="mailbox-attachment">'.$result->CONVOCATORIA.'</td>';
+                          echo '<td class="mailbox-attachment">'.$result->REMUNERACION.'</td>'; 
                           echo '</tr>';
                       } 
                     ?>

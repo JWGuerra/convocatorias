@@ -2,24 +2,24 @@
 global $mydb;
 	$red_id = isset($_GET['id']) ? $_GET['id'] : '';
 
-	$jobregistration = New JobRegistration();
-	$jobreg = $jobregistration->single_jobregistration($red_id);
-	 // `COMPANYID`, `JOBID`, `APPLICANTID`, `APPLICANT`, `REGISTRATIONDATE`, `REMARKS`, `FILEID`, `PENDINGAPPLICATION`
+	$jobregistration = New registroVacante();
+	$jobreg = $jobregistration->single_registroVacante($red_id);
+	 // `IDCONVOCATORIA`, `IDVACANTE`, `IDPOSTULANTE`, `APPLICANT`, `REGISTRATIONDATE`, `REMARKS`, `FILEID`, `PENDINGAPPLICATION`
 
 
-	$applicant = new Applicants();
-	$appl = $applicant->single_applicant($jobreg->APPLICANTID);
+	$applicant = new Postulantes();
+	$appl = $applicant->single_Postulante($jobreg->IDPOSTULANTE);
  // `FNAME`, `LNAME`, `MNAME`, `ADDRESS`, `SEX`, `CIVILSTATUS`, `BIRTHDATE`, `BIRTHPLACE`, `AGE`, `USERNAME`, `PASS`, `EMAILADDRESS`,CONTACTNO
 
-	$jobvacancy = New Jobs();
-	$job = $jobvacancy->single_job($jobreg->JOBID);
- // `COMPANYID`, `CATEGORY`, `OCCUPATIONTITLE`, `REQ_NO_EMPLOYEES`, `SALARIES`, `DURATION_EMPLOYEMENT`, `QUALIFICATION_WORKEXPERIENCE`, `JOBDESCRIPTION`, `PREFEREDSEX`, `SECTOR_VACANCY`, `JOBSTATUS`, `DATEPOSTED`
+	$jobvacancy = New Vacante();
+	$job = $jobvacancy->single_Vacante($jobreg->IDVACANTE);
+ // `IDCONVOCATORIA`, `CATEGORY`, `OCCUPATIONTITLE`, `REQ_NO_EMPLOYEES`, `SALARIES`, `DURATION_EMPLOYEMENT`, `QUALIFICATION_WORKEXPERIENCE`, `FUNCIONES`, `PREFEREDSEX`, `SECTOR_VACANCY`, `JOBSTATUS`, `DATEPOSTED`
 
-	$company = new Company();
-	$comp = $company->single_company($jobreg->COMPANYID);
+	$company = new Convocatoria();
+	$comp = $company->single_convocatoria($jobreg->IDCONVOCATORIA);
 	 // `COMPANYNAME`, `COMPANYADDRESS`, `COMPANYCONTACTNO`
 
-	$sql = "SELECT * FROM `tblattachmentfile` WHERE `FILEID`=" .$jobreg->FILEID;
+	 $sql = "SELECT * FROM `tblArchivoAdjunto` WHERE `IDUSARIOARCHIVO`=" . $jobreg->IDPOSTULANTE;
 	$mydb->setQuery($sql);
 	$attachmentfile = $mydb->loadSingleResult();
 
@@ -64,47 +64,43 @@ global $mydb;
 }
 </style>
 <form action="controller.php?action=approve" method="POST">
-<div class="col-sm-12 content-header" style="">View Details</div>
+<div class="col-sm-12 content-header" style="">Ver Detalles</div>
 <div class="col-sm-12 content-body" >  
-	<h3><?php echo $job->OCCUPATIONTITLE; ?></h3>
-	<input type="hidden" name="JOBREGID" value="<?php echo $jobreg->REGISTRATIONID;?>">
+	<h3><?php echo $job->SERVICIO; ?></h3>
+	<input type="hidden" name="JOBREGID" value="<?php echo $jobreg->IDREGISTRO;?>">
 
 	<div class="col-sm-6">
 		<ul>
-            <li><i class="fp-ht-bed"></i>Required No. of Employee's : <?php echo $job->REQ_NO_EMPLOYEES; ?></li>
-            <li><i class="fp-ht-food"></i>Salary : <?php echo number_format($job->SALARIES,2);  ?></li>
-            <li><i class="fa fa-sun-"></i>Duration of Employment : <?php echo $job->DURATION_EMPLOYEMENT; ?></li>
+            <li><i class="fp-ht-food"></i>Remuneración : <?php echo number_format($job->REMUNERACION,2);  ?></li>
+            <li><i class="fa fa-sun-"></i>Duración del contrato : <?php echo $job->DURACION; ?></li>
+			<li><i class="fp-ht-tv"></i>Formación Académica Requerida : <?php echo $job->FORMACIONACADEMICA; ?></li>
         </ul>
 	</div> 
 	<div class="col-sm-6">
 		<ul> 
-            <li><i class="fp-ht-tv"></i>Prefered Sex : <?php echo $job->PREFEREDSEX; ?></li>
-            <li><i class="fp-ht-computer"></i>Sector of Vacancy : <?php echo $job->SECTOR_VACANCY; ?></li>
+			<li><i class="fp-ht-computer"></i>Lugar de Trabajo : <?php echo $job->LUGARTRABAJO; ?></li>
+            <li><i class="fp-ht-computer"></i>Experiencia General : <?php echo $job->EXPERIENCIAGENERAL; ?> meses</li>
+			<li><i class="fp-ht-computer"></i>Experiencia Específica : <?php echo $job->EXPERIENCIAESPECIFICA; ?> meses</li>
         </ul>
 	</div>
 	<div class="col-sm-12">
-		<p>Job Description : </p>   
-		<p style="margin-left: 15px;"><?php echo $job->JOBDESCRIPTION;?></p>
+		<p>Funciones : </p>   
+		<p style="margin-left: 15px;"><?php echo $job->FUNCIONES;?></p>
 	</div>
 	<div class="col-sm-12"> 
-		<p>Qualification/Work Experience : </p>
-		<p style="margin-left: 15px;"><?php echo $job->QUALIFICATION_WORKEXPERIENCE; ?></p>
-	</div>
-	<div class="col-sm-12"> 
-		<p>Employeer : </p>
-		<p style="margin-left: 15px;"><?php echo $comp->COMPANYNAME ; ?></p> 
-		<p style="margin-left: 15px;">@ <?php echo $comp->COMPANYADDRESS ; ?></p>
+		<p>Convocatoria : </p> 
+		<p style="margin-left: 15px;"><?php echo $comp->CONVOCATORIA ; ?></p>
 	</div>
 </div>
  
 <div class="col-sm-12 content-footer">
-<p><i class="fa fa-paperclip"></i>  Attachment Files</p>
+<p><i class="fa fa-paperclip"></i>  Archivo Enviado</p>
 	<div class="col-sm-12 slider">
-		 <h3>Download Resume <a href="<?php echo web_root.'applicant/'.$attachmentfile->FILE_LOCATION; ?>">Here</a></h3>
+		 <h3>Descargar Ficha de Postulación <a target="_blank" href="<?php echo web_root.'applicant/'.$attachmentfile->UBICACIONARCHIVO; ?>">AQUÍ</a></h3>
 	</div>  
 	<div class="col-sm-12">
-		<p>Feedback</p>
-		<p><?php echo isset($jobreg->REMARKS) ? $jobreg->REMARKS : ""; ?></p>
+		<p>Respuesta</p>
+		<p><?php echo isset($jobreg->OBSERBACIONES) ? $jobreg->OBSERBACIONES : ""; ?></p>
 	</div>
 	<div class="col-sm-12  submitbutton "> 
 		<a href="index.php?view=appliedjobs" class="btn btn-primary fa fa-arrow-left">Back</a>

@@ -142,10 +142,3 @@ if(isset($_POST['btnLogin'])){
 </script>
 </body>
 </html>
-
- 
-
-
- 
-
-

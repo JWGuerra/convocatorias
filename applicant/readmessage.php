@@ -1,58 +1,59 @@
-<?php 
-  $id = isset($_GET['id']) ? $_GET['id'] :0;
+<?php
+$id = isset($_GET['id']) ? $_GET['id'] : 0;
 
-$sql="UPDATE `tbljobregistration` SET HVIEW=1 WHERE `REGISTRATIONID`='{$id}'";
+$sql = "UPDATE `tblRegistroPostulacion` SET HVIEW=1 WHERE `IDREGISTRO`='{$id}'";
 $mydb->setQuery($sql);
 $mydb->executeQuery();
 
 
-$sql = "SELECT * FROM `tblcompany` c,`tbljobregistration` jr,  `tbljob` j  WHERE c.`COMPANYID`=jr.`COMPANYID` AND jr.`JOBID`=j.`JOBID` AND `REGISTRATIONID`='{$id}'";
+$sql = "SELECT * FROM `tblConvocatoria` c,`tblRegistroPostulacion` jr,  `tblVacante` j  WHERE c.`IDCONVOCATORIA`=jr.`IDCONVOCATORIA` AND jr.`IDVACANTE`=j.`IDVACANTE` AND `IDREGISTRO`='{$id}'";
 $mydb->setQuery($sql);
 $res = $mydb->loadSingleResult();
 
-$applicant = new Applicants();
-$appl  = $applicant->single_applicant($_SESSION['APPLICANTID']);
+$applicant = new Postulantes();
+$appl  = $applicant->single_Postulante($_SESSION['IDPOSTULANTE']);
 
 
-?> 
+?>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper"> 
-    <!-- Main content -->
-    <section class="content">
-      <div class="row"> 
-        <!-- /.col -->
-        <div class="col-md-12">
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Read Message</h3> 
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <!-- /.col -->
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">Leer Mensaje</h3>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body no-padding">
+            <div class="mailbox-read-info">
+              <h3><?php echo $res->FORMACIONACADEMICA; ?></h3>
+              <h5>From: <?php echo $res->CONVOCATORIA; ?>
+                <span class="mailbox-read-time pull-right"><?php echo date_format(date_create($res->FECHAAPROBACION), 'd M. Y h:i a'); ?></span>
+              </h5>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <div class="mailbox-read-info">
-                <h3><?php  echo $res->OCCUPATIONTITLE; ?></h3>
-                <h5>From: <?php  echo $res->COMPANYNAME; ?>
-                  <span class="mailbox-read-time pull-right"><?php  echo date_format(date_create($res->DATETIMEAPPROVED),'d M. Y h:i a'); ?></span></h5>
-              </div>
-              <!-- /.mailbox-read-info -->
-              <div class="mailbox-controls with-border text-center">
-                <div class="btn-group">
-                  <!-- <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Delete"> -->
-                    <!-- <i class="fa fa-trash-o"></i></button> -->
-               <!--    <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Reply">
+            <!-- /.mailbox-read-info -->
+            <div class="mailbox-controls with-border text-center">
+              <div class="btn-group">
+                <!-- <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Delete"> -->
+                <!-- <i class="fa fa-trash-o"></i></button> -->
+                <!--    <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Reply">
                     <i class="fa fa-reply"></i></button>
                   <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Forward">
                     <i class="fa fa-share"></i></button> -->
-                </div>
-                <!-- /.btn-group -->
-                <!-- <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Print"> -->
-                  <!-- <i class="fa fa-print"></i></button> -->
               </div>
-              <!-- /.mailbox-controls -->
-              <div class="mailbox-read-message">
-                <p>Hello <?php  echo $appl->FNAME; ?>,</p>  
-                  <p><?php  echo $res->REMARKS; ?></p>
-<!-- 
+              <!-- /.btn-group -->
+              <!-- <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Print"> -->
+              <!-- <i class="fa fa-print"></i></button> -->
+            </div>
+            <!-- /.mailbox-controls -->
+            <div class="mailbox-read-message">
+              <p>Hello <?php echo $appl->NOMBRES; ?>,</p>
+              <p><?php echo $res->OBSERBACIONES; ?></p>
+              <!-- 
                 <p>Keffiyeh blog actually fashion axe vegan, irony biodiesel. Cold-pressed hoodie chillwave put a bird
                   on it aesthetic, bitters brunch meggings vegan iPhone. Dreamcatcher vegan scenester mlkshk. Ethical
                   master cleanse Bushwick, occupy Thundercats banjo cliche ennui farm-to-table mlkshk fanny pack
@@ -84,12 +85,12 @@ $appl  = $applicant->single_applicant($_SESSION['APPLICANTID']);
                   vinyl. Readymade next level literally trust fund. Distillery master cleanse migas, Vice sriracha
                   flannel chambray chia cronut.</p> -->
 
-                <p>Thanks,<br><?php  echo $res->COMPANYNAME; ?></p>
-              </div>
-              <!-- /.mailbox-read-message -->
+              <p>Agradecemos su postulación,<br><?php echo $res->CONVOCATORIA; ?></p>
             </div>
-            <!-- /.box-body -->
-            <!-- <div class="box-footer">
+            <!-- /.mailbox-read-message -->
+          </div>
+          <!-- /.box-body -->
+          <!-- <div class="box-footer">
               <ul class="mailbox-attachments clearfix">
                 <li>
                   <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
@@ -137,23 +138,22 @@ $appl  = $applicant->single_applicant($_SESSION['APPLICANTID']);
                 </li>
               </ul>
             </div> -->
-            <!-- /.box-footer -->
-            <div class="box-footer">
-         <!--      <div class="pull-right">
+          <!-- /.box-footer -->
+          <div class="box-footer">
+            <!--      <div class="pull-right">
                 <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> Reply</button>
                 <button type="button" class="btn btn-default"><i class="fa fa-share"></i> Forward</button>
               </div> -->
-              <!-- <button type="button" class="btn btn-default"><i class="fa fa-trash-o"></i> Delete</button>
+            <!-- <button type="button" class="btn btn-default"><i class="fa fa-trash-o"></i> Delete</button>
               <button type="button" class="btn btn-default"><i class="fa fa-print"></i> Print</button> -->
-            </div>
-            <!-- /.box-footer -->
           </div>
-          <!-- /. box -->
+          <!-- /.box-footer -->
         </div>
-        <!-- /.col -->
+        <!-- /. box -->
       </div>
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
-  </div>
-  
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
+</div>

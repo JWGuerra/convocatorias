@@ -1,252 +1,184 @@
-<?php  
-require_once ("include/initialize.php");
+<?php
+require_once("include/initialize.php");
 $action = (isset($_GET['action']) && $_GET['action'] != '') ? $_GET['action'] : '';
 switch ($action) {
-	case 'submitapplication' :
-	doSubmitApplication();
-	break;
-  
-	case 'register' :
-	doRegister();
-	break;  
+	case 'submitapplication':
+		doapplicationform();
+		break;
 
-	case 'login' :
-	doLogin();
-	break; 
-	}
+	case 'register':
+		doRegister();
+		break;
 
-function doSubmitApplication() { 
-	global $mydb;   
-		$jobid  = $_GET['JOBID'];
-		
-
-		$autonum = New Autonumber();
-		$applicantid = $autonum->set_autonumber('APPLICANT');
-		$autonum = New Autonumber();
-		$fileid = $autonum->set_autonumber('FILEID');
-
-		@$picture = UploadImage();
-		@$location = "photos/". $picture ;
-
-
-		if ($picture=="") {
-			# code...
-			redirect(web_root."index.php?q=apply&job=".$jobid."&view=personalinfo");
-		}else{ 
-			
-			if (isset($_SESSION['APPLICANTID'])) {
-
-				$sql = "INSERT INTO `tblattachmentfile` (FILEID,`USERATTACHMENTID`, `FILE_NAME`, `FILE_LOCATION`, `JOBID`) 
-				VALUES ('". date('Y').$fileid->AUTO."','{$_SESSION['APPLICANTID']}','Resume','{$location}','{$jobid}')";
-				$mydb->setQuery($sql); 
-				$res = $mydb->executeQuery(); 
-
-				doUpdate($jobid,$fileid->AUTO);
-				
-			}else{
-				 
-				$sql = "INSERT INTO `tblattachmentfile` (FILEID,`USERATTACHMENTID`, `FILE_NAME`, `FILE_LOCATION`, `JOBID`) 
-				VALUES ('". date('Y').$fileid->AUTO."','". date('Y').$applicantid->AUTO."','Resume','{$location}','{$jobid}')";
-				// echo $sql;exit;
-				$mydb->setQuery($sql); 
-				$res = $mydb->executeQuery(); 
-
-				doInsert($jobid,$fileid->AUTO); 
-
-				$autonum = New Autonumber();
-				$autonum->auto_update('APPLICANT');
-			}
-		}
-
-		$autonum = New Autonumber();
-	    $autonum->auto_update('FILEID'); 
-	 
+	case 'login':
+		doLogin();
+		break;
 }
-function doInsert($jobid=0,$fileid=0) {
-	if (isset($_POST['submit'])) {  
-	global $mydb; 
 
-			$birthdate =  $_POST['year'].'-'.$_POST['month'].'-'.$_POST['day'];
-
-			$age = date_diff(date_create($birthdate),date_create('today'))->y;
-
-			if ($age < 20){
-			message("Edad Inválida. Edad igual o mayor a 18 años.", "error");
-			redirect("index.php?q=apply&view=personalinfo&job=".$jobid);
-
-			}else{
-
-			$autonum = New Autonumber();
-			$auto = $autonum->set_autonumber('APPLICANT');
-			 
-			$applicant =New Applicants();
-			$applicant->APPLICANTID = date('Y').$auto->AUTO;
-			$applicant->FNAME = $_POST['FNAME'];
-			$applicant->LNAME = $_POST['LNAME'];
-			$applicant->MNAME = $_POST['MNAME'];
-			$applicant->ADDRESS = $_POST['ADDRESS'];
-			$applicant->SEX = $_POST['optionsRadios'];
-			$applicant->CIVILSTATUS = $_POST['CIVILSTATUS'];
-			$applicant->BIRTHDATE = $birthdate;
-			$applicant->BIRTHPLACE = $_POST['BIRTHPLACE'];
-			$applicant->AGE = $age;
-			$applicant->USERNAME = $_POST['USERNAME'];
-			$applicant->PASS = sha1($_POST['PASS']);
-			$applicant->EMAILADDRESS = $_POST['EMAILADDRESS'];
-			$applicant->CONTACTNO = $_POST['TELNO'];
-			$applicant->DEGREE = $_POST['DEGREE'];
-			$applicant->create();
-
-
-			$sql = "SELECT * FROM `tblcompany` c,`tbljob` j WHERE c.`COMPANYID`=j.`COMPANYID` AND JOBID = '{$jobid}'" ;
-			$mydb->setQuery($sql);
-			$result = $mydb->loadSingleResult();
-
-
-			$jobreg = New JobRegistration(); 
-			$jobreg->COMPANYID = $result->COMPANYID;
-			$jobreg->JOBID     = $result->JOBID;
-			$jobreg->APPLICANTID = date('Y').$auto->AUTO;
-			$jobreg->APPLICANT   = $_POST['FNAME'] . ' ' . $_POST['LNAME'];
-			$jobreg->REGISTRATIONDATE = date('Y-m-d');
-			$jobreg->FILEID = date('Y').$fileid;
-			$jobreg->REMARKS = 'Pending';
-			$jobreg->DATETIMEAPPROVED = date('Y-m-d H:i');
-			$jobreg->create();
-  
-
-			message("Your application already submitted. Please wait for the company confirmation if your are qualified to this job.","success");
-			redirect("index.php?q=success&job=".$result->JOBID);
-
-			
-	 }
-}
-}
-function doUpdate($jobid=0,$fileid=0) {
-	if (isset($_POST['submit'])) {
-	global $mydb;   
-
-			$applicant =New Applicants();
-			$appl  = $applicant->single_applicant($_SESSION['APPLICANTID']);
-
-			 
-
-			$sql = "SELECT * FROM `tblcompany` c,`tbljob` j WHERE c.`COMPANYID`=j.`COMPANYID` AND JOBID = '{$jobid}'" ;
-			$mydb->setQuery($sql);
-			$result = $mydb->loadSingleResult();
-
-
-			$jobreg = New JobRegistration(); 
-			$jobreg->COMPANYID = $result->COMPANYID;
-			$jobreg->JOBID     = $result->JOBID;
-			$jobreg->APPLICANTID = $appl->APPLICANTID;
-			$jobreg->APPLICANT   = $appl->FNAME . ' ' . $appl->LNAME;
-			$jobreg->REGISTRATIONDATE = date('Y-m-d');
-			$jobreg->FILEID = date('Y').$fileid;
-			$jobreg->REMARKS = 'Pending';
-			$jobreg->DATETIMEAPPROVED = date('Y-m-d H:i');
-			$jobreg->create();
-
-  
-			message("Your application already submitted. Please wait for the company confirmation if your are qualified to this job.","success");
-			redirect("index.php?q=success&job=".$result->JOBID);
- 
-	}
-}
-function doRegister(){
+function doapplicationform()
+{
 	global $mydb;
-	if (isset($_POST['btnRegister'])) { 
-			$birthdate =  $_POST['year'].'-'.$_POST['month'].'-'.$_POST['day'];
+	$IDVACANTE  	= 	$_GET['IDVACANTE'];
+	$autonum 		= 	new Autonumber();
+	$IDPOSTULANTE 	= 	$autonum->set_autonumber('POSTULANTE');
+	$autonum 		= 	new Autonumber();
+	$IDARCHIVO 		= 	$autonum->set_autonumber('IDARCHIVO');
+	@$picture 		= 	UploadImage();
+	@$location 		= 	"photos/" . $picture;
 
-			$age = date_diff(date_create($birthdate),date_create('today'))->y;
-
-			if ($age < 20){
-			message("Invalid age. 20 years old and above is allowed.", "error");
-			redirect("index.php?q=register");
-
-			}else{
-
-			$autonum = New Autonumber();
-			$auto = $autonum->set_autonumber('APPLICANT');
-			 
-			$applicant =New Applicants();
-			$applicant->APPLICANTID = date('Y').$auto->AUTO;
-			$applicant->FNAME = $_POST['FNAME'];
-			$applicant->LNAME = $_POST['LNAME'];
-			$applicant->MNAME = $_POST['MNAME'];
-			$applicant->ADDRESS = $_POST['ADDRESS'];
-			$applicant->SEX = $_POST['optionsRadios'];
-			$applicant->CIVILSTATUS = $_POST['CIVILSTATUS'];
-			$applicant->BIRTHDATE = $birthdate;
-			$applicant->BIRTHPLACE = $_POST['BIRTHPLACE'];
-			$applicant->AGE = $age;
-			$applicant->USERNAME = $_POST['USERNAME'];
-			$applicant->PASS = sha1($_POST['PASS']);
-			$applicant->EMAILADDRESS = $_POST['EMAILADDRESS'];
-			$applicant->CONTACTNO = $_POST['TELNO'];
-			$applicant->DEGREE = $_POST['DEGREE'];
-			$applicant->create();
-
-
- 
-			$autonum = New Autonumber();
-			$autonum->auto_update('APPLICANT');
-
-
-			message("You are successfully registered to the site. You can login now!","success");
-			redirect("index.php?q=success");
-
-			
-	 }
-}
+	if ($picture == "") {
+		# code...
+		redirect(web_root . "index.php?q=apply&job=" . $IDVACANTE . "&view=personalinfo");
+	} else {
+		if (isset($_SESSION['IDPOSTULANTE'])) {
+			$sql = "INSERT INTO `tblArchivoAdjunto` (`IDARCHIVO`, 					  `IDVACANTE`,   `NOMBREARCHIVO`,	`UBICACIONARCHIVO`, `IDUSARIOARCHIVO`) 
+											VALUES  ('$IDARCHIVO->AUTO','{$IDVACANTE}','Curriculum Vitae','{$location}',		'{$_SESSION['IDPOSTULANTE']}')";
+			$mydb->setQuery($sql);
+			$res = $mydb->executeQuery();
+			echo "POSTULACION DESPUES DE REGISTRO";
+			doUpdate($IDVACANTE, $IDARCHIVO->AUTO);
+		} else {
+			$sql = "INSERT INTO `tblArchivoAdjunto` (`IDARCHIVO`, 					  `IDVACANTE`,   `NOMBREARCHIVO`,	`UBICACIONARCHIVO`, `IDUSARIOARCHIVO`) 
+											 VALUES ('$IDARCHIVO->AUTO','{$IDVACANTE}','Curriculum Vitae','{$location}','" . date('Y') . $IDPOSTULANTE->AUTO . "')";
+			$mydb->setQuery($sql);
+			$res = $mydb->executeQuery();
+			echo "POSTULACIÓN NORMAL";
+			doInsert($IDVACANTE, $IDARCHIVO->AUTO);
+			$autonum = new Autonumber();
+			$autonum->auto_update('POSTULANTE');
+		}
+	}
+	$autonum = new Autonumber();
+	$autonum->auto_update('IDARCHIVO');
 }
 
-function doLogin(){
-	
-	$email = trim($_POST['USERNAME']);
-	$upass  = trim($_POST['PASS']);
-	$h_upass = sha1($upass);
- 
-  //it creates a new objects of member
-    $applicant = new Applicants();
-    //make use of the static function, and we passed to parameters
-    $res = $applicant->applicantAuthentication($email, $h_upass);
-    if ($res==true) { 
+function doInsert($IDVACANTE = 0, $IDARCHIVO = 0)
+{
+	if (isset($_POST['submit'])) {
+		global $mydb;
+		$autonum = new Autonumber();
+		$auto = $autonum->set_autonumber('POSTULANTE');
 
-       	message("You are now successfully login!","success");
-       
-       // $sql="INSERT INTO `tbllogs` (`USERID`,USERNAME, `LOGDATETIME`, `LOGROLE`, `LOGMODE`) 
-       //    VALUES (".$_SESSION['USERID'].",'".$_SESSION['FULLNAME']."','".date('Y-m-d H:i:s')."','".$_SESSION['UROLE']."','Logged in')";
-       //    mysql_query($sql) or die(mysql_error()); 
-         redirect(web_root."applicant/");
-     
-    }else{
-    	 echo "Account does not exist! Please contact Administrator."; 
-    } 
+		$POSTULANTE = new Postulantes();
+		$POSTULANTE->IDPOSTULANTE 	= date('Y') . $auto->AUTO;
+		$POSTULANTE->DNI 			= $_POST['DNI'];
+		$POSTULANTE->APELLIDOS 		= $_POST['APELLIDOS'];
+		$POSTULANTE->NOMBRES 		= $_POST['NOMBRES'];
+		$POSTULANTE->DIRECCION 		= $_POST['DIRECCION'];
+		$POSTULANTE->NOMBREUSUARIO 	= $_POST['NOMBREUSUARIO'];
+		$POSTULANTE->CONTRASENA 	= sha1($_POST['CONTRASENA']);
+		$POSTULANTE->CORREO 		= $_POST['CORREO'];
+		$POSTULANTE->CELULAR 		= $_POST['CELULAR'];
+		$POSTULANTE->FORMACIONACADEMICA	= $_POST['FORMACIONACADEMICA'];
+		$POSTULANTE->create();
+
+
+		$sql = "SELECT * FROM `tblConvocatoria` c,`tblVacante` j WHERE c.`IDCONVOCATORIA`=j.`IDCONVOCATORIA` AND IDVACANTE = '{$IDVACANTE}'";
+		$mydb->setQuery($sql);
+		$result = $mydb->loadSingleResult();
+		$jobreg = new RegistroVacante();
+		$jobreg->IDCONVOCATORIA 	= $result->IDCONVOCATORIA;
+		$jobreg->IDVACANTE     		= $result->IDVACANTE;
+		$jobreg->IDPOSTULANTE 		= date('Y') . $auto->AUTO;
+		$jobreg->POSTULANTE   		= $_POST['APELLIDOS'] . ' ' . $_POST['NOMBRES'];
+		$jobreg->FECHAREGISTRO 		= date('Y-m-d');
+		$jobreg->IDARCHIVO 			= date('Y') . $IDARCHIVO;
+		$jobreg->OBSERVACIONES 		= 'Pending';
+		$jobreg->FECHAAPROBACION 	= date('Y-m-d H:i');
+		$jobreg->create();
+
+		message("Tu postulación fue enviada correctamente. Espere que la institución se comunique si usted esta calificado para esta vacante.", "success");
+		redirect("index.php?q=success&job=" . $result->IDVACANTE);
+	}
 }
- 
-function UploadImage($jobid=0){
+
+function doUpdate($IDVACANTE = 0, $IDARCHIVO = 0)
+{
+	if (isset($_POST['submit'])) {
+		global $mydb;
+
+		$POSTULANTE = new Postulantes();
+		$appl  		= $POSTULANTE->single_POSTULANTE($_SESSION['IDPOSTULANTE']);
+		$sql 		= "SELECT * FROM `tblConvocatoria` c,`tblVacante` j WHERE c.`IDCONVOCATORIA`=j.`IDCONVOCATORIA` AND IDVACANTE = '{$IDVACANTE}'";
+		$mydb->setQuery($sql);
+		$result 	= $mydb->loadSingleResult();
+		$jobreg 	= new RegistroVacante();
+		$jobreg->IDCONVOCATORIA		= 	$result->IDCONVOCATORIA;
+		$jobreg->IDVACANTE     		= 	$result->IDVACANTE;
+		$jobreg->IDPOSTULANTE 		= 	$appl->IDPOSTULANTE;
+		$jobreg->POSTULANTE   		= 	$appl->DNI . ' ' . $appl->APELLIDOS;
+		$jobreg->FECHAREGISTRO 		= 	date('Y-m-d');
+		$jobreg->IDARCHIVO 			= 	date('Y') . $IDARCHIVO;
+		$jobreg->OBSERBACIONES 		= 	'Pending';
+		$jobreg->FECHAAPROBACION 	= 	date('Y-m-d H:i');
+		$jobreg->create();
+		message("Su ostulación fue enviada. Por favor espere que la institución se comunique con usted si cesta calificado para la vacante.", "success");
+		redirect("index.php?q=success&job=" . $result->IDVACANTE);
+	}
+}
+function doRegister()
+{
+	global $mydb;
+	$autonum 	= new Autonumber();
+	$auto 		= $autonum->set_autonumber('POSTULANTE');
+	$POSTULANTE = new Postulantes();
+	$POSTULANTE->IDPOSTULANTE 		= date('Y') . $auto->AUTO;
+	$POSTULANTE->DNI 				= $_POST['DNI'];
+	$POSTULANTE->APELLIDOS 			= $_POST['APELLIDOS'];
+	$POSTULANTE->NOMBRES 			= $_POST['NOMBRES'];
+	$POSTULANTE->DIRECCION 			= $_POST['DIRECCION'];
+	$POSTULANTE->NOMBREUSUARIO 		= $_POST['NOMBREUSUARIO'];
+	$POSTULANTE->CONTRASENA 		= sha1($_POST['CONTRASENA']);
+	$POSTULANTE->CORREO 			= $_POST['CORREO'];
+	$POSTULANTE->CELULAR 			= $_POST['CELULAR'];
+	$POSTULANTE->FORMACIONACADEMICA = $_POST['FORMACIONACADEMICA'];
+	$POSTULANTE->create();
+	$autonum = new Autonumber();
+	$autonum->auto_update('POSTULANTE');
+	message("Usted se registro correctamente. Puedes iniciar sesión ahora!", "success");
+	redirect("index.php?q=success");
+}
+
+function doLogin()
+{
+	$email 		= trim($_POST['NOMBREUSUARIO']);
+	$upass  	= trim($_POST['CONTRASENA']);
+	$h_upass 	= sha1($upass);
+
+	//it creates a new objects of member
+	$POSTULANTE = new Postulantes();
+	//make use of the static function, and we passed to parameters
+	$res = $POSTULANTE->postulante_Authentication($email, $h_upass);
+	if ($res == true) {
+		message("Iniciaste Sesión con Éxito!", "success");
+		redirect(web_root . "applicant/");
+	} else {
+		echo "La cuenta no existe! Comuniquese con el Administrador.";
+	}
+}
+
+function UploadImage($IDVACANTE = 0)
+{
 	$target_dir = "applicant/photos/";
 	$target_file = $target_dir . date("dmYhis") . basename($_FILES["picture"]["name"]);
 	$uploadOk = 1;
-	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-	
-	
-	if($imageFileType != "jpg" || $imageFileType != "png" || $imageFileType != "jpeg"
-|| $imageFileType != "gif" ) {
-		 if (move_uploaded_file($_FILES["picture"]["tmp_name"], $target_file)) {
+	$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+
+
+	if (
+		$imageFileType != "jpg" || $imageFileType != "png" || $imageFileType != "jpeg"
+		|| $imageFileType != "gif"
+	) {
+		if (move_uploaded_file($_FILES["picture"]["tmp_name"], $target_file)) {
 			return  date("dmYhis") . basename($_FILES["picture"]["name"]);
-		}else{
-			message("Error Uploading File","error");
-			// redirect(web_root."index.php?q=apply&job=".$jobid."&view=personalinfo");
+		} else {
+			message("Error Uploading File", "error");
+			// redirect(web_root."index.php?q=apply&job=".$IDVACANTE."&view=personalinfo");
 			// exit;
 		}
-	}else{
-			message("File Not Supported","error");
-			// redirect(web_root."index.php?q=apply&job=".$jobid."&view=personalinfo");
-			// exit;
-		}
-} 
-
-
-?>
+	} else {
+		message("File Not Supported", "error");
+		// redirect(web_root."index.php?q=apply&job=".$IDVACANTE."&view=personalinfo");
+		// exit;
+	}
+}
