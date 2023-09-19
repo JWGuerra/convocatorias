@@ -61,7 +61,7 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
       echo '<td>' . $result->FORMACIONACADEMICA . '</td>';
       echo '<td>' . $result->SERVICIO . '</td>';
       echo '<td>' . $result->FECHAREGISTRO . '</td>';
-      echo '<td>' . $result->OBSERBACIONES . '</td>';
+      echo '<td>' . $result->OBSERVACIONES . '</td>';
       echo '<td align="center">    
                     <a title="View" href="index.php?view=view&id=' . $result->IDREGISTRO . '" class="btn btn-info btn-xs">
                     <span class="fa fa-info fw-fa"></span> Ver</a> 

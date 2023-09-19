@@ -35,14 +35,12 @@ function doapplicationform()
 											VALUES  ('$IDARCHIVO->AUTO','{$IDVACANTE}','Curriculum Vitae','{$location}',		'{$_SESSION['IDPOSTULANTE']}')";
 			$mydb->setQuery($sql);
 			$res = $mydb->executeQuery();
-			echo "POSTULACION DESPUES DE REGISTRO";
 			doUpdate($IDVACANTE, $IDARCHIVO->AUTO);
 		} else {
 			$sql = "INSERT INTO `tblArchivoAdjunto` (`IDARCHIVO`, 					  `IDVACANTE`,   `NOMBREARCHIVO`,	`UBICACIONARCHIVO`, `IDUSARIOARCHIVO`) 
 											 VALUES ('$IDARCHIVO->AUTO','{$IDVACANTE}','Curriculum Vitae','{$location}','" . date('Y') . $IDPOSTULANTE->AUTO . "')";
 			$mydb->setQuery($sql);
 			$res = $mydb->executeQuery();
-			echo "POSTULACIÓN NORMAL";
 			doInsert($IDVACANTE, $IDARCHIVO->AUTO);
 			$autonum = new Autonumber();
 			$autonum->auto_update('POSTULANTE');
@@ -83,7 +81,7 @@ function doInsert($IDVACANTE = 0, $IDARCHIVO = 0)
 		$jobreg->POSTULANTE   		= $_POST['APELLIDOS'] . ' ' . $_POST['NOMBRES'];
 		$jobreg->FECHAREGISTRO 		= date('Y-m-d');
 		$jobreg->IDARCHIVO 			= date('Y') . $IDARCHIVO;
-		$jobreg->OBSERVACIONES 		= 'Pending';
+		$jobreg->OBSERVACIONES 		= 'PENDIENTE';
 		$jobreg->FECHAAPROBACION 	= date('Y-m-d H:i');
 		$jobreg->create();
 
@@ -109,7 +107,7 @@ function doUpdate($IDVACANTE = 0, $IDARCHIVO = 0)
 		$jobreg->POSTULANTE   		= 	$appl->DNI . ' ' . $appl->APELLIDOS;
 		$jobreg->FECHAREGISTRO 		= 	date('Y-m-d');
 		$jobreg->IDARCHIVO 			= 	date('Y') . $IDARCHIVO;
-		$jobreg->OBSERBACIONES 		= 	'Pending';
+		$jobreg->OBSERVACIONES 		= 	'PENDIENTE';
 		$jobreg->FECHAAPROBACION 	= 	date('Y-m-d H:i');
 		$jobreg->create();
 		message("Su ostulación fue enviada. Por favor espere que la institución se comunique con usted si cesta calificado para la vacante.", "success");

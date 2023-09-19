@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Trabajadores</title>
+    <style>
+        /* Estilos para el encabezado */
+        header {
+            width: 100%;
+            height: 170px;
+            background-image: url('./photos/encabezado.jpg'); /* URL de la imagen de encabezado */
+            background-size: cover;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        /* Estilos para el pie de página */
+        footer {
+            width: 100%;
+            height: 100px;
+            background-image: url('./photos/piePagina.jpg'); /* URL de la imagen de pie de página */
+            background-size: cover;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Estilos para el contenido principal */
+        main {
+            margin: 20px;
+            font-family: "Arial Narrow", sans-serif; /* Fuente Arial Narrow */
+        }
+
+        /* Estilos para la tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: 2px solid #8B0000; /* Borde granate */
+        }
+
+        table, th, td {
+            border: 1px solid #8B0000; /* Borde granate */
+        }
+
+        th {
+            padding: 12px;
+            text-align: center;
+            background-color: #013220; /* Verde oscuro */
+            color: white; /* Fuente blanca */
+            font-weight: bold; /* Texto en negrita */
+        }
+
+        td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        /* Estilos para las filas impares */
+        tr:nth-child(odd) {
+            background-color: #EAF7E2; /* Fondo verde claro para filas impares */
+        }
+
+        /* Estilos para el título */
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #8B0000; /* Granate */
+        }
+
+        /* Estilos para el subtítulo */
+        h2 {
+            text-align: center;
+            color: #013220; /* Verde oscuro */
+        }
+
+        /* Estilos para el tamaño de página A4 */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        /* Estilos para el cuerpo del documento */
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Deja este espacio en blanco para mostrar la imagen de encabezado -->
+    </header>
+    
+    <main>
+        <h2>Lista de Trabajadores</h2>
+        <!-- Contenido de la tabla -->
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>Ciudad</th>
+            </tr>
+            <!-- Filas de ejemplo -->
+            <tr>
+                <td>Juan</td>
+                <td>Pérez</td>
+                <td>30</td>
+                <td>Madrid</td>
+            </tr>
+            <tr>
+                <td>Maria</td>
+                <td>Gomez</td>
+                <td>25</td>
+                <td>Barcelona</td>
+            </tr>
+            <tr>
+                <td>Maria</td>
+                <td>Gomez</td>
+                <td>25</td>
+                <td>Barcelona</td>
+            </tr>
+            <tr>
+                <td>Maria</td>
+                <td>Gomez</td>
+                <td>25</td>
+                <td>Barcelona</td>
+            </tr>
+            <!-- Agrega más filas aquí -->
+        </table>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <!-- Deja este espacio en blanco para mostrar la imagen de pie de página -->
+    </footer>
+</body>
+</html>

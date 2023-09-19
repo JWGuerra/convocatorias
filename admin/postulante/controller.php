@@ -246,8 +246,8 @@ function doApproved()
 		$id = $_POST['IDREGISTRO'];
 		$IDPOSTULANTE = $_POST['IDPOSTULANTE'];
 
-		$remarks = $_POST['OBSERBACIONES'];
-		$sql = "UPDATE `tblRegistroPostulacion` SET `OBSERBACIONES`='{$remarks}',SOLICITUDPENDIENTE=0,HVISTA=0,FECHAAPROBACION=NOW() WHERE `IDREGISTRO`='{$id}'";
+		$remarks = $_POST['OBSERVACIONES'];
+		$sql = "UPDATE `tblRegistroPostulacion` SET `OBSERVACIONES`='{$remarks}',SOLICITUDPENDIENTE=0,HVISTA=0,FECHAAPROBACION=NOW() WHERE `IDREGISTRO`='{$id}'";
 		$mydb->setQuery($sql);
 		$cur = $mydb->executeQuery();
 

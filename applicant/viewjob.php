@@ -100,7 +100,7 @@ global $mydb;
 	</div>  
 	<div class="col-sm-12">
 		<p>Respuesta</p>
-		<p><?php echo isset($jobreg->OBSERBACIONES) ? $jobreg->OBSERBACIONES : ""; ?></p>
+		<p><?php echo isset($jobreg->OBSERVACIONES) ? $jobreg->OBSERVACIONES : ""; ?></p>
 	</div>
 	<div class="col-sm-12  submitbutton "> 
 		<a href="index.php?view=appliedjobs" class="btn btn-primary fa fa-arrow-left">Back</a>

@@ -102,7 +102,7 @@ $archivo = $mydb->loadSingleResult();
 
 		<div class="col-sm-12">
 			<p>Retroalimentación</p>
-			<textarea class="input-group" name="OBSERBACIONES"><?php echo isset($jobreg->OBSERBACIONES) ? $jobreg->OBSERBACIONES : ""; ?></textarea>
+			<textarea class="input-group" name="OBSERVACIONES"><?php echo isset($jobreg->OBSERVACIONES) ? $jobreg->OBSERVACIONES : ""; ?></textarea>
 		</div>
 		<div class="col-sm-12  submitbutton ">
 			<button type="submit" name="submit" class="btn btn-primary">ENVIAR</button>

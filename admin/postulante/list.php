@@ -28,7 +28,7 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 		</div>
 		<div class="col-md-4">
 			<button style="background: #016543;" id="exportToExcel" class="btn btn-success btn-sm">Exportar a Excel</button>
-			<button style="background: #016543;" id="generatePdfButton" class="btn btn-success btn-sm">Generar PDF</button>
+			<button style="background: #016543;" id="generatePdfButton" class="btn btn-success btn-sm">Imprimir Informe</button>
 		</div>
 	</div>
 	<script>
@@ -96,7 +96,18 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 				echo '<td>' . $result->FORMACIONACADEMICA . '</td>';
 				echo '<td>' . $result->SERVICIO . '</td>';
 				echo '<td>' . $result->FECHAREGISTRO . '</td>';
-				echo '<td>' . $result->OBSERBACIONES . '</td>';
+				// Agregar una condición para cambiar el color de fondo basado en el contenido de la columna "Observaciones"
+				echo '<td style="background-color: ';
+				if ($result->OBSERVACIONES == "PENDIENTE") {
+					echo 'lightblue';  // Celeste
+				} elseif ($result->OBSERVACIONES == "OBSERVADO") {
+					echo 'red';  // Rojo
+				} elseif ($result->OBSERVACIONES == "APROBADO") {
+					echo 'green';  // Verde
+				} else {
+					echo 'white';  // Color por defecto (blanco)
+				}
+				echo ';">' . $result->OBSERVACIONES . '</td>';
 				echo '<td align="center" >    
 					  		             <a title="View" href="index.php?view=view&id=' . $result->IDREGISTRO . '"  class="btn btn-info btn-xs  ">
 					  		             <span class="fa fa-info fw-fa"></span> Ver</a> 
@@ -171,10 +182,13 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 						margin: [0, 0, 0, 20],
 					},
 					tableStyle: {
-						fontSize: 10,
+						fontSize: 8,
 						margin: [0, 10, 0, 10], // Márgenes de la tabla
 					},
 					tableHeader: {
+						fillColor: '#016543', // Color de fondo de la fila de encabezado
+						color: '#ffffff',
+						alignment: 'center',
 						bold: true, // Poner en negrita el encabezado de la tabla
 					},
 				},

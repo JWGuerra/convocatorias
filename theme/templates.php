@@ -42,9 +42,9 @@
                 $postulante = new Postulantes();
                 $appl  = $postulante->single_Postulante($_SESSION['IDPOSTULANTE']);
 
-                $sql = "SELECT count(*) as 'COUNT' FROM `tblRegistroVacante` WHERE `SOLICITUDPENDIENTE`=0 AND `HVISTA`=0 AND `IDPOSTULANTE`='{$appl->IDPOSTULANTE}'";
+                $sql = "SELECT count(*) as 'COUNT' FROM `tblRegistroPostulacion` WHERE `SOLICITUDPENDIENTE`=0 AND `HVISTA`=0 AND `IDPOSTULANTE`='{$appl->IDPOSTULANTE}'";
                 $mydb->setQuery($sql);
-                //$showMsg = $mydb->loadSingleResult();
+                $showMsg = $mydb->loadSingleResult();
                 $msg = isset($showMsg->COUNT) ? $showMsg->COUNT : 0;
 
                 echo ' <p class="pull-right login">

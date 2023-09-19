@@ -52,7 +52,7 @@ $appl  = $applicant->single_Postulante($_SESSION['IDPOSTULANTE']);
             <!-- /.mailbox-controls -->
             <div class="mailbox-read-message">
               <p>Hello <?php echo $appl->NOMBRES; ?>,</p>
-              <p><?php echo $res->OBSERBACIONES; ?></p>
+              <p><?php echo $res->OBSERVACIONES; ?></p>
               <!-- 
                 <p>Keffiyeh blog actually fashion axe vegan, irony biodiesel. Cold-pressed hoodie chillwave put a bird
                   on it aesthetic, bitters brunch meggings vegan iPhone. Dreamcatcher vegan scenester mlkshk. Ethical
