@@ -101,9 +101,9 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 				if ($result->OBSERVACIONES == "PENDIENTE") {
 					echo 'lightblue';  // Celeste
 				} elseif ($result->OBSERVACIONES == "OBSERVADO") {
-					echo 'red';  // Rojo
+					echo '#D73925';  // Rojo
 				} elseif ($result->OBSERVACIONES == "APROBADO") {
-					echo 'green';  // Verde
+					echo '#36D179';  // Verde
 				} else {
 					echo 'white';  // Color por defecto (blanco)
 				}

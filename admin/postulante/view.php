@@ -74,9 +74,9 @@ $archivo = $mydb->loadSingleResult();
 
 	</div>
 	<div class="col-sm-12 content-footer">
-		<p><i class="fa fa-paperclip"></i> Documentos Adjuntos</p>
+		<h3><i class="fa fa-paperclip"></i> Documentos Adjuntos</h3>
 		<div class="col-sm-12 slider">
-			<h3>Ver ficha de Postulación <a href="#" data-toggle="modal" data-target="#pdfModal"><span class="btn btn-success rounded-pill" style="background-color: #016543;">AQUÍ</span></a></h3>
+			<h4>Ver ficha de Postulación <a href="#" data-toggle="modal" data-target="#pdfModal"><span class="btn btn-success rounded-pill" style="background-color: #016543;">AQUÍ</span></a></h4>
 		</div>
 
 		<!-- Modal -->
@@ -101,12 +101,25 @@ $archivo = $mydb->loadSingleResult();
 		</div>
 
 		<div class="col-sm-12">
-			<p>Retroalimentación</p>
-			<textarea class="input-group" name="OBSERVACIONES"><?php echo isset($jobreg->OBSERVACIONES) ? $jobreg->OBSERVACIONES : ""; ?></textarea>
+			<<div class="col-md-8">
+				<label class="col-md-2 control-label" for="ANIO">CONDICIÓN:</label>
+				<div class="col-md-4">
+					<select class="form-control input-sm" id="ANIO" name="ANIO">
+						<option value="None">Seleccionar</option>
+						<option value="PENDIENTE">PENDIENTE</option>
+						<option value="APROBADO">APROBADO</option>
+						<option value="OBSERVADO">OBSERVADO</option>
+					</select>
+				</div>
 		</div>
-		<div class="col-sm-12  submitbutton ">
-			<button type="submit" name="submit" class="btn btn-primary">ENVIAR</button>
+		<br>
+		<br>
+		<div class="col-sm-12">
+		<textarea class="input-group" name="OBSERVACIONES"><?php echo isset($jobreg->OBSERVACIONES) ? $jobreg->OBSERVACIONES : ""; ?></textarea>
 		</div>
+	<div class="col-sm-12  submitbutton ">
+		<button type="submit" name="submit" class="btn btn-primary">ENVIAR</button>
+	</div>
 	</div>
 </form>
 
