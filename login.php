@@ -5,7 +5,7 @@
        <div class="modal-header">
          <button class="close" data-dismiss="modal" type="button">X</button>
 
-         <h4 class="modal-title" id="myModalLabel">LOGIN</h4>
+         <h4 class="modal-title" id="myModalLabel">INICIAR SESIÓN POSTULANTES</h4>
        </div>
        <div class="modal-body hold-transition login-page">
          <div id="loginerrormessage"></div>

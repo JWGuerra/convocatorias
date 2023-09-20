@@ -35,7 +35,7 @@ $applicant = $appl->single_Postulante($_SESSION['IDPOSTULANTE']);
         </div>
         <ul class="list-group">
           <li class="list-group-item text-muted">PERFIL</li>
-          <li class="list-group-item text-right"><span class="pull-left"><strong>Nombre</strong></span>
+          <li class="list-group-item text-right"><span class="pull-left"><strong>Nombre: </strong></span>
             <?php echo $applicant->APELLIDOS . ' ' . $applicant->NOMBRES; ?>
           </li>
         </ul>

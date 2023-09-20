@@ -31,7 +31,7 @@
                                             <ul>
                                                 <li><i class="fp-ht-bed"></i>N° de Vacantes : <?php echo $result->NROVACANTES; ?></li>
                                                 <li><i class="fp-ht-bed"></i>Formacion Profesional : <?php echo $result->FORMACIONACADEMICA; ?></li>
-                                                <li><i class="fp-ht-food"></i>Remuneración : <?php echo number_format($result->REMUNERACION, 2);  ?></li>
+                                                <li><i class="fp-ht-food"></i>Remuneración : S/. <?php echo number_format($result->REMUNERACION, 2);  ?></li>
                                                 
                                             </ul>
                                         </div>

@@ -200,7 +200,7 @@ $searchfor = (isset($_GET['searchfor']) && $_GET['searchfor'] != '') ? $_GET['se
 															<span class="media-meta pull-right"><?php echo $row->FORMACIONACADEMICA; ?></span>
 															<h4 class="title">
 																<a href="index.php?q=viewVacante&search=<?php echo $row->IDVACANTE ?>">
-																	<?php echo $row->FORMACIONACADEMICA; ?>
+																	<?php echo $row->SERVICIO; ?>
 																</a>
 																<span class="pull-right pagado">(Convocatoria <?php echo $row->CONVOCATORIA ?>)</span>
 															</h4>

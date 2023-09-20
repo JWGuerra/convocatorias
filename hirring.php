@@ -26,9 +26,9 @@
                     echo '<tr>';
                     echo '<td><a href="' . web_root . 'index.php?q=viewVacante&search=' . $result->IDVACANTE . '">' . $result->SERVICIO . '</a></td>';
                     echo '<td>' . $result->CONVOCATORIA . '</td>';
-                    echo '<td>' . $result->EXPERIENCIAGENERAL . '</td>';
-                    echo '<td>' . $result->EXPERIENCIAESPECIFICA . '</td>';
-                    echo '<td>' . $result->REMUNERACION . '</td>';
+                    echo '<td>' . $result->EXPERIENCIAGENERAL .' MESES'.'</td>';
+                    echo '<td>' . $result->EXPERIENCIAESPECIFICA . ' MESES'.'</td>';
+                    echo '<td>' . 'S/. '.$result->REMUNERACION . '</td>';
                     echo '<td>' . date_format(date_create($result->FECHAPUBLICACION), 'm/d/Y') . '</td>';
                     echo '</tr>';
                 }

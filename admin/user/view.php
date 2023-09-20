@@ -23,7 +23,7 @@ $singleuser = $user->single_user($USERID);
         </a>
       </div>
       <div class="col-md-6">
-        <h1><strong>User Profile</strong></h1><br>
+        <h1><strong>Perfil de Usuario</strong></h1><br>
         <form class="form-horizontal span6" action="controller.php?action=edit&view=" method="POST">
           <input id="USERID" name="USERID" type="Hidden" value="<?php echo $singleuser->USERID; ?>">
           <div class="form-group">

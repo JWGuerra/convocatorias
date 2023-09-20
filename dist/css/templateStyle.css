@@ -1,8 +1,8 @@
 .social {
-	position: fixed; /* Hacemos que la posición en pantalla sea fija para que siempre se muestre en pantalla*/
-	left: -40px; /* Establecemos la barra en la izquierda */
-	top: 200px; /* Bajamos la barra 200px de arriba a abajo */
-	z-index: 2000; /* Utilizamos la propiedad z-index para que no se superponga algún otro elemento como sliders, galerías, etc */
+	position: fixed;/* Hacemos que la posición en pantalla sea fija para que siempre se muestre en pantalla*/
+	left: -40px; 	/* Establecemos la barra en la izquierda */
+	top: 200px; 	/* Bajamos la barra 200px de arriba a abajo */
+	z-index: 2000; 	/* Utilizamos la propiedad z-index para que no se superponga algún otro elemento como sliders, galerías, etc */
 }
 
 .social ul {
@@ -21,12 +21,70 @@
 		transition:all 500ms ease; /* Establecemos una transición a todas las propiedades */
 }
 
-.social ul li .icon-facebook {background:#3b5998; padding: 5px 22px;} /* Establecemos los colores de cada red social, aprovechando su class */
-.social ul li .icon-twitter {background: #00abf0;}
-.social ul li .icon-instagram {background: #3f729b;}
-.social ul li .icon-youtube {background: #940421;}
+.social ul li .icon-facebook 	{background: #3b5998; padding: 5px 22px;} /* Establecemos los colores de cada red social, aprovechando su class */
+.social ul li .icon-twitter  	{background: #00abf0;}
+.social ul li .icon-instagram 	{background: #3f729b;}
+.social ul li .icon-youtube 	{background: #940421;}
 
 .social ul li a:hover {
 	padding: 5px 30px;
     background: #000;
+}
+
+/* Login Admin*/
+.btn-wsp{
+    position:fixed;
+    width:60px;
+    height:60px;
+    line-height: 63px;
+    top:220px;
+    right:5px;
+    background:black;
+    color:#FFF;
+    border-radius:50%;
+    text-align:center;
+    font-size:35px;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.6);
+    z-index:100;
+    transition: all 300ms ease;
+}
+.btn-wsp:hover{
+    background: #940421;
+    color: #016543;
+}
+
+@media only screen and (min-width:320px) and (max-width:768px){
+    .btn-wsp{
+        width:63px;
+        height:63px;
+        line-height: 66px;
+	}
+}
+
+/* Style for the floating button container */
+.floating-button {
+    position: fixed;
+    top: 200px; /* Adjust this value to set the vertical position */
+    right: 10px; /* Adjust this value to set the horizontal position */
+    cursor: pointer;
+    z-index: 1000; /* Establecer el z-index en 1000 */
+}
+
+/* Style for the tooltip (span) */
+.texto {
+    z-index: 1000;
+    display: none;
+    background-color: #940421;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    position: absolute;
+    top: 25px;
+    right: 100%; /* Sitúalo a la izquierda del botón */
+    transform: translateX(-100%);
+}
+
+/* Cuando el mouse está sobre el botón, muestra el tooltip */
+.floating-button:hover .texto {
+    display: block;
 }

@@ -58,7 +58,7 @@
         </div>
       </div>
       <div style="min-height: 30px;"></div>
-      <div style="position: fixed;" class="navbar navbar-default navbar-static-top">
+      <div class="navbar navbar-default navbar-static-top">
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -129,6 +129,17 @@
       </ul>
     </div>
     <!-- end header -->
+
+    <!-- login admin
+    <div>
+      <a title="LOGIN ADMIN" href="<?php echo web_root; ?>admin/" class="btn-wsp" target="_blank"><i class="fa fa-user"></i></a>
+    </div>
+    -->
+
+    <div class="floating-button">
+        <span class="texto"><strong>LOGIN ADMIN</strong></span>
+        <a title="LOGIN ADMIN" href="<?php echo web_root; ?>admin/" class="btn-wsp" target="_blank"><i class="fa fa-user"></i></a>
+    </div>
 
     <?php
     if (!isset($_SESSION['IDPOSTULANTE'])) {
