@@ -26,34 +26,31 @@
 <body>
   <div id="wrapper" class="home-page">
     <header>
-      <div class="topbar navbar-fixed-top">
+      <div style="height: 35px;" class="topbar navbar-fixed-top">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
-              <p class="pull-left hidden-xs"><i class="fa fa-phone"></i>N° Teléfono: 084-232639 </p>
+              <p style="font-size: 14px;" class="pull-left hidden-xs"><i class="fa fa-phone"></i>N° Teléfono: 084-232639
+              </p>
               <?php if (isset($_SESSION['IDPOSTULANTE'])) {
-
                 $sql = "SELECT count(*) as 'COUNTNOTIF' FROM `tblVacante` ORDER BY `FECHAPUBLICACION` DESC";
                 $mydb->setQuery($sql);
                 $showNotif = $mydb->loadSingleResult();
                 $notif = isset($showNotif->COUNTNOTIF) ? $showNotif->COUNTNOTIF : 0;
-
-
                 $postulante = new Postulantes();
                 $appl  = $postulante->single_Postulante($_SESSION['IDPOSTULANTE']);
-
                 $sql = "SELECT count(*) as 'COUNT' FROM `tblRegistroPostulacion` WHERE `SOLICITUDPENDIENTE`=0 AND `HVISTA`=0 AND `IDPOSTULANTE`='{$appl->IDPOSTULANTE}'";
                 $mydb->setQuery($sql);
                 $showMsg = $mydb->loadSingleResult();
                 $msg = isset($showMsg->COUNT) ? $showMsg->COUNT : 0;
 
-                echo ' <p class="pull-right login">
+                echo ' <p style="font-size: 14px;" class="pull-right login">
                 <a title="Ver Notificación(s)" href="' . web_root . 'applicant/index.php?view=notification"> <i class="fa fa-bell-o"></i> <span class="label label-success">' . $notif . '</span></a> |
                 <a title="Ver Mensaje(s)" href="' . web_root . 'applicant/index.php?view=message"> <i class="fa fa-envelope-o"></i> <span class="label label-success">' . $msg . '</span></a> | 
                 <a title="Ver Perfil" href="' . web_root . 'applicant/"> <i class="fa fa-user"></i> Postulante, ' . $appl->APELLIDOS . ' ' . $appl->NOMBRES . ' </a> | 
                 <a href="' . web_root . 'logout.php">  <i class="fa fa-sign-out"> </i>Logout</a> </p>';
               } else { ?>
-                <p class="pull-right login"><a data-target="#myModal" data-toggle="modal" href=""> <i class="fa fa-lock"></i> Iniciar Sesión </a></p>
+                <p style="font-size: 14px;" class="pull-right login"><a data-target="#myModal" data-toggle="modal" href=""> <i class="fa fa-lock"></i> Iniciar Sesión </a></p>
               <?php } ?>
 
             </div>
@@ -61,7 +58,7 @@
         </div>
       </div>
       <div style="min-height: 30px;"></div>
-      <div class="navbar navbar-default navbar-static-top">
+      <div style="position: fixed;" class="navbar navbar-default navbar-static-top">
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -88,43 +85,6 @@
                   <li><a href="<?php echo web_root; ?>index.php?q=search-Servicio">Buscar por Servicio</a></li>
                 </ul>
               </li>
-              <!--
-                      <li class="dropdown <?php if (isset($_GET['q'])) {
-                                            if ($_GET['q'] == 'convocatoria') {
-                                              echo 'active';
-                                            } else {
-                                              echo '';
-                                            }
-                                          }  ?>">
-                          <a href="#" data-toggle="dropdown" class="dropdown-toggle">VACANTES POPULARES<b class="caret"></b></a>
-                          <ul class="dropdown-menu">
-                            <?php
-                            $sql = "SELECT * FROM `tblConvocatoria` LIMIT 10";
-                            $mydb->setQuery($sql);
-                            $cur = $mydb->loadResultList();
-
-                            foreach ($cur as $result) {
-                              # code...
-
-                              if (isset($_GET['search'])) {
-                                # code...
-                                if ($result->CONVOCATORIA == $_GET['search']) {
-                                  # code...
-                                  $viewresult = '<li class="active"><a href="' . web_root . 'index.php?q=convocatoria&search=' . $result->CONVOCATORIA . '">' . $result->CONVOCATORIA . ' Jobs</a></li>';
-                                } else {
-                                  $viewresult = '<li><a href="' . web_root . 'index.php?q=convocatoria&search=' . $result->CONVOCATORIA . '">' . $result->CONVOCATORIA . ' Jobs</a></li>';
-                                }
-                              } else {
-                                $viewresult = '<li><a href="' . web_root . 'index.php?q=convocatoria&search=' . $result->CONVOCATORIA . '">' . $result->CONVOCATORIA . ' Jobs</a></li>';
-                              }
-
-                              echo $viewresult;
-                            }
-
-                            ?> 
-                          </ul>
-                       </li>
-                        -->
               <li class="<?php if (isset($_GET['q'])) {
                             if ($_GET['q'] == 'convocatoria') {
                               echo 'active';

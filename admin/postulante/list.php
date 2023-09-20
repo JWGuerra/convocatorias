@@ -77,7 +77,6 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 				<th>Convocatoria</th>
 				<th>Formación Académica</th>
 				<th>Servicio al que Postula</th>
-				<th>Fecha de Postulación</th>
 				<th>Observación</th>
 				<th width="14%">Acción</th>
 			</tr>
@@ -95,7 +94,6 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 				echo '<td>' . $result->CONVOCATORIA . '</a></td>';
 				echo '<td>' . $result->FORMACIONACADEMICA . '</td>';
 				echo '<td>' . $result->SERVICIO . '</td>';
-				echo '<td>' . $result->FECHAREGISTRO . '</td>';
 				// Agregar una condición para cambiar el color de fondo basado en el contenido de la columna "Observaciones"
 				echo '<td style="background-color: ';
 				if ($result->OBSERVACIONES == "PENDIENTE") {

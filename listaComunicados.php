@@ -6,7 +6,6 @@
             <thead>
                 <th>Convocatoria</th>
                 <th>Descripción</th>
-                <th>Tipo</th>
                 <th>Fecha Publicación</th>
                 <th>Ver Documento</th>
             </thead>
@@ -26,7 +25,6 @@
                     //echo '<td><a href="' . web_root . 'index.php?q=viewVacante&search=' . $result->IDVACANTE . '">' . $result->SERVICIO . '</a></td>'; 
                     echo '<td>' . $result->CONVOCATORIA . '</td>';
                     echo '<td>' . $result->DESCRIPCION . '</td>';
-                    echo '<td>' . $result->TIPOCOMUNICADO . '</td>';
                     echo '<td>' . date_format(date_create($result->FECHAPUBLICACION), 'm/d/Y') . '</td>';
                     //echo '<td>' . $result->CONVOCATORIA . '</td>';
                     echo '<td align="center"><a style = "border-radius:15%; padding: 4px 10px;" href="'. web_root.'index.php?q=viewComunicado&search=' . $result->IDCOMUNICADO . '" class="btn btn-primary btn-xs  ">  <span style="color:#FFFF;" class="fa fa-eye fa-lg"></a></td>';

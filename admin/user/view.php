@@ -25,23 +25,10 @@ $singleuser = $user->single_user($USERID);
       <div class="col-md-6">
         <h1><strong>User Profile</strong></h1><br>
         <form class="form-horizontal span6" action="controller.php?action=edit&view=" method="POST">
-
-
-          <!-- <div class="form-group">
-                    <div class="col-md-8">
-                      <label class="col-md-4 control-label" for=
-                      "user_id">User Id:</label> -->
-
-          <!-- <div class="col-md-8"> -->
-
           <input id="USERID" name="USERID" type="Hidden" value="<?php echo $singleuser->USERID; ?>">
-          <!--    </div>
-                    </div>
-                  </div>      -->
-
           <div class="form-group">
             <div class="col-md-8">
-              <label class="col-md-4 control-label" for="U_NAME">Name:</label>
+              <label class="col-md-4 control-label" for="U_NAME">Nombre:</label>
 
               <div class="col-md-8">
                 <input name="deptid" type="hidden" value="">
@@ -52,7 +39,7 @@ $singleuser = $user->single_user($USERID);
 
           <div class="form-group">
             <div class="col-md-8">
-              <label class="col-md-4 control-label" for="U_USERNAME">Username:</label>
+              <label class="col-md-4 control-label" for="U_USERNAME">Nombre de Usuario:</label>
 
               <div class="col-md-8">
                 <input name="deptid" type="hidden" value="">
@@ -63,7 +50,7 @@ $singleuser = $user->single_user($USERID);
 
           <div class="form-group">
             <div class="col-md-8">
-              <label class="col-md-4 control-label" for="U_PASS">Password:</label>
+              <label class="col-md-4 control-label" for="U_PASS">Contraseña:</label>
 
               <div class="col-md-8">
                 <input name="deptid" type="hidden" value="">
@@ -73,34 +60,25 @@ $singleuser = $user->single_user($USERID);
           </div>
           <div class="form-group">
             <div class="col-md-8">
-              <label class="col-md-4 control-label" for="U_ROLE">Role:</label>
+              <label class="col-md-4 control-label" for="U_ROLE">Rol:</label>
 
               <div class="col-md-8">
                 <select class="form-control input-sm" name="U_ROLE" id="U_ROLE">
-                  <option value="Administrator" <?php echo ($singleuser->ROLE == 'Administrator') ? 'selected="true"' : ''; ?>>Administrator</option>
+                  <option value="Administrator" <?php echo ($singleuser->ROLE == 'Administrator') ? 'selected="true"' : ''; ?>>Administrador</option>
                   <option value="Trabajador" <?php echo ($singleuser->ROLE == 'Trabajador') ? 'selected="true"' : ''; ?>>Trabajador</option>
                 </select>
               </div>
             </div>
           </div>
-
-
           <div class="form-group">
             <div class="col-md-8">
               <label class="col-md-4 control-label" for="idno"></label>
-
               <div class="col-md-8">
-                <button class="btn btn-primary " name="save" type="submit"><span class="fa fa-save fw-fa"></span> Save</button>
-                <!-- <a href="index.php" class="btn btn-info"><span class="fa fa-arrow-circle-left fw-fa"></span>&nbsp;<strong>List of Users</strong></a> -->
+                <button class="btn btn-primary " name="save" type="submit"><span class="fa fa-save fw-fa"></span> GUARDAR</button>
               </div>
             </div>
           </div>
-
-
-
         </form>
-
-
       </div>
     </div>
   </div>
@@ -113,10 +91,8 @@ $singleuser = $user->single_user($USERID);
     <div class="modal-content">
       <div class="modal-header">
         <button class="close" data-dismiss="modal" type="button">×</button>
-
-        <h4 class="modal-title" id="myModalLabel">Choose Image.</h4>
+        <h4 class="modal-title" id="myModalLabel">Elegir Imagen</h4>
       </div>
-
       <form action="controller.php?action=photos" enctype="multipart/form-data" method="post">
         <div class="modal-body">
           <div class="form-group">
@@ -127,16 +103,14 @@ $singleuser = $user->single_user($USERID);
                     <input class="mealid" type="hidden" name="mealid" id="mealid" value="">
                     <input name="MAX_FILE_SIZE" type="hidden" value="1000000"> <input id="photo" name="photo" type="file">
                   </div>
-
                   <div class="col-md-4"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
         <div class="modal-footer">
-          <button class="btn btn-default" data-dismiss="modal">Close</button> <button class="btn btn-primary" name="savephoto" type="submit">Upload Photo</button>
+          <button class="btn btn-default" data-dismiss="modal">Cerrar</button> <button class="btn btn-primary" name="savephoto" type="submit">Cargar Foto</button>
         </div>
       </form>
     </div><!-- /.modal-content -->

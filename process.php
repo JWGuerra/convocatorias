@@ -110,7 +110,7 @@ function doUpdate($IDVACANTE = 0, $IDARCHIVO = 0)
 		$jobreg->OBSERVACIONES 		= 	'PENDIENTE';
 		$jobreg->FECHAAPROBACION 	= 	date('Y-m-d H:i');
 		$jobreg->create();
-		message("Su ostulación fue enviada. Por favor espere que la institución se comunique con usted si cesta calificado para la vacante.", "success");
+		message("Su postulación fue enviada. Por favor espere que la institución se comunique con usted si cesta calificado para la vacante.", "success");
 		redirect("index.php?q=success&job=" . $result->IDVACANTE);
 	}
 }

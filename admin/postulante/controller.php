@@ -32,140 +32,6 @@ switch ($action) {
 		break;
 }
 
-function doInsert()
-{
-	global $mydb;
-	if (isset($_POST['save'])) {
-
-
-		if (
-			$_POST['FNAME'] == "" or $_POST['LNAME'] == ""
-			or $_POST['MNAME'] == ""  or $_POST['ADDRESS'] == ""
-			or $_POST['TELNO'] == ""
-		) {
-			$messageStats = false;
-			message("All fields are required!", "error");
-			redirect('index.php?view=add');
-		} else {
-
-			$birthdate =  $_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day'];
-
-			$age = date_diff(date_create($birthdate), date_create('today'))->y;
-
-			if ($age < 18) {
-				message("La edad debe ser mayor a 18 años", "error");
-				redirect("index.php?view=add");
-			} else {
-
-
-
-				$sql = "SELECT * FROM tblemployees WHERE EMPLOYEEID='" . $_POST['EMPLOYEEID'] . "'";
-				$mydb->setQuery($sql);
-				$cur = $mydb->executeQuery();
-				$maxrow = $mydb->num_rows($cur);
-
-
-				// $res = mysqli_query($sql) or die(mysql_error());
-				// $maxrow = mysql_num_rows($res);
-				if ($maxrow > 0) {
-					# code... 
-					message("Employee ID already in use!", "error");
-					redirect("index.php?view=add");
-				} else {
-
-					@$datehired = date_format(date_create($_POST['DATEHIRED']), 'Y-m-d');
-
-					$emp = new Employee();
-					$emp->EMPLOYEEID 		= $_POST['EMPLOYEEID'];
-					$emp->FNAME				= $_POST['FNAME'];
-					$emp->LNAME				= $_POST['LNAME'];
-					$emp->MNAME 	   		= $_POST['MNAME'];
-					$emp->ADDRESS			= $_POST['ADDRESS'];
-					$emp->BIRTHDATE	 		= $birthdate;
-					$emp->BIRTHPLACE		= $_POST['BIRTHPLACE'];
-					$emp->AGE			    = $age;
-					$emp->SEX 				= $_POST['optionsRadios'];
-					$emp->TELNO				= $_POST['TELNO'];
-					$emp->CIVILSTATUS		= $_POST['CIVILSTATUS'];
-					$emp->POSITION			= trim($_POST['POSITION']);
-					// $emp->DEPARTMENTID		= $_POST['DEPARTMENTID'];
-					// $emp->DIVISIONID		= $_POST['DIVISIONID'];
-					$emp->EMP_EMAILADDRESS	= $_POST['EMP_EMAILADDRESS'];
-					$emp->EMPUSERNAME		= $_POST['EMPLOYEEID'];
-					$emp->EMPPASSWORD		= sha1($_POST['EMPLOYEEID']);
-					$emp->DATEHIRED			=  @$datehired;
-					$emp->IDCONVOCATORIA			= $_POST['IDCONVOCATORIA'];
-					$emp->create();
-
-
-
-
-					$autonum = new Autonumber();
-					$autonum->auto_update('employeeid');
-
-					message("New employee created successfully!", "success");
-					redirect("index.php");
-				}
-			}
-		}
-	}
-}
-
-function doEdit()
-{
-	if (isset($_POST['save'])) {
-
-		if (
-			$_POST['FNAME'] == "" or $_POST['LNAME'] == ""
-			or $_POST['MNAME'] == "" or $_POST['ADDRESS'] == ""
-			or $_POST['TELNO'] == ""
-		) {
-			$messageStats = false;
-			message("All fields are required!", "error");
-			redirect('index.php?view=add');
-		} else {
-
-			$birthdate =  $_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day'];
-
-			$age = date_diff(date_create($birthdate), date_create('today'))->y;
-			if ($age < 20) {
-				message("Invalid age. 20 years old and above is allowed.", "error");
-				redirect("index.php?view=edit&id=" . $_POST['EMPLOYEEID']);
-			} else {
-
-				@$datehired = date_format(date_create($_POST['DATEHIRED']), 'Y-m-d');
-
-				$emp = new Employee();
-				$emp->EMPLOYEEID 		= $_POST['EMPLOYEEID'];
-				$emp->FNAME				= $_POST['FNAME'];
-				$emp->LNAME				= $_POST['LNAME'];
-				$emp->MNAME 	   		= $_POST['MNAME'];
-				$emp->ADDRESS			= $_POST['ADDRESS'];
-				$emp->BIRTHDATE	 		= $birthdate;
-				$emp->BIRTHPLACE		= $_POST['BIRTHPLACE'];
-				$emp->AGE			    = $age;
-				$emp->SEX 				= $_POST['optionsRadios'];
-				$emp->TELNO				= $_POST['TELNO'];
-				$emp->CIVILSTATUS		= $_POST['CIVILSTATUS'];
-				$emp->POSITION			= trim($_POST['POSITION']);
-				// $emp->DEPARTMENTID		= $_POST['DEPARTMENTID'];
-				// $emp->DIVISIONID		= $_POST['DIVISIONID'];
-				$emp->EMP_EMAILADDRESS		= $_POST['EMP_EMAILADDRESS'];
-				$emp->EMPUSERNAME		= $_POST['EMPLOYEEID'];
-				$emp->EMPPASSWORD		= sha1($_POST['EMPLOYEEID']);
-				$emp->DATEHIRED			=  @$datehired;
-				$emp->IDCONVOCATORIA			= $_POST['IDCONVOCATORIA'];
-
-				$emp->update($_POST['EMPLOYEEID']);
-
-
-				message("Employee has been updated!", "success");
-				// redirect("index.php?view=view&id=".$_POST['EMPLOYEEID']);
-				redirect("index.php?view=edit&id=" . $_POST['EMPLOYEEID']);
-			}
-		}
-	}
-}
 function doDelete()
 {
 	$id = 	$_GET['id'];
@@ -201,43 +67,6 @@ function UploadImage()
 	}
 }
 
-function doupdateimage()
-{
-
-	$errofile = $_FILES['photo']['error'];
-	$type = $_FILES['photo']['type'];
-	$temp = $_FILES['photo']['tmp_name'];
-	$myfile = $_FILES['photo']['name'];
-	$location = "photo/" . $myfile;
-
-
-	if ($errofile > 0) {
-		message("No Image Selected!", "error");
-		redirect("index.php?view=view&id=" . $_GET['id']);
-	} else {
-
-		@$file = $_FILES['photo']['tmp_name'];
-		@$image = addslashes(file_get_contents($_FILES['photo']['tmp_name']));
-		@$image_name = addslashes($_FILES['photo']['name']);
-		@$image_size = getimagesize($_FILES['photo']['tmp_name']);
-
-		if ($image_size == FALSE) {
-			message("Uploaded file is not an image!", "error");
-			redirect("index.php?view=view&id=" . $_GET['id']);
-		} else {
-			//uploading the file
-			move_uploaded_file($temp, "photo/" . $myfile);
-
-
-
-			$stud = new Student();
-			$stud->StudPhoto	= $location;
-			$stud->studupdate($_POST['StudentID']);
-			redirect("index.php?view=view&id=" . $_POST['StudentID']);
-		}
-	}
-}
-
 function doApproved()
 {
 	global $mydb;
@@ -245,12 +74,14 @@ function doApproved()
 		# code...
 		$id = $_POST['IDREGISTRO'];
 		$IDPOSTULANTE = $_POST['IDPOSTULANTE'];
-
+	
 		$remarks = $_POST['OBSERVACIONES'];
 		$sql = "UPDATE `tblRegistroPostulacion` SET `OBSERVACIONES`='{$remarks}',SOLICITUDPENDIENTE=0,HVISTA=0,FECHAAPROBACION=NOW() WHERE `IDREGISTRO`='{$id}'";
 		$mydb->setQuery($sql);
 		$cur = $mydb->executeQuery();
 
+		$message = $_POST['MENSAJE'];
+		
 		if ($cur) {
 			# code...
 			$sql = "SELECT * FROM `tblRetroalimentacion` WHERE `IDREGISTRO`='{$id}'";
@@ -258,11 +89,11 @@ function doApproved()
 			$res = $mydb->loadSingleResult();
 			if (isset($res)) {
 				# code...
-				$sql = "UPDATE `tblRetroalimentacion` SET `RETROALIMENTACION`='{$remarks}' WHERE `IDREGISTRO`='{$id}'";
+				$sql = "UPDATE `tblRetroalimentacion` SET `RETROALIMENTACION` = '{$remarks}', `MENSAJE` = '{$message}' WHERE `IDREGISTRO` = '{$id}';";
 				$mydb->setQuery($sql);
 				$cur = $mydb->executeQuery();
 			} else {
-				$sql = "INSERT INTO `tblRetroalimentacion` (`IDPOSTULANTE`, `IDREGISTRO`,`RETROALIMENTACION`) VALUES ('{$IDPOSTULANTE}','{$id}','{$remarks}')";
+				$sql = "INSERT INTO `tblRetroalimentacion` (`IDPOSTULANTE`, `IDREGISTRO`,`RETROALIMENTACION`, `MENSAJE`) VALUES ('{$IDPOSTULANTE}','{$id}','{$remarks}', '$message')";
 				$mydb->setQuery($sql);
 				$cur = $mydb->executeQuery();
 			}

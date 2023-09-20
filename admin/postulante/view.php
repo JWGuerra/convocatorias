@@ -70,13 +70,10 @@ $archivo = $mydb->loadSingleResult();
 			<p>Formación Profesional : </p>
 			<p style="margin-left: 15px;"><?php echo $appl->FORMACIONACADEMICA; ?></p>
 		</div>
-
-
 	</div>
 	<div class="col-sm-12 content-footer">
-		<h3><i class="fa fa-paperclip"></i> Documentos Adjuntos</h3>
+		<h4><i class="fa fa-paperclip"></i>Ver ficha de Postulación <a href="#" data-toggle="modal" data-target="#pdfModal"><span class="btn btn-success rounded-pill" style="background-color: #016543;">AQUÍ</span></a></h4>
 		<div class="col-sm-12 slider">
-			<h4>Ver ficha de Postulación <a href="#" data-toggle="modal" data-target="#pdfModal"><span class="btn btn-success rounded-pill" style="background-color: #016543;">AQUÍ</span></a></h4>
 		</div>
 
 		<!-- Modal -->
@@ -101,25 +98,50 @@ $archivo = $mydb->loadSingleResult();
 		</div>
 
 		<div class="col-sm-12">
-			<<div class="col-md-8">
-				<label class="col-md-2 control-label" for="ANIO">CONDICIÓN:</label>
+			<div class="col-md-8">
+				<label class="col-md-2 control-label" for="OBSERVACIONES">EVALUACIÓN:</label>
 				<div class="col-md-4">
-					<select class="form-control input-sm" id="ANIO" name="ANIO">
+					<select class="form-control input-sm" id="OBSERVACIONES" name="OBSERVACIONES">
 						<option value="None">Seleccionar</option>
-						<option value="PENDIENTE">PENDIENTE</option>
 						<option value="APROBADO">APROBADO</option>
 						<option value="OBSERVADO">OBSERVADO</option>
 					</select>
 				</div>
+			</div>
+			<br>
+			<br>
+			<div class="col-sm-12">
+				<textarea class="input-group" id="mensajeTextarea" name="MENSAJE" style="display: none;"></textarea>
+			</div>
 		</div>
-		<br>
-		<br>
-		<div class="col-sm-12">
-		<textarea class="input-group" name="OBSERVACIONES"><?php echo isset($jobreg->OBSERVACIONES) ? $jobreg->OBSERVACIONES : ""; ?></textarea>
+
+		<script>
+			// Obtén el campo de selección y el textarea por su ID
+			var selectElement = document.getElementById("OBSERVACIONES");
+			var textareaElement = document.getElementById("mensajeTextarea");
+
+			// Agrega un evento onchange al campo de selección
+			selectElement.addEventListener("change", function() {
+				// Verifica si la opción seleccionada es "OBSERVADO"
+				if (selectElement.value === "OBSERVADO") {
+					// Si es "OBSERVADO", muestra el textarea
+					textareaElement.style.display = "block";
+					textareaElement.value = "";
+				} else {
+					// Si no es "OBSERVADO", oculta el textarea
+					textareaElement.style.display = "none";
+					if (selectElement.value === "APROBADO") {
+						textareaElement.value ="Su Curriculum Vitae cumple con el perfil del Servico Solicitado. Esté atento a la publicación del CRONOGRAMA de entrevista, publicado en la página WEB.";
+					} else {
+						textareaElement.value ="";
+					}
+				}
+			});
+		</script>
+
+		<div class="col-sm-12  submitbutton ">
+			<button type="submit" name="submit" class="btn btn-primary">ENVIAR</button>
 		</div>
-	<div class="col-sm-12  submitbutton ">
-		<button type="submit" name="submit" class="btn btn-primary">ENVIAR</button>
-	</div>
 	</div>
 </form>
 
