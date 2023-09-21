@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="" />
   <meta name="author" content="http://www.meriss.gob.pe/plan/" />
-
   <!-- CSS -->
   <link href="<?php echo web_root; ?>plugins/home-plugins/css/bootstrap.min.css" rel="stylesheet" />
   <link href="<?php echo web_root; ?>plugins/home-plugins/css/fancybox/jquery.fancybox.css" rel="stylesheet">
@@ -21,6 +20,9 @@
   <link href="<?php echo web_root; ?>plugins/home-plugins/css/style.css" rel="stylesheet" />
   <link rel="stylesheet" href="<?php echo web_root; ?>dist/css/skins/myStyles.css">
   <link rel="stylesheet" href="<?php echo web_root; ?>dist/css/templateStyle.css">
+  <!-- ICONOS -->
+  <link rel="icon" href="icono.ico" type="image/x-icon">
+
 </head>
 
 <body>
@@ -50,7 +52,7 @@
                 <a title="Ver Perfil" href="' . web_root . 'applicant/"> <i class="fa fa-user"></i> Postulante, ' . $appl->APELLIDOS . ' ' . $appl->NOMBRES . ' </a> | 
                 <a href="' . web_root . 'logout.php">  <i class="fa fa-sign-out"> </i>Logout</a> </p>';
               } else { ?>
-                <p style="font-size: 14px;" class="pull-right login"><a data-target="#myModal" data-toggle="modal" href=""> <i class="fa fa-lock"></i> Iniciar Sesión </a></p>
+                <p style="font-size: 14px;" class="pull-right login"><a data-target="#myModal" data-toggle="modal" href=""> <i class="fa fa-lock"></i> Iniciar Sesión Postulante</a></p>
               <?php } ?>
 
             </div>

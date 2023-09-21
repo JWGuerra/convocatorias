@@ -75,7 +75,7 @@
         <i class="icon-info-blocks fa fa-briefcase"></i>
         <div class="info-blocks-in">
           <h3><?php echo $Convocatoria->CONVOCATORIA; ?></h3>
-          <p><a href="/convocatorias/index.php?q=convocatoria">Ver Convocatoria</a></p>
+          <p><?php echo '<a href="' . web_root . 'index.php?q=hiring&search=' . $Convocatoria->CONVOCATORIA. '">Ver Convocatorias</a>'; ?></p>
         </div>
       </div>
     <?php } ?>
@@ -101,7 +101,7 @@
         <i class="icon-info-blocks fa fa-bullhorn"></i>
         <div class="info-blocks-in">
           <h3><?php echo $comunicado->CONVOCATORIA; ?></h3>
-          <p><a href="/convocatorias/index.php?q=comunicado">Ver Comunicado</a></p>
+          <p><?php echo '<a href="' . web_root . 'index.php?q=listaComunicados&search=' . $comunicado->CONVOCATORIA. '">Ver Comunicados</a>'; ?></p>
         </div>
       </div>
 
