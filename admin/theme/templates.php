@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8">
   <title>
@@ -80,8 +79,7 @@
 
             <h4 class="modal-title" id="myModalLabel">Image.</h4>
           </div>
-
-          <form action="<?php echo web_root; ?>admin/user/controller.php?action=photos" enctype="multipart/form-data" method="post">
+          <form action="<?php echo web_root;?>admin/user/controller.php?action=photos" enctype="multipart/form-data" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <div class="rows">
@@ -92,14 +90,12 @@
                         <input name="MAX_FILE_SIZE" type="hidden" value="1000000">
                         <input id="photo" name="photo" type="file">
                       </div>
-
                       <div class="col-md-4"></div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
             <div class="modal-footer">
               <button class="btn btn-default" data-dismiss="modal" type="button">Close</button> <button class="btn btn-primary" name="savephoto" type="submit">Subir foto</button>
             </div>
@@ -110,8 +106,6 @@
     <aside class="main-sidebar">
       <!-- sidebar: style can be found in sidebar.less -->
       <section class="sidebar">
-
-
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
           <li class="<?php echo (currentpage() == 'index.php') ? "active" : false; ?>">
@@ -150,6 +144,11 @@
                 echo $pending->PENDIENTE;
                 ?>
               </span>
+            </a>
+          </li>
+          <li class="<?php echo (currentpage() == 'informes') ? "active" : false; ?>">
+            <a href="<?php echo web_root; ?>admin/informes/">
+              <i class="fa fa-book"></i> <span>Reportes</span>
             </a>
           </li>
 

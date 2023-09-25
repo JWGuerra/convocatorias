@@ -28,7 +28,7 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 		</div>
 		<div class="col-md-4">
 			<button style="background: #016543;" id="exportToExcel" class="btn btn-success btn-sm">Exportar a Excel</button>
-			<button style="background: #016543;" id="generatePdfButton" class="btn btn-success btn-sm">Imprimir Informe</button>
+			<button style="background: #016543;" id="generatePdfButton" class="btn btn-success btn-sm">Imprimir Lista</button>
 		</div>
 	</div>
 	<script>

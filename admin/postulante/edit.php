@@ -9,7 +9,7 @@ if ($empid == '') {
 }
 
 
-$employee = new Postulante();
+$employee = new Postulantes();
 $emp = $employee->single_postulante($empid);
 
 ?>

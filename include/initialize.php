@@ -19,5 +19,5 @@ require_once(LIB_PATH.DS."session.php");
 require_once(LIB_PATH.DS."settings.php"); 
 require_once(LIB_PATH.DS."sidebarFunction.php");
 require_once(LIB_PATH.DS."postulante.php");       
-require_once(LIB_PATH.DS."vacante.php");  
+require_once(LIB_PATH.DS."vacante.php");
 ?>
