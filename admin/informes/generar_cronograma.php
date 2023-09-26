@@ -40,7 +40,7 @@ ob_start();
                 </div>
             </div>
         </div>
-        <h4 style="text-align: center;">RESULTADOS DE EVALUACIÓN CURRICULAR DEL PROCESO DE SELECCIÓN <?php
+        <h5 style="text-align: center;">CRONOGRAMA DE ENTREVISTAS DEL PROCESO DE SELECCIÓN <?php
                                                                                                         defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
                                                                                                         defined('SITE_ROOT') ? null : define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . DS . 'convocatorias');
                                                                                                         defined('LIB_PATH') ? null : define('LIB_PATH', SITE_ROOT . DS . 'include');
@@ -51,7 +51,7 @@ ob_start();
                                                                                                         $cur = $mydb->loadResultList();
                                                                                                         echo $cur[0]->CONVOCATORIA;
                                                                                                         ?>
-            PLAN MERISS</h4>
+            PLAN MERISS</h5>
         <br>
         <br>
         <div class="row">

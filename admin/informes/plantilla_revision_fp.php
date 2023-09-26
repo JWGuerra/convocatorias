@@ -3,7 +3,6 @@ $idConvocatoria = $_POST['IDCONVOCATORIA'];
 ob_start();
 ?>
 
-<!DOCTYPE html>
 <html>
 
 <head>
@@ -14,21 +13,19 @@ ob_start();
     <style>
         .container {
             margin: auto;
-            padding: 5px;
             font-size: 10px;
             font-family: "Arial Narrow", Arial, sans-serif;
         }
 
-        .header,
-        .footer {
+        .header, .footer {
             text-align: center;
             background-color: white;
-            padding: 10px;
+            padding: 0px;
         }
     </style>
 </head>
 
-<body>
+<body style="max-width: 100%;">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -38,7 +35,7 @@ ob_start();
                 </div>
             </div>
         </div>
-        <h4 style="text-align: center;">RESULTADOS DE EVALUACIÓN CURRICULAR DEL PROCESO DE SELECCIÓN <?php
+        <h5 style="text-align: center;">RESULTADOS DE EVALUACIÓN CURRICULAR DEL PROCESO DE SELECCIÓN <?php
                                                                 defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
                                                                 defined('SITE_ROOT') ? null : define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . DS . 'convocatorias');
                                                                 defined('LIB_PATH') ? null : define('LIB_PATH', SITE_ROOT . DS . 'include');
@@ -49,7 +46,7 @@ ob_start();
                                                                 $cur = $mydb->loadResultList();
                                                                 echo $cur[0]->CONVOCATORIA;
                                                                 ?>
-                                                                PLAN MERISS</h4>
+                                                                PLAN MERISS</h5>
         <br>
         <br>
         <div class="row">
@@ -134,19 +131,13 @@ $options->set([
     'fontHeightRatio' => 1.0 // Opcional, ajusta la relación de altura de fuente
 ]);
 
-// Establecer los márgenes a cero (superior, inferior, izquierdo y derecho)
-$options->set('margin-top', 0.5);
-$options->set('margin-bottom', 0.5);
-$options->set('margin-left', 0.5);
-$options->set('margin-right', 0.5);
-
 $dompdf->setOptions($options);
+
+// Establecer el tamaño del papel en A4
+$dompdf->setPaper('A4', 'portrait');
 
 // Cargar el HTML
 $dompdf->loadHtml($html);
-
-// Establecer el tamaño del papel en A4
-$dompdf->setPaper('A4');
 
 // Renderizar el PDF
 $dompdf->render();

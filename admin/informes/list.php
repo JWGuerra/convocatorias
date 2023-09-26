@@ -6,7 +6,7 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 <div class="container mt-5">
 	<div class="row">
 		<!-- Primera fila con dos secciones -->
-		<div class="col-md-6" style="border-radius:20px;border: 1px solid green;margin:0;">
+		<div class="col-md-6">
 			<h3 style="background-color:#016543;padding:5px;border-radius:10px;color:white;" class="text-center">Reporte de la Evaluación Curricular</h3>
 			<br>
 			<form class="form-horizontal" method="POST" action="plantilla_revision_fp.php">
@@ -33,7 +33,7 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 			</form>
 
 		</div>
-		<div class="col-md-6" style="border-radius: 20px; border: 1px solid green; margin: 0;">
+		<div class="col-md-6">
 			<h3 style="background-color: #016543; padding: 5px; border-radius: 10px; color: white;" class="text-center">Generar cronograma de entrevistas</h3>
 			<br>
 			<form class="form-horizontal" method="POST" action="generar_cronograma.php" onsubmit="return validarFormulario()">

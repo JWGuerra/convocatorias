@@ -8,7 +8,6 @@
             $IDVACANTE = '';
         }
         $sql = "SELECT * FROM `tblConvocatoria` c,`tblVacante` j WHERE c.`IDCONVOCATORIA`=j.`IDCONVOCATORIA` AND IDVACANTE LIKE '%" . $IDVACANTE . "%' ORDER BY FECHAPUBLICACION DESC";
-        //$sql = "SELECT * FROM `tblConvocatoria` c,`tblVacante` j WHERE c.`IDCONVOCATORIA`=j.`IDCONVOCATORIA` AND IDVACANTE = $IDVACANTE ORDER BY FECHAPUBLICACION DESC";
         $mydb->setQuery($sql);
         $result = $mydb->loadSingleResult();
         ?>

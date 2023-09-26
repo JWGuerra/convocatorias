@@ -104,7 +104,7 @@ function doUpdate($IDVACANTE = 0, $IDARCHIVO = 0)
 		$jobreg->IDCONVOCATORIA		= 	$result->IDCONVOCATORIA;
 		$jobreg->IDVACANTE     		= 	$result->IDVACANTE;
 		$jobreg->IDPOSTULANTE 		= 	$appl->IDPOSTULANTE;
-		$jobreg->POSTULANTE   		= 	$appl->DNI . ' ' . $appl->APELLIDOS;
+		$jobreg->POSTULANTE   		= 	$appl->APELLIDOS . ' ' . $appl->NOMBRES;
 		$jobreg->FECHAREGISTRO 		= 	date('Y-m-d');
 		$jobreg->IDARCHIVO 			= 	date('Y') . $IDARCHIVO;
 		$jobreg->OBSERVACIONES 		= 	'PENDIENTE';

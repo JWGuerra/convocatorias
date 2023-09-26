@@ -77,10 +77,6 @@ class registroVacante
 	public function create()
 	{
 		global $mydb;
-		// Don't forget your SQL syntax and good habits:
-		// - INSERT INTO table (key, key) VALUES ('value', 'value')
-		// - single-quotes around all values
-		// - escape all values to prevent SQL injection
 		$attributes = $this->sanitized_attributes();
 		$sql = "INSERT INTO " . self::$tblname . " (";
 		$sql .= join(", ", array_keys($attributes));
