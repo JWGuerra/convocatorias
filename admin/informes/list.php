@@ -36,7 +36,7 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 		<div class="col-md-6" style="border-radius: 20px; border: 1px solid green; margin: 0;">
 			<h3 style="background-color: #016543; padding: 5px; border-radius: 10px; color: white;" class="text-center">Generar cronograma de entrevistas</h3>
 			<br>
-			<form class="form-horizontal" method="POST" action="generar_cronograma.php">
+			<form class="form-horizontal" method="POST" action="generar_cronograma.php" onsubmit="return validarFormulario()">
 				<div class="form-group">
 					<label for="selectReport" class="col-sm-4 control-label">Convocatoria</label>
 					<div class="col-sm-8">
@@ -61,15 +61,44 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 				<div class="form-group">
 					<label for="DURACIONENTREVISTA" class="col-sm-4 control-label">Duración de entrevista:</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="DURACIONENTREVISTA" name="DURACIONENTREVISTA">
+						<input type="number" class="form-control" id="DURACIONENTREVISTA" name="DURACIONENTREVISTA" step="1">
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-4 col-sm-10">
-						<button type="submit" class="btn btn-primary" name="generarInforme">Generar Cronograma</button>
+						<button type="submit" class="btn btn-primary" name="generarCronograma">Generar Cronograma</button>
 					</div>
 				</div>
 			</form>
+			<script>
+				function validarFormulario() {
+					// Obtener valores de los campos
+					var idConvocatoria = document.getElementById("IDCONVOCATORIA").value;
+					var fechaEntrevista = document.getElementById("fechaEntrevista").value;
+					var duracionEntrevista = document.getElementById("DURACIONENTREVISTA").value;
+
+					// Realizar validaciones aquí
+					if (idConvocatoria === "") {
+						alert("Por favor, seleccione una convocatoria.");
+						return false; // Detener el envío del formulario
+					}
+
+					if (fechaEntrevista === "") {
+						alert("Por favor, seleccione una fecha y hora de inicio.");
+						return false; // Detener el envío del formulario
+					}
+
+					if (duracionEntrevista === "") {
+						alert("Por favor, ingrese la duración de la entrevista.");
+						return false; // Detener el envío del formulario
+					}
+
+					// Otras validaciones personalizadas pueden ir aquí
+
+					// Si todas las validaciones son exitosas, el formulario se enviará
+					return true;
+				}
+			</script>
 		</div>
 	</div>
 	<div class="row">
