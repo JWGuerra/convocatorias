@@ -36,7 +36,7 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 		<div class="col-md-6">
 			<h3 style="background-color: #016543; padding: 5px; border-radius: 10px; color: white;" class="text-center">Generar cronograma de entrevistas</h3>
 			<br>
-			<form class="form-horizontal" method="POST" action="generar_cronograma.php" onsubmit="return validarFormulario()">
+			<form id="miFormulario" class="form-horizontal" method="POST" action="generar_cronograma.php" onsubmit="return validarFormulario()">
 				<div class="form-group">
 					<label for="selectReport" class="col-sm-4 control-label">Convocatoria</label>
 					<div class="col-sm-8">
@@ -98,37 +98,60 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 					// Si todas las validaciones son exitosas, el formulario se enviará
 					return true;
 				}
+				document.getElementById("miFormulario").addEventListener("submit", function(event) {
+					var fechaHoraInput = document.getElementById("fechaEntrevista").value;
+					var fechaHoraSeleccionada = new Date(fechaHoraInput);
+					var fechaActual = new Date();
+
+					// Validar que la fecha sea posterior a la actual
+					if (fechaHoraSeleccionada < fechaActual) {
+						alert("La fecha y hora debe ser posterior a la actual.");
+						event.preventDefault(); // Evitar el envío del formulario
+						return;
+					}
+
+					// Validar el rango de horas
+					var hora = fechaHoraSeleccionada.getHours();
+					var minutos = fechaHoraSeleccionada.getMinutes();
+					var rangoValido = (hora >= 8 && hora < 13) || (hora >= 14 && hora < 16) || (hora === 16 && minutos <= 45);
+
+					if (!rangoValido) {
+						alert("La hora debe estar en el rango de 8:00 a 13:00 y 14:15 a 16:45.");
+						event.preventDefault(); // Evitar el envío del formulario
+						return;
+					}
+				});
 			</script>
 		</div>
 	</div>
 	<div class="row">
 		<!-- Segunda fila con otras dos secciones -->
 		<div class="col-md-6">
-			<h1 class="text-center">Sección 03</h1>
-			<form class="form-horizontal">
+			<h3 style="background-color:#016543;padding:5px;border-radius:10px;color:white;" class="text-center">Tabla de calificación Entrevista</h3>
+			<br>
+			<form class="form-horizontal" method="POST" action="lista_entrevista.php">
 				<div class="form-group">
-					<label for="selectReport" class="col-sm-2 control-label">Tipo de Informe</label>
+					<label for="selectReport" class="col-sm-2 control-label">Convocatoria</label>
 					<div class="col-sm-10">
-						<select class="form-control" id="selectReport">
-							<option value="informe1">Informe 1</option>
-							<option value="informe2">Informe 2</option>
-							<option value="informe3">Informe 3</option>
+						<select class="form-control input-sm" id="IDCONVOCATORIA" name="IDCONVOCATORIA">
+							<?php
+							$sql = "Select * From tblConvocatoria";
+							$mydb->setQuery($sql);
+							$res  = $mydb->loadResultList();
+							foreach ($res as $row) {
+								echo '<option value=' . $row->IDCONVOCATORIA . '>' . $row->CONVOCATORIA . '</option>';
+							}
+							?>
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="searchBox" class="col-sm-2 control-label">Búsqueda</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="searchBox" placeholder="Escriba su búsqueda...">
-					</div>
-				</div>
-				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="button" class="btn btn-primary">Buscar</button>
-						<button type="button" class="btn btn-success">Generar Informe</button>
+						<button type="submit" class="btn btn-primary" name="tablaEntrevista">Generar Tabla</button>
 					</div>
 				</div>
 			</form>
+
 		</div>
 		<div class="col-md-6">
 			<h1 class="text-center">Sección 04</h1>

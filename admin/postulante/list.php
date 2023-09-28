@@ -77,7 +77,7 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 				<th>Convocatoria</th>
 				<th>Formación Académica</th>
 				<th>Servicio al que Postula</th>
-				<th>Observación</th>
+				<th>Condición</th>
 				<th width="14%">Acción</th>
 			</tr>
 		</thead>

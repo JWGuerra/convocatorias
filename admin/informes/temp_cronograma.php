@@ -44,51 +44,34 @@ ob_start();
                 <?php
                 require_once(LIB_PATH . DS . "database.php");
                 $mydb = new Database();
-                // Consulta DB
+
                 $mydb->setQuery("SELECT v.LUGARTRABAJO, rp.IDREGISTRO, V.SERVICIO, rp.POSTULANTE, r.MENSAJE FROM tblregistropostulacion rp INNER JOIN tblretroalimentacion r ON rp.IDREGISTRO = r.IDREGISTRO INNER JOIN tblvacante v ON rp.IDVACANTE = v.IDVACANTE WHERE rp.IDCONVOCATORIA = $idConvocatoria;");
                 $cur = $mydb->loadResultList();
 
                 // Ejemplo de uso
-                $temp = new DateTime($fechaEntrevista);
-                $duracion = $duracionEntrevista;
+                $cronogramaEntrevistas = generarCronograma($fechaEntrevista, $duracionEntrevista);
                 foreach ($cur as $result) {
-                    $fecha = $temp->format('Y-m-d');
-                    // Horarios no Disponibles
-                    $horarioInicioManana = new DateTime($fecha . ' 07:59');
-                    $horarioFinManana = new DateTime($fecha . ' 13:00');
-                    $horarioInicioTarde = new DateTime($fecha . ' 14:15');
-                    $horarioFinTarde = new DateTime($fecha . ' 16:45');
                     echo '<tr>';
                     echo '<td>' . $result->LUGARTRABAJO . '</td>';
                     echo '<td>' . $result->IDREGISTRO . '</a></td>';
                     echo '<td>' . $result->SERVICIO . '</a></td>';
                     echo '<td>' . $result->POSTULANTE . '</td>';
-                    echo '<td>' . $temp->format('Y-m-d H:i:s') . '</td>';
+                    $fechaHoraString = $cronogramaEntrevistas[0];
+                    // Crear un objeto DateTime a partir de la cadena de fecha y hora
+                    $fechaHora = new DateTime($fechaHoraString);
+                    echo '<td>' . $fechaHoraString . '</td>';
                     echo '</tr>';
-                    // ASIGNACIÓN DE HORARIOS ------------------------------------------------------
-                    if ($temp >= $horarioInicioManana && $temp < $horarioFinTarde) {
-                        // Agregar la duración en minutos
-                        $temp->add(new DateInterval("PT{$duracion}M"));
-                        if ($temp >= $horarioFinManana && $temp < $horarioInicioTarde) {
-                            // Fuera de la mañana, antes de la tarde
-                            // Si es antes de las 14:15, avance a las 14:15
-                            $temp = new DateTime($fecha . ' 14:20:00');
-                        }
-                    } else {
-                        // Después de las 16:45, avance al día siguiente
-                        $temp = (new DateTime($fecha . ' 08:00:00'))->add(new DateInterval('P1D'));
-                    }
+                    $cronogramaEntrevistas = generarCronograma($fechaHoraString, $duracionEntrevista);
                 }
 
                 function generarCronograma($fecha, $duracion)
                 {
                     $fechaInicio = new DateTime($fecha);
                     $fecha = $fechaInicio->format('Y-m-d');
-                    // Horarios no Disponibles
-                    $horarioInicioManana = new DateTime($fecha . '08:00');
-                    $horarioFinManana = new DateTime($fecha . '13:00');
-                    $horarioInicioTarde = new DateTime($fecha . '14:15');
-                    $horarioFinTarde = new DateTime($fecha . '16:45');
+                    $horarioInicioManana = new DateTime($fecha.'08:00');
+                    $horarioFinManana = new DateTime($fecha.'13:00');
+                    $horarioInicioTarde = new DateTime($fecha.'14:15');
+                    $horarioFinTarde = new DateTime($fecha.'16:45');
 
                     $cronograma = array();
 
@@ -107,6 +90,7 @@ ob_start();
                     }
                     return $cronograma;
                 }
+
                 ?>
             </tbody>
         </table>
@@ -143,9 +127,9 @@ $options->set([
     'isHtml5ParserEnabled' => true,
     'isPhpEnabled' => true,
     'isFontSubsettingEnabled' => false, // Puedes ajustar esto según tus necesidades
-    'defaultFont' => 'Arial',           // Opcional, establece la fuente predeterminada
-    'dpi' => 96,                        // Opcional, establece la resolución DPI
-    'fontHeightRatio' => 1.0            // Opcional, ajusta la relación de altura de fuente
+    'defaultFont' => 'Arial', // Opcional, establece la fuente predeterminada
+    'dpi' => 96, // Opcional, establece la resolución DPI
+    'fontHeightRatio' => 1.0 // Opcional, ajusta la relación de altura de fuente
 ]);
 
 // Establecer el tamaño del papel en A4

@@ -12,11 +12,11 @@ ob_start();
 </head>
 
 <body style="font-size: 10px; font-family: 'Arial Narrow', Arial, sans-serif;">
-    <header>
-        <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/convocatorias/admin/informes/IMG/encabezado.jpg" alt="" width="100%">
+    <header style="text-align: center;">
+        <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/convocatorias/admin/informes/IMG/encabezado.jpg" alt="" width="60%">
     </header>
     <div class="container">
-        <h5 style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;">RESULTADOS DE EVALUACIÓN CURRICULAR DEL PROCESO DE SELECCIÓN <?php
+        <h5 style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;">ENTREVISTA Y EVALUACIÓN ORAL DEL PROCESO DE SELECCIÓN <?php
                                                                                                         defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
                                                                                                         defined('SITE_ROOT') ? null : define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . DS . 'convocatorias');
                                                                                                         defined('LIB_PATH') ? null : define('LIB_PATH', SITE_ROOT . DS . 'include');
@@ -35,8 +35,12 @@ ob_start();
                     <th>CÓDIGO</th>
                     <th>SERVICIO</th>
                     <th>POSTULANTE</th>
-                    <th>OBSERVACIONES</th>
-                    <th>APTO/NO APTO</th>
+                    <th>NRO PREGUNTAS GENERAL</th>
+                    <th>PUNTAJE PREGUNTAS GENERAL</th>
+                    <th>NRO PREGUNTAS ESPECIFICA</th>
+                    <th>PUNTAJE PREGUNTAS ESPECIFICAS</th>
+                    <th>PUNTAJE DESENVOLVIMIENTO</th>
+                    <th>PUNTAJE TOTAL</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,16 +58,20 @@ ob_start();
                     echo '<td>' . $result->IDREGISTRO . '</a></td>';
                     echo '<td>' . $result->SERVICIO . '</a></td>';
                     echo '<td>' . $result->POSTULANTE . '</td>';
-                    echo '<td>' . $result->MENSAJE . '</td>';
-                    echo '<td>' . $result->OBSERVACIONES . '</td>';
+                    echo '<td>' . '</td>';
+                    echo '<td>' . '</td>';
+                    echo '<td>' . '</td>';
+                    echo '<td>' . '</td>';
+                    echo '<td>' . '</td>';
+                    echo '<td>' . '</td>';
                     echo '</tr>';
                 }
                 ?>
             </tbody>
         </table>
     </div>
-    <footer>
-        <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/convocatorias/admin/informes/IMG/piePagina.jpg" alt="" width="100%">
+    <footer style="text-align: center;">
+        <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/convocatorias/admin/informes/IMG/piePagina.jpg" alt="" width="60%">
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -100,7 +108,7 @@ $options->set([
 ]);
 
 // Establecer el tamaño del papel en A4
-$dompdf->setPaper('A4');
+$dompdf->setPaper('A4', 'landscape');
 
 $dompdf->setOptions($options);
 
@@ -111,6 +119,6 @@ $dompdf->loadHtml($html);
 $dompdf->render();
 
 // Transmitir el PDF al navegador sin descargarlo
-$dompdf->stream("Resultados_Evaluacion_Curricular.pdf", ['Attachment' => false]);
+$dompdf->stream("Tabla_Evaluacion_Entrevista.pdf", ['Attachment' => false]);
 
 ?>
