@@ -98,9 +98,9 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 				echo '<td style="background-color: ';
 				if ($result->OBSERVACIONES == "PENDIENTE") {
 					echo 'lightblue';  // Celeste
-				} elseif ($result->OBSERVACIONES == "OBSERVADO") {
+				} elseif ($result->OBSERVACIONES == "NO-APTO") {
 					echo '#D73925';  // Rojo
-				} elseif ($result->OBSERVACIONES == "APROBADO") {
+				} elseif ($result->OBSERVACIONES == "APTO") {
 					echo '#36D179';  // Verde
 				} else {
 					echo 'white';  // Color por defecto (blanco)

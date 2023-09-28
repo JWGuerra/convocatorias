@@ -87,7 +87,7 @@
       <div id="datos" style="text-align: center;border-radius:10px;" class="small-box bg-red">
         <div class="inner">
           <?php
-          $sql = "SELECT COUNT(*) as CANTIDAD FROM tblRegistroPostulacion WHERE OBSERVACIONES = 'OBSERVADO';";
+          $sql = "SELECT COUNT(*) as CANTIDAD FROM tblRegistroPostulacion WHERE OBSERVACIONES = 'NO-APTO';";
           $mydb->setQuery($sql);
           $cantRechazados = $mydb->loadSingleResult();
           ?>

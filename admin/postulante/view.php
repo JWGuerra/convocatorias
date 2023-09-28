@@ -103,8 +103,8 @@ $archivo = $mydb->loadSingleResult();
 				<div class="col-md-4">
 					<select class="form-control input-sm" id="OBSERVACIONES" name="OBSERVACIONES">
 						<option value="None">Seleccionar</option>
-						<option value="APROBADO">APROBADO</option>
-						<option value="OBSERVADO">OBSERVADO</option>
+						<option value="APTO">APTO</option>
+						<option value="NO-APTO">NO-APTO</option>
 					</select>
 				</div>
 			</div>
@@ -122,15 +122,15 @@ $archivo = $mydb->loadSingleResult();
 
 			// Agrega un evento onchange al campo de selección
 			selectElement.addEventListener("change", function() {
-				// Verifica si la opción seleccionada es "OBSERVADO"
-				if (selectElement.value === "OBSERVADO") {
-					// Si es "OBSERVADO", muestra el textarea
+				// Verifica si la opción seleccionada es "NO-APTO"
+				if (selectElement.value === "NO-APTO") {
+					// Si es "NO-APTO", muestra el textarea
 					textareaElement.style.display = "block";
 					textareaElement.value = "";
 				} else {
-					// Si no es "OBSERVADO", oculta el textarea
+					// Si no es "NO-APTO", oculta el textarea
 					textareaElement.style.display = "none";
-					if (selectElement.value === "APROBADO") {
+					if (selectElement.value === "APTO") {
 						textareaElement.value ="Su Curriculum Vitae cumple con el perfil del Servico Solicitado. Esté atento a la publicación del CRONOGRAMA de entrevista, publicado en la página WEB.";
 					} else {
 						textareaElement.value ="";

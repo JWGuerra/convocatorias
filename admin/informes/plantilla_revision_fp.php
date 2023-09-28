@@ -17,16 +17,15 @@ ob_start();
     </header>
     <div class="container">
         <h5 style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;">RESULTADOS DE EVALUACIÓN CURRICULAR DEL PROCESO DE SELECCIÓN <?php
-                                                                                                        defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
-                                                                                                        defined('SITE_ROOT') ? null : define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . DS . 'convocatorias');
-                                                                                                        defined('LIB_PATH') ? null : define('LIB_PATH', SITE_ROOT . DS . 'include');
-                                                                                                        require_once(LIB_PATH . DS . "database.php");
-                                                                                                        $mydb = new Database();
-
-                                                                                                        $mydb->setQuery("SELECT * FROM tblConvocatoria WHERE IDCONVOCATORIA = $idConvocatoria;");
-                                                                                                        $cur = $mydb->loadResultList();
-                                                                                                        echo $cur[0]->CONVOCATORIA;
-                                                                                                        ?>
+                                                                                                                                                    defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
+                                                                                                                                                    defined('SITE_ROOT') ? null : define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . DS . 'convocatorias');
+                                                                                                                                                    defined('LIB_PATH') ? null : define('LIB_PATH', SITE_ROOT . DS . 'include');
+                                                                                                                                                    require_once(LIB_PATH . DS . "database.php");
+                                                                                                                                                    $mydb = new Database();
+                                                                                                                                                    $mydb->setQuery("SELECT * FROM tblConvocatoria WHERE IDCONVOCATORIA = $idConvocatoria;");
+                                                                                                                                                    $cur = $mydb->loadResultList();
+                                                                                                                                                    echo $cur[0]->CONVOCATORIA;
+                                                                                                                                                    ?>
             PLAN MERISS</h5>
         <table class="table table-bordered">
             <thead>
@@ -54,7 +53,11 @@ ob_start();
                     echo '<td>' . $result->IDREGISTRO . '</a></td>';
                     echo '<td>' . $result->SERVICIO . '</a></td>';
                     echo '<td>' . $result->POSTULANTE . '</td>';
-                    echo '<td>' . $result->MENSAJE . '</td>';
+                    if ($result->OBSERVACIONES === "APTO") {
+                        echo "<td></td>"; // Celda en blanco
+                    } else {
+                        echo "<td>{$result->MENSAJE}</td>"; // Muestra OBSERVACIONES
+                    }
                     echo '<td>' . $result->OBSERVACIONES . '</td>';
                     echo '</tr>';
                 }
@@ -70,8 +73,6 @@ ob_start();
 </body>
 
 </html>
-
-
 
 <?php
 

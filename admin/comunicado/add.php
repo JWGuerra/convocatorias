@@ -34,7 +34,7 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 
   <div class="form-group">
     <div class="col-md-8">
-      <label class="col-md-4 control-label" for=TIPOCOMUNICADO">Tipo:</label>
+      <label class="col-md-4 control-label" for="TIPOCOMUNICADO">Tipo:</label>
       <div class="col-md-8">
         <select class="form-control input-sm" id="TIPOCOMUNICADO" name="TIPOCOMUNICADO">
           <option value="None">Seleccionar</option>

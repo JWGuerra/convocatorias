@@ -157,16 +157,49 @@ $res = $job->single_Vacante($IDVACANTE);
     <div class="col-md-8">
       <label class="col-md-4 control-label" for="FUNCIONES">Funciones:</label>
       <div class="col-md-8">
-        <textarea style="height: 100px;" class="form-control input-sm" id="FUNCIONES" name="FUNCIONES" placeholder="Funciones" autocomplete="none"><?php echo str_replace("<br>", "\n",$res->FUNCIONES)?></textarea>
+        <textarea style="height: 100px;" class="form-control input-sm" id="FUNCIONES" name="FUNCIONES" placeholder="Funciones" autocomplete="none"><?php echo str_replace("<br>", "\n", $res->FUNCIONES) ?></textarea>
       </div>
     </div>
   </div>
 
   <div class="form-group">
     <div class="col-md-8">
-      <label class="col-md-4 control-label" for="LUGARTRABAJO">Lugar de Trabajo:</label>
+      <label class="col-md-4 control-label" for="LUGARTRABAJO">Lugar Trabajo:</label>
       <div class="col-md-8">
-        <input class="form-control input-sm" id="LUGARTRABAJO" name="LUGARTRABAJO" placeholder="Lugar de Trabajo" autocomplete="none" value="<?php echo $res->LUGARTRABAJO ?>" />
+        <select class="form-control input-sm" id="LUGARTRABAJO" name="LUGARTRABAJO">
+          <?php
+          // Lista de opciones
+          $diccionario = array(
+            "SEDE-CENTRAL" => "SEDE-CENTRAL",
+            "ANDAHUAYLILLAS" => "ANDAHUAYLILLAS",
+            "APANTA" => "APANTA",
+            "CCORCA" => "CCORCA",
+            "CHECCA-CANAS" => "CHECCA-CANAS",
+            "HANOCCA-TAYPITUNGA" => "HANOCCA-TAYPITUNGA",
+            "HUANOQUITE" => "HUANOQUITE",
+            "HUAYOPATA" => "HUAYOPATA",
+            "LIMATAMBO" => "LIMATAMBO",
+            "MARANGANI" => "MARANGANI",
+            "MARGEN-DERECHA" => "MARGEN-DERECHA",
+            "PALLALLAJE" => "PALLALLAJE",
+            "QUISCO" => "QUISCO",
+            "SAN-PABLO" => "SAN-PABLO",
+            "VERSALLES" => "VERSALLES",
+            "YANANTIN" => "YANANTIN",
+          );
+
+          // Valor recuperado
+          $sql = "Select * From tblVacante WHERE IDVACANTE = $IDVACANTE";
+          $mydb->setQuery($sql);
+          $rec  = $mydb->loadResultList();
+          $lugarTrabajoRecuperado = $rec[0]->LUGARTRABAJO; // valor recuperado de la base de datos
+
+          foreach ($diccionario as $clave => $valor) {
+            $selected = ($clave == $lugarTrabajoRecuperado) ? 'selected' : '';
+            echo '<option ' . $selected . ' value="' . $clave . '">' . $valor . '</option>';
+          }
+          ?>
+        </select>
       </div>
     </div>
   </div>

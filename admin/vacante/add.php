@@ -154,9 +154,27 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 
   <div class="form-group">
     <div class="col-md-8">
-      <label class="col-md-4 control-label" for="LUGARTRABAJO">Lugar de Trabajo:</label>
+      <label class="col-md-4 control-label" for="LUGARTRABAJO">Lugar Trabajo:</label>
       <div class="col-md-8">
-        <input class="form-control input-sm" id="LUGARTRABAJO" name="LUGARTRABAJO" placeholder="Lugar de Trabajo" autocomplete="none" />
+        <select class="form-control input-sm" id="LUGARTRABAJO" name="LUGARTRABAJO">
+          <option value="None">Seleccionar</option>
+          <option value="SEDE-CENTRAL">SEDE-CENTRAL</option>
+          <option value="ANDAHUAYLILLAS">ANDAHUAYLILLAS</option>
+          <option value="APANTA">APANTA</option>
+          <option value="CCORCA">CCORCA</option>
+          <option value="CHECCA-CANAS">CHECCA-CANAS</option>
+          <option value="HANOCCA-TAYPITUNGA">HANOCCA-TAYPITUNGA</option>
+          <option value="HUANOQUITE">HUANOQUITE</option>
+          <option value="HUAYOPATA">HUAYOPATA</option>
+          <option value="LIMATAMBO">LIMATAMBO</option>
+          <option value="MARANGANI">MARANGANI</option>
+          <option value="MARGEN-DERECHA">MARGEN-DERECHA</option>
+          <option value="PALLALLAJE">PALLALLAJE</option>
+          <option value="QUISCO">QUISCO</option>
+          <option value="SAN-PABLO">SAN-PABLO</option>
+          <option value="VERSALLES">VERSALLES</option>
+          <option value="YANANTIN">YANANTIN</option>
+        </select>
       </div>
     </div>
   </div>
