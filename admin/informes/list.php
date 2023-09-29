@@ -154,28 +154,26 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 
 		</div>
 		<div class="col-md-6">
-			<h1 class="text-center">Sección 04</h1>
-			<form class="form-horizontal">
+		<h3 style="background-color:#016543;padding:5px;border-radius:10px;color:white;" class="text-center">Reporte Resultados Entrevista</h3>
+			<form class="form-horizontal" method="POST" action="puntaje_entrevista.php">
 				<div class="form-group">
-					<label for="selectReport" class="col-sm-2 control-label">Tipo de Informe</label>
+					<label for="selectReport" class="col-sm-2 control-label">Convocatoria</label>
 					<div class="col-sm-10">
-						<select class="form-control" id="selectReport">
-							<option value="informe1">Informe 1</option>
-							<option value="informe2">Informe 2</option>
-							<option value="informe3">Informe 3</option>
+						<select class="form-control input-sm" id="IDCONVOCATORIA" name="IDCONVOCATORIA">
+							<?php
+							$sql = "Select * From tblConvocatoria";
+							$mydb->setQuery($sql);
+							$res  = $mydb->loadResultList();
+							foreach ($res as $row) {
+								echo '<option value=' . $row->IDCONVOCATORIA . '>' . $row->CONVOCATORIA . '</option>';
+							}
+							?>
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="searchBox" class="col-sm-2 control-label">Búsqueda</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="searchBox" placeholder="Escriba su búsqueda...">
-					</div>
-				</div>
-				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="button" class="btn btn-primary">Buscar</button>
-						<button type="button" class="btn btn-success">Generar Informe</button>
+						<button type="submit" class="btn btn-primary" name="tablaEntrevista">Generar Tabla</button>
 					</div>
 				</div>
 			</form>

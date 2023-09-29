@@ -144,19 +144,16 @@
             </ul>
           </div>
         </div>
-        <!-- /.box-body-->
         <div class="box-footer no-border">
           <div class="row">
             <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
               <div id="sparkline-1"></div>
               <div class="knob-label">Dirección:</div>
             </div>
-            <!-- ./col -->
             <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
               <div id="sparkline-2"></div>
               <div class="knob-label">Pedro Vilca Apaza</div>
             </div>
-            <!-- ./col -->
             <div class="col-xs-4 text-center">
               <div id="sparkline-3"></div>
               <div class="knob-label">N° 332</div>

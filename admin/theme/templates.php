@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>
@@ -79,7 +80,7 @@
 
             <h4 class="modal-title" id="myModalLabel">Image.</h4>
           </div>
-          <form action="<?php echo web_root;?>admin/user/controller.php?action=photos" enctype="multipart/form-data" method="post">
+          <form action="<?php echo web_root; ?>admin/user/controller.php?action=photos" enctype="multipart/form-data" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <div class="rows">
@@ -144,6 +145,11 @@
                 echo $pending->PENDIENTE;
                 ?>
               </span>
+            </a>
+          </li>
+          <li class="<?php echo (currentpage() == 'entrevistas') ? "active" : false; ?>">
+            <a href="<?php echo web_root; ?>admin/entrevistas/">
+              <i class="fa fa-suitcase"></i> <span>Entrevistas</span>
             </a>
           </li>
           <li class="<?php echo (currentpage() == 'informes') ? "active" : false; ?>">
