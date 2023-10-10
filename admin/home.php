@@ -33,21 +33,19 @@
       <div id="datos" style="text-align: center; border-radius:10px;" class="small-box bg-aqua">
         <div class="inner">
           <?php
-          $sql = "SELECT COUNT(*) as CANTIDAD FROM tblvacante;";
+          $sql = "SELECT COUNT(*) as CANTIDAD FROM tblRegistroPuestoLaboral;";
           $mydb->setQuery($sql);
           $cantVacante = $mydb->loadSingleResult();
           ?>
           <h3><?php echo $cantVacante->CANTIDAD ?></h3>
-          <p>Vacantes Publicadas</p>
+          <p>Solicitud de puestos laborales</p>
         </div>
         <div class="icon">
           <i class="ion ion-bag"></i>
         </div>
       </div>
     </div>
-    <!-- ./col -->
     <div class="col-lg-3 col-xs-6">
-      <!-- small box -->
       <div id="datos" style="text-align: center; border-radius:10px;" class="small-box bg-green">
         <div class="inner">
           <?php
@@ -63,9 +61,7 @@
         </div>
       </div>
     </div>
-    <!-- ./col -->
     <div class="col-lg-3 col-xs-6">
-      <!-- small box -->
       <div id="datos" style="text-align: center; border-radius:10px;" class="small-box bg-yellow">
         <div class="inner">
           <?php
@@ -81,7 +77,6 @@
         </div>
       </div>
     </div>
-    <!-- ./col -->
     <div class="col-lg-3 col-xs-6">
       <!-- small box -->
       <div id="datos" style="text-align: center;border-radius:10px;" class="small-box bg-red">

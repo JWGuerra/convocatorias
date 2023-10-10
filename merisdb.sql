@@ -43,7 +43,9 @@ CREATE TABLE tblRegistroPostulacion (
   IDARCHIVO           VARCHAR(30)   DEFAULT NULL,
   SOLICITUDPENDIENTE  tinyint(1)    NOT NULL DEFAULT 1,
   HVISTA              tinyint(1)    NOT NULL DEFAULT 1,
-  FECHAAPROBACION     datetime      NOT NULL
+  FECHAAPROBACION     datetime      NOT NULL,
+  PUNTAJEENTREVISTA   int(11)       NOT NULL DEFAULT 0,
+  RESULTADOENTREVISTA VARCHAR(80)   NOT NULL DEFAULT 'SIN CALIFICAR'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -124,10 +126,11 @@ CREATE TABLE tblConvocatoria (
 --                 TABLA RETROALIMENTACIÓN
 -- --------------------------------------------------------
 CREATE TABLE tblRetroalimentacion (
-  IDRETROALIMENTACION   int(11)   NOT NULL,
-  IDPOSTULANTE          int(11)   NOT NULL,
-  IDREGISTRO            int(11)   NOT NULL,
-  RETROALIMENTACION     text      NOT NULL
+  IDRETROALIMENTACION   int(11)       NOT NULL,
+  IDPOSTULANTE          int(11)       NOT NULL,
+  IDREGISTRO            int(11)       NOT NULL,
+  RETROALIMENTACION     text          NOT NULL,
+  MENSAJE               VARCHAR(500)  NOT NULL;
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -177,6 +180,29 @@ CREATE TABLE tblComunicado (
   FECHAPUBLICACION      datetime      NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE tblRegistroPuestoLaboral (
+  IDREGISTROPUESTO    int(11)       NOT NULL,
+  DNI                 VARCHAR(8)    NOT NULL,
+  APELLIDOS           VARCHAR(90)   NOT NULL,
+  NOMBRES             VARCHAR(90)   NOT NULL,
+  DIRECCION           VARCHAR(255)  NOT NULL,
+  CORREO              VARCHAR(90)   NOT NULL,
+  CELULAR             VARCHAR(90)   NOT NULL,
+  FORMACIONACADEMICA  text          NOT NULL,
+  PROFESION_OFICIO    text          NOT NULL,
+  EXPERIENCIAPUBLICA  int(11)       NOT NULL,
+  EXPERIENCIAPRIVADA  int(11)       NOT NULL,
+  UBICACIONCV         varchar(255)  NOT NULL,
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE tblRegistroPuestoLaboral
+ADD PRIMARY KEY (IDREGISTROPUESTO);
+
+ALTER TABLE tblComunicado
+MODIFY IDCOMUNICADO int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000;
+
+ALTER TABLE tblRegistroPuestoLaboral
+MODIFY IDREGISTROPUESTO int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6000;
 
 
 -- Indexes para la tabla tblPostulante

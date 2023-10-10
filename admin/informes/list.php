@@ -154,7 +154,7 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 
 		</div>
 		<div class="col-md-6">
-		<h3 style="background-color:#016543;padding:5px;border-radius:10px;color:white;" class="text-center">Reporte Resultados Entrevista</h3>
+			<h3 style="background-color:#016543;padding:5px;border-radius:10px;color:white;" class="text-center">Reporte Resultados Entrevista</h3>
 			<form class="form-horizontal" method="POST" action="puntaje_entrevista.php">
 				<div class="form-group">
 					<label for="selectReport" class="col-sm-2 control-label">Convocatoria</label>
@@ -173,7 +173,7 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-primary" name="tablaEntrevista">Generar Tabla</button>
+						<button type="submit" class="btn btn-primary" name="tablaEntrevista">Generar Reporte</button>
 					</div>
 				</div>
 			</form>

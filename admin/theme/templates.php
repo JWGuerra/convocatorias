@@ -158,6 +158,19 @@
             </a>
           </li>
 
+          <li class="<?php echo (currentpage() == 'solicitud_trabajo') ? "active" : false; ?>">
+            <a href="<?php echo web_root; ?>admin/solicitud_trabajo/">
+              <i class="fa fa-users"></i> <span>Solicitudes de Trabajo</span>
+              <span class="label label-primary pull-right">
+                <?php
+                $sql = "SELECT count(*) as 'PENDIENTE' FROM `tblRegistroPuestoLaboral` WHERE `HVISTA`=1";
+                $mydb->setQuery($sql);
+                $pending = $mydb->loadSingleResult();
+                echo $pending->PENDIENTE;
+                ?>
+              </span>
+            </a>
+          </li>
           <li class="<?php echo (currentpage() == 'user') ? "active" : false; ?>">
             <a href="<?php echo web_root; ?>admin/user/">
               <i class="fa fa-user"></i> <span>Usuarios</span> </a>

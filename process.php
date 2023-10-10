@@ -13,6 +13,9 @@ switch ($action) {
 	case 'login':
 		doLogin();
 		break;
+	case 'puestoLaboral':
+		doPuestoLaboral();
+		break;
 }
 
 function doapplicationform()
@@ -70,7 +73,6 @@ function doInsert($IDVACANTE = 0, $IDARCHIVO = 0)
 		$POSTULANTE->FORMACIONACADEMICA	= $_POST['FORMACIONACADEMICA'];
 		$POSTULANTE->create();
 
-
 		$sql = "SELECT * FROM `tblConvocatoria` c,`tblVacante` j WHERE c.`IDCONVOCATORIA`=j.`IDCONVOCATORIA` AND IDVACANTE = '{$IDVACANTE}'";
 		$mydb->setQuery($sql);
 		$result = $mydb->loadSingleResult();
@@ -110,7 +112,7 @@ function doUpdate($IDVACANTE = 0, $IDARCHIVO = 0)
 		$jobreg->OBSERVACIONES 		= 	'PENDIENTE';
 		$jobreg->FECHAAPROBACION 	= 	date('Y-m-d H:i');
 		$jobreg->create();
-		message("Su postulación fue enviada. Por favor espere que la institución se comunique con usted si cesta calificado para la vacante.", "success");
+		message("Su postulación fue enviada. Por favor espere que la institución se comunique con usted si esta calificado para la vacante. Inicie sesión en la parte superior derecha con el usuario y clave registrado, para realizar el seguimiento.", "success");
 		redirect("index.php?q=success&job=" . $result->IDVACANTE);
 	}
 }
@@ -161,8 +163,6 @@ function UploadImage($IDVACANTE = 0)
 	$target_file = $target_dir . date("dmYhis") . basename($_FILES["picture"]["name"]);
 	$uploadOk = 1;
 	$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-
-
 	if (
 		$imageFileType != "jpg" || $imageFileType != "png" || $imageFileType != "jpeg"
 		|| $imageFileType != "gif"
@@ -171,12 +171,43 @@ function UploadImage($IDVACANTE = 0)
 			return  date("dmYhis") . basename($_FILES["picture"]["name"]);
 		} else {
 			message("Error Uploading File", "error");
-			// redirect(web_root."index.php?q=apply&job=".$IDVACANTE."&view=personalinfo");
-			// exit;
 		}
 	} else {
 		message("File Not Supported", "error");
-		// redirect(web_root."index.php?q=apply&job=".$IDVACANTE."&view=personalinfo");
-		// exit;
+	}
+}
+
+function doPuestoLaboral()
+{
+	if (isset($_POST['save'])) {
+		$puestoLaboral = new puestoLaboral();
+		$puestoLaboral->DNI 				= $_POST['DNI'];
+		$puestoLaboral->APELLIDOS 			= $_POST['APELLIDOS'];
+		$puestoLaboral->NOMBRES 			= $_POST['NOMBRES'];
+		$puestoLaboral->DIRECCION 			= $_POST['DIRECCION'];
+		$puestoLaboral->CORREO 				= $_POST['CORREO'];
+		$puestoLaboral->CELULAR 			= $_POST['CELULAR'];
+		$puestoLaboral->FORMACIONACADEMICA 	= $_POST['FORMACIONACADEMICA'];
+		$puestoLaboral->PROFESION_OFICIO 	= $_POST['PROFESION_OFICIO'];
+		$puestoLaboral->EXPERIENCIAPUBLICA 	= $_POST['EXPERIENCIAPUBLICA'];
+		$puestoLaboral->EXPERIENCIAPRIVADA 	= $_POST['EXPERIENCIAPRIVADA'];
+		$puestoLaboral->FECHASOLICITUD 		= date('Y-m-d H:i');
+
+		if ($_FILES['UBICACIONCV']['error'] === UPLOAD_ERR_OK) {
+			$nombreArchivo = $_FILES['UBICACIONCV']['name'];
+			$ubicacionTemporal = $_FILES['UBICACIONCV']['tmp_name'];
+			$ubicacionDestino = 'admin/solicitud_trabajo/documentos/' . $nombreArchivo;
+
+			if (move_uploaded_file($ubicacionTemporal, $ubicacionDestino)) {
+				$puestoLaboral->UBICACIONCV = $ubicacionDestino;
+			} else {
+				message("Hubo un error al guardar el archivo.", "error");
+				redirect("index.php?error");
+				return;
+			}
+		}
+		$puestoLaboral->create();
+		message("Tu solicitud de puesto laboral fue enviada correctamente. Espere que la institución se comunique si usted esta calificado para una vacante.", "success");
+		redirect("index.php?q=success");
 	}
 }

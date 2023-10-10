@@ -29,25 +29,18 @@
                      </label>
                    </div>
                  </div>
-                 <!-- /.col -->
                  <div class="col-xs-4">
-
                  </div>
-                 <!-- /.col -->
                </div>
              </form>
-
              <a href="#">Olvide mi contraseña</a><br>
              <a href="<?php echo web_root; ?>index.php?q=register" class="text-center">Registrarme como nuevo usuario</a>
-
            </div>
-           <!-- /.login-box-body -->
          </div>
        </div>
        <div class="modal-footer">
          <button class="btn btn-default" data-dismiss="modal">CERRAR</button> <button class="btn btn-primary" name="btnlogin" id="btnlogin">LOGIN</button>
        </div>
-       <!-- </form> -->
-     </div><!-- /.modal-content -->
-   </div><!-- /.modal-dialog -->
- </div><!-- /.modal -->
+     </div>
+   </div>
+ </div>

@@ -33,7 +33,7 @@ function doInsert()
 
 		if ($_FILES['UBICACIONCOMUNICADO']['error'] === UPLOAD_ERR_OK) {
 			$nombreArchivo = $_FILES['UBICACIONCOMUNICADO']['name'];
-			$ubicacionTemporal = $_FILES['UBICACIONCOMUNICADO']['tmp_name']; // Corrección: 'tmp_name'
+			$ubicacionTemporal = $_FILES['UBICACIONCOMUNICADO']['tmp_name'];
 			$ubicacionDestino = 'documentos/' . $nombreArchivo;
 
 			if (move_uploaded_file($ubicacionTemporal, $ubicacionDestino)) {

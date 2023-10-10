@@ -92,12 +92,14 @@ function doApproved()
 				$sql = "UPDATE `tblRetroalimentacion` SET `RETROALIMENTACION` = '{$remarks}', `MENSAJE` = '{$message}' WHERE `IDREGISTRO` = '{$id}';";
 				$mydb->setQuery($sql);
 				$cur = $mydb->executeQuery();
+				message("PRIMER IF.", "success");
 			} else {
 				$sql = "INSERT INTO `tblRetroalimentacion` (`IDPOSTULANTE`, `IDREGISTRO`,`RETROALIMENTACION`, `MENSAJE`) VALUES ('{$IDPOSTULANTE}','{$id}','{$remarks}', '$message')";
 				$mydb->setQuery($sql);
 				$cur = $mydb->executeQuery();
+				message("SEGUNDO IF.", "success");
 			}
-			message("La solicitante está llamando para una entrevista.", "success");
+			message("El/La postulante está llamando para una entrevista.", "success");
 			redirect("index.php?view=view&id=" . $id);
 		} else {
 			message("No se pudo Guardar.", "error");

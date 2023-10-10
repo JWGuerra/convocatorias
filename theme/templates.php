@@ -73,20 +73,7 @@
           <div class="navbar-collapse collapse ">
             <ul class="nav navbar-nav">
               <li class="<?php echo !isset($_GET['q']) ? 'active' : '' ?>"><a href="<?php echo web_root; ?>index.php">Inicio</a></li>
-              <li class="dropdown">
-                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Buscar Vacante<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li class="<?php if (isset($_GET['q'])) {
-                                if ($_GET['q'] == 'advancesearch') {
-                                  echo 'active';
-                                } else {
-                                  echo '';
-                                }
-                              }  ?>"><a href="<?php echo web_root; ?>index.php?q=advancesearch">BÚSQUEDA AVANZADA</a></li>
-                  <li><a href="<?php echo web_root; ?>index.php?q=search-convocatoria">Buscar por convocatoria</a></li>
-                  <li><a href="<?php echo web_root; ?>index.php?q=search-Servicio">Buscar por Servicio</a></li>
-                </ul>
-              </li>
+
               <li class="<?php if (isset($_GET['q'])) {
                             if ($_GET['q'] == 'convocatoria') {
                               echo 'active';
@@ -108,6 +95,13 @@
                               echo '';
                             }
                           }  ?>"><a href="<?php echo web_root; ?>index.php?q=comunicado">Comunicados</a></li>
+              <li class="<?php if (isset($_GET['q'])) {
+                            if ($_GET['q'] == 'solicitud_trabajo_form') {
+                              echo 'active';
+                            } else {
+                              echo '';
+                            }
+                          }  ?>"><a href="<?php echo web_root; ?>index.php?q=solicitud_trabajo_form">Solicitud Trabajo</a></li>
               <li class="<?php if (isset($_GET['q'])) {
                             if ($_GET['q'] == 'About') {
                               echo 'active';
@@ -139,8 +133,8 @@
     -->
 
     <div class="floating-button">
-        <span class="texto"><strong>LOGIN ADMIN</strong></span>
-        <a title="LOGIN ADMIN" href="<?php echo web_root; ?>admin/" class="btn-wsp" target="_blank"><i class="fa fa-user"></i></a>
+      <span class="texto"><strong>LOGIN ADMIN</strong></span>
+      <a title="LOGIN ADMIN" href="<?php echo web_root; ?>admin/" class="btn-wsp" target="_blank"><i class="fa fa-user"></i></a>
     </div>
 
     <?php
@@ -247,19 +241,14 @@
   <script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.js"></script>
   <script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.easing.1.3.js"></script>
   <script src="<?php echo web_root; ?>plugins/home-plugins/js/bootstrap.min.js"></script>
-
-
   <script type="text/javascript" src="<?php echo web_root; ?>plugins/dataTables/dataTables.bootstrap.min.js"></script>
   <script src="<?php echo web_root; ?>plugins/datatables/jquery.dataTables.min.js"></script>
-
   <script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/bootstrap-datepicker.js" charset="UTF-8"></script>
   <script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
   <script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/locales/bootstrap-datetimepicker.uk.js" charset="UTF-8"></script>
-
   <script type="text/javascript" language="javascript" src="<?php echo web_root; ?>plugins/input-mask/jquery.inputmask.js"></script>
   <script type="text/javascript" language="javascript" src="<?php echo web_root; ?>plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
   <script type="text/javascript" language="javascript" src="<?php echo web_root; ?>plugins/input-mask/jquery.inputmask.extensions.js"></script>
-
   <script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.fancybox.pack.js"></script>
   <script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.fancybox-media.js"></script>
   <script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.flexslider.js"></script>
@@ -357,7 +346,6 @@
 
     });
   </script>
-
 </body>
 
 </html>
