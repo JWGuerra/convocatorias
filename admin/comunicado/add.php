@@ -38,7 +38,7 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
       <div class="col-md-8">
         <select class="form-control input-sm" id="TIPOCOMUNICADO" name="TIPOCOMUNICADO">
           <option value="None">Seleccionar</option>
-          <option value="otros">Bases / Ficha Resumen / Fe Erratas</option>
+          <option value="otros">Bases/Perfiles/Ficha Resumen/Fe Erratas</option>
           <option value="cronogramas">Cronogramas</option>
           <option value="resultados">Resultados</option>
           <option value="comunicados">Comunicados</option>

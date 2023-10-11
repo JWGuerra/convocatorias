@@ -5,7 +5,7 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 ?>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">Lista de Convocatorias <a href="index.php?view=add" class="btn btn-primary btn-xs  "> <i class="fa fa-plus-circle fw-fa"></i> Agregar</a> </h1>
+		<h1 class="page-header">Lista de Convocatorias <a href="index.php?view=add" class="btn btn-primary btn-xs  "> <i class="fa fa-plus-circle fw-fa"></i> Agregar Convocatoria</a> </h1>
 	</div>
 </div>
 <form action="controller.php?action=delete" Method="POST">
@@ -13,7 +13,6 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 		<table id="dash-table" class="table table-striped table-bordered table-hover" style="font-size:12px" cellspacing="0">
 			<thead>
 				<tr>
-					<th>ID</th>
 					<th>Nombre</th>
 					<th>N°</th>
 					<th>Año</th>
@@ -27,7 +26,6 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 
 				foreach ($cur as $result) {
 					echo '<tr>';
-					echo '<td>' . $result->IDCONVOCATORIA . '</td>';
 					echo '<td>' . $result->CONVOCATORIA . '</td>';
 					echo '<td>' . $result->NROCONVOCATORIA . '</td>';
 					echo '<td>' . $result->ANIO . '</td>';

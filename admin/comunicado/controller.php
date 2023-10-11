@@ -73,7 +73,7 @@ function doEdit()
 		}
 		$comunicado->update($_POST['IDCOMUNICADO']);
 
-		message("El servicio [" . $_POST['IDCOMUNICADO'] . "] fue actualizado!", "success");
+		message("El comunicado fue actualizado!", "success");
 		redirect("index.php");
 	}
 }

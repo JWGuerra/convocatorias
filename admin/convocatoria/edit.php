@@ -12,7 +12,7 @@ $res = $convocatoria->single_convocatoria($IDCONVOCATORIA);
 <form class="form-horizontal span6" action="controller.php?action=edit" method="POST">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Agregar Convocatoria</h1>
+      <h1 class="page-header">Editar Convocatoria</h1>
     </div>
   </div>
 
