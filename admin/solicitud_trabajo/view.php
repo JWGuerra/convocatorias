@@ -9,7 +9,7 @@ $registroLaboral = $registrationPuestoLaboral->single_RegistroPuestoLaboral($red
 
 <form action="" method="POST">
 	<div class="col-sm-6 content-body">
-		<p>INFORMACIÓN DEL SOLICITANTEE</p>
+		<p>INFORMACIÓN DEL SOLICITANTE</p>
 		<h3> <?php echo $registroLaboral->APELLIDOS . ', ' . $registroLaboral->NOMBRES ?></h3>
 		<ul>
 			<li>DNI : <?php echo $registroLaboral->DNI; ?></li>
@@ -29,7 +29,7 @@ $registroLaboral = $registrationPuestoLaboral->single_RegistroPuestoLaboral($red
 		</div>
 	</div>
 	<div class="col-sm-12 content-footer">
-		<h4><i class="fa fa-paperclip"></i>Ver CV <a href="#" data-toggle="modal" data-target="#pdfModal"><span class="btn btn-success rounded-pill" style="background-color: #016543;">AQUÍ</span></a></h4>
+		<h4><i class="fa fa-paperclip"></i> Ver CV <a href="#" data-toggle="modal" data-target="#pdfModal"><span class="btn btn-success rounded-pill" style="background-color: #016543;">AQUÍ</span></a></h4>
 		<div class="col-sm-12 slider">
 		</div>
 

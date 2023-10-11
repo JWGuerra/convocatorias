@@ -32,7 +32,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12">
-              <p style="font-size: 14px;" class="pull-left hidden-xs"><i class="fa fa-phone"></i>N° Teléfono: 084-232639
+              <p style="font-size: 14px;" class="pull-left hidden-xs"><i style="color: white;" class="fa fa-phone"></i>N° Teléfono: 084-232639
               </p>
               <?php if (isset($_SESSION['IDPOSTULANTE'])) {
                 $sql = "SELECT count(*) as 'COUNTNOTIF' FROM `tblVacante` ORDER BY `FECHAPUBLICACION` DESC";
@@ -126,12 +126,6 @@
     </div>
     <!-- end header -->
 
-    <!-- login admin
-    <div>
-      <a title="LOGIN ADMIN" href="<?php echo web_root; ?>admin/" class="btn-wsp" target="_blank"><i class="fa fa-user"></i></a>
-    </div>
-    -->
-
     <div class="floating-button">
       <span class="texto"><strong>LOGIN ADMIN</strong></span>
       <a title="LOGIN ADMIN" href="<?php echo web_root; ?>admin/" class="btn-wsp" target="_blank"><i class="fa fa-user"></i></a>
@@ -217,7 +211,7 @@
             <div class="col-lg-6">
               <div class="copyright">
                 <p>
-                  <span>&copy; Plan MERISS 2023 todos los derechos reservados
+                  <span> Copyright &copy; Plan MERISS 2023. Todos los derechos reservados
                 </p>
               </div>
             </div>
@@ -253,15 +247,11 @@
   <script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.fancybox-media.js"></script>
   <script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.flexslider.js"></script>
   <script src="<?php echo web_root; ?>plugins/home-plugins/js/animate.js"></script>
-
-
-  <!-- Vendor Scripts -->
   <script src="<?php echo web_root; ?>plugins/home-plugins/js/modernizr.custom.js"></script>
   <script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.isotope.min.js"></script>
   <script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.magnific-popup.min.js"></script>
   <script src="<?php echo web_root; ?>plugins/home-plugins/js/animate.js"></script>
   <script src="<?php echo web_root; ?>plugins/home-plugins/js/custom.js"></script>
-  <!-- <script src="<?php echo web_root; ?>plugins/paralax/paralax.js"></script>  -->
 
   <script type="text/javascript">
     $(function() {
