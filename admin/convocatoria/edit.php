@@ -3,6 +3,7 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
   redirect(web_root . "admin/index.php");
 }
 
+// Recuperamos el ID de la convocatoria
 $IDCONVOCATORIA = $_GET['id'];
 $convocatoria = new Convocatoria();
 $res = $convocatoria->single_convocatoria($IDCONVOCATORIA);
@@ -13,7 +14,6 @@ $res = $convocatoria->single_convocatoria($IDCONVOCATORIA);
     <div class="col-lg-12">
       <h1 class="page-header">Agregar Convocatoria</h1>
     </div>
-    <!-- /.col-lg-12 -->
   </div>
 
   <div class="form-group">

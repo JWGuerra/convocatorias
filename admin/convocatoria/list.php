@@ -13,7 +13,6 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 		<table id="dash-table" class="table table-striped table-bordered table-hover" style="font-size:12px" cellspacing="0">
 			<thead>
 				<tr>
-					<!-- <th>No.</th> -->
 					<th>ID</th>
 					<th>Nombre</th>
 					<th>N°</th>
@@ -32,8 +31,9 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 					echo '<td>' . $result->CONVOCATORIA . '</td>';
 					echo '<td>' . $result->NROCONVOCATORIA . '</td>';
 					echo '<td>' . $result->ANIO . '</td>';
-					echo '<td align="center"><a title="Edit" href="index.php?view=edit&id=' . $result->IDCONVOCATORIA . '" class="btn btn-primary btn-xs  ">  <span class="fa fa-edit fw-fa"></a>
-				  		     <a title="Delete" href="controller.php?action=delete&id=' . $result->IDCONVOCATORIA . '" class="btn btn-danger btn-xs  ">  <span class="fa  fa-trash-o fw-fa "></a></td>';
+					echo '<td align="center">
+							<a title="Edit" 	href="index.php?view=edit&id=' . $result->IDCONVOCATORIA . '" class="btn btn-primary btn-xs  ">  <span class="fa fa-edit fw-fa"></a>
+				  		    <a title="Delete" 	href="controller.php?action=delete&id=' . $result->IDCONVOCATORIA . '" class="btn btn-danger btn-xs  ">  <span class="fa  fa-trash-o fw-fa "></a></td>';
 					echo '</tr>';
 				}
 				?>
@@ -41,7 +41,6 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 
 		</table>
 		<div class="btn-group">
-			<!--<a href="index.php?view=add" class="btn btn-default">Agregar</a>-->
 			<?php
 			if ($_SESSION['ADMIN_ROLE'] == 'Administrator') {
 					//echo '<button type="submit" class="btn btn-default" name="delete"><span class="glyphicon glyphicon-trash"></span> Delete Selected</button'

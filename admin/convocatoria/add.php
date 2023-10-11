@@ -5,7 +5,6 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 
 ?>
 <form class="form-horizontal span6" action="controller.php?action=add" method="POST">
-
   <div class="row">
     <div class="col-lg-12">
       <h1 class="page-header">Agregar Convocatoria</h1>

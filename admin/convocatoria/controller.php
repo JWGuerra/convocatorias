@@ -5,6 +5,7 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 	redirect(web_root . "admin/index.php");
 }
 
+// Se reciben los parámetros
 $action = (isset($_GET['action']) && $_GET['action'] != '') ? $_GET['action'] : '';
 
 switch ($action) {
@@ -21,6 +22,7 @@ switch ($action) {
 		break;
 }
 
+// Función para insertar una convocatoria
 function doInsert()
 {
 	if (isset($_POST['save'])) {
@@ -42,6 +44,7 @@ function doInsert()
 	}
 }
 
+// Función para editar una convocatoria
 function doEdit()
 {
 	if (isset($_POST['save'])) {
@@ -58,10 +61,8 @@ function doEdit()
 }
 
 // Función para eliminar una Convocatoria
-function doDelete()
-{
-	global $mydb;
-	$id = intval($_GET['id']);
+function doDelete(){
+	$id = $_GET['id'];
 	$convocatoria = new Convocatoria();
 	$convocatoria->delete($id);
 	message("La convocatoria [" . $id . "] fue eliminada!", "info");

@@ -111,7 +111,7 @@ class Convocatoria
 		if (!$mydb->executeQuery()) return false;
 	}
 
-	public function delete($id = "")
+	public function delete($id = 0)
 	{
 		global $mydb;
 		$sql = "DELETE FROM" . self::$tblname;
