@@ -26,6 +26,30 @@
 </head>
 
 <body>
+  <!-- Ventana Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Bienvenido a Plan Meriss - Convocatoria de Personal</h4>
+        </div>
+        <div class="modal-body">
+          <p>Haga clic en el siguiente enlace para visualizar el manual de usuario:</p>
+          <a href="applicant\MANUAL_USUARIO_POSTULANTE.pdf" class="btn btn-primary" target="_blank" style="border-radius: 5px;">Manual</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+    // Mostrar la ventana modal automáticamente cuando se carga la página
+    $(window).on('load', function() {
+      $('#myModal').modal('show');
+    });
+  </script>
   <div id="wrapper" class="home-page">
     <header>
       <div style="height: 35px;" class="topbar navbar-fixed-top">
