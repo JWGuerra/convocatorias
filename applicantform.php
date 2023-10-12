@@ -100,7 +100,7 @@
     <label class="col-md-4 control-label" for="d"></label>
     <div class="col-md-8" >
       <h4 style="width:155px;background-color:#016644;border-radius:10px;padding:5px;color:white;"> IMPORTANTE!!</h4>
-    <p style="background-color:#B7D5AC;border-radius:10px;padding:5px;">El nombre y usuario creado le permitiran acceder a una cuenta personal creada por la institución, para acceder al cuenta Inicie Sesión en la parte superior derecha de la página.</p>
+    <p style="background-color:#B7D5AC;border-radius:10px;padding:5px;">El <strong>nombre de usuario y contraseña</strong> creado le permitiran acceder a una cuenta personal creada por la institución, para acceder al cuenta Inicie Sesión en la parte superior derecha de la página.</p>
     </div>
   </div>
 </div>

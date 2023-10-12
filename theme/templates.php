@@ -80,14 +80,7 @@
                             } else {
                               echo '';
                             }
-                          }  ?>"><a href="<?php echo web_root; ?>index.php?q=convocatoria">Convocatorias</a></li>
-              <li class="<?php if (isset($_GET['q'])) {
-                            if ($_GET['q'] == 'hiring') {
-                              echo 'active';
-                            } else {
-                              echo '';
-                            }
-                          } ?>"><a href="<?php echo web_root; ?>index.php?q=hiring">Vacantes Publicadas</a></li>
+                          }  ?>"><a href="<?php echo web_root; ?>index.php?q=convocatoria">Vacantes Publicadas</a></li>
               <li class="<?php if (isset($_GET['q'])) {
                             if ($_GET['q'] == 'comunicado') {
                               echo 'active';

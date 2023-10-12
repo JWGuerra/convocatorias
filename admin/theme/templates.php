@@ -126,7 +126,7 @@
           </li>
           <li class="<?php echo (currentpage() == 'servicio') ? "active" : false; ?>">
             <a href="<?php echo web_root; ?>admin/servicio/">
-              <i class="fa fa-list"></i> <span>Servicio</span>
+              <i class="fa fa-list"></i> <span>Servicios</span>
             </a>
           </li>
           <li class="<?php echo (currentpage() == 'vacante') ? "active" : false; ?>">

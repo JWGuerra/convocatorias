@@ -99,7 +99,7 @@ function doApproved()
 				$cur = $mydb->executeQuery();
 				message("SEGUNDO IF.", "success");
 			}
-			message("El/La postulante está llamando para una entrevista.", "success");
+			message("Evaluación exitosa del postulante.", "success");
 			redirect("index.php?view=view&id=" . $id);
 		} else {
 			message("No se pudo Guardar.", "error");

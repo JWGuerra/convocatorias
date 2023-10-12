@@ -98,12 +98,8 @@ global $mydb;
 	<div class="col-sm-12 slider">
 		 <h3>Descargar Ficha de Postulación <a target="_blank" href="<?php echo web_root.'applicant/'.$attachmentfile->UBICACIONARCHIVO; ?>">AQUÍ</a></h3>
 	</div>  
-	<div class="col-sm-12">
-		<p>Respuesta</p>
-		<p><?php echo isset($jobreg->OBSERVACIONES) ? $jobreg->OBSERVACIONES : ""; ?></p>
-	</div>
 	<div class="col-sm-12  submitbutton "> 
-		<a href="index.php?view=appliedjobs" class="btn btn-primary fa fa-arrow-left">Back</a>
+		<a href="index.php?view=appliedjobs" class="btn btn-primary fa fa-arrow-left"> VOLVER</a>
 	</div> 
 </div>
 </form>

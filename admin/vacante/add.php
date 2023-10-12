@@ -138,7 +138,7 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
     <div class="col-md-8">
       <label class="col-md-4 control-label" for="EXPERIENCIAESPECIFICA">Experiencia Específica:</label>
       <div class="col-md-8">
-        <input type="number" value="" class="form-control input-sm" id="EXPERIENCIAESPECIFICA" name="EXPERIENCIAESPECIFICA" placeholder="Experiencia Específica (MESES)" min="1" max="100" />
+        <input type="number" value="" class="form-control input-sm" id="EXPERIENCIAESPECIFICA" name="EXPERIENCIAESPECIFICA" placeholder="Experiencia Específica (MESES)" min="0" max="100" />
       </div>
     </div>
   </div>
