@@ -31,35 +31,7 @@
     background: #000;
 }
 
-/* Login Admin*/
-.btn-wsp{
-    position:fixed;
-    width:60px;
-    height:60px;
-    line-height: 63px;
-    top:220px;
-    right:5px;
-    background:black;
-    color:#FFF;
-    border-radius:50%;
-    text-align:center;
-    font-size:35px;
-    box-shadow: 0px 1px 10px rgba(0,0,0,0.6);
-    z-index:100;
-    transition: all 300ms ease;
-}
-.btn-wsp:hover{
-    background: #940421;
-    color: #ffffff;
-}
 
-@media only screen and (min-width:320px) and (max-width:768px){
-    .btn-wsp{
-        width:63px;
-        height:63px;
-        line-height: 66px;
-	}
-}
 
 /* Style for the floating button container */
 .floating-button {
@@ -87,35 +59,4 @@
 /* Cuando el mouse está sobre el botón, muestra el tooltip */
 .floating-button:hover .texto {
     display: block;
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.modal-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  text-align: center;
-}
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  cursor: pointer;
 }
