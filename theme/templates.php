@@ -27,7 +27,7 @@
 
 <body>
   <!-- Ventana Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade" id="modalConvocatoria" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -47,7 +47,7 @@
   <script>
     // Mostrar la ventana modal automáticamente cuando se carga la página
     $(window).on('load', function() {
-      $('#myModal').modal('show');
+      $('#modalConvocatoria').modal('show');
     });
   </script>
   <div id="wrapper" class="home-page">
