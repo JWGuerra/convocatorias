@@ -1,6 +1,5 @@
 <?php
 require_once("../include/initialize.php");
-
 ?>
 <?php
 // login confirmation
@@ -26,58 +25,40 @@ if (isset($_SESSION['ADMIN_USERID'])) {
   <link rel="stylesheet" href="<?php echo web_root; ?>dist/css/AdminLTE.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="<?php echo web_root; ?>plugins/iCheck/square/blue.css">
-
 </head>
 
 <body class="hold-transition login-page">
   <div class="login-box">
-    <!--   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
-  </div> -->
-    <!-- /.login-logo -->
     <div class="login-box-body" style="min-height: 400px;">
-      <h1 class="login-box-msg">Login Plan MERISS</h1>
+      <h1 class="login-box-msg" style="color: #016543;">INICIAR SESIÓN PLAN MERISS</h1>
       <hr />
       <p><?php check_message(); ?></p>
 
       <form action="" method="post">
         <div class="form-group has-feedback">
+          <label for="">Usuario:</label>
           <input type="text" class="form-control" placeholder="Nombre de Usuario" name="user_email">
           <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
+          <label for="">Contraseña:</label>
           <input type="password" class="form-control" placeholder="Contraseña" name="user_pass">
           <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
+        <div class="form-group has-feedback" style="text-align:center;">
+          <a href="MANUAL_USUARIO_TRABAJADOR.pdf" target="_blank" style="color:black;">
+            <i class="fa fa-book"></i> Manual
+          </a>
+        </div>
         <div class="row">
-          <!-- <div class="col-xs-8"> -->
-          <!--   <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> Remember Me
-            </label>
-          </div>
-        </div>   -->
-          <!-- /.col -->
           <div class="col-xs-4">
-            <button type="submit" name="btnLogin" class="btn btn-primary btn-block btn-flat">Ingresar</button>
+            <button type="submit" name="btnLogin" class="btn btn-primary">INGRESAR</button>
           </div>
         </div>
+
         <!-- /.col -->
     </div>
     </form>
-
-    <!--  <div class="social-auth-links text-center">
-      <p>- OR -</p>
-      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
-        Facebook</a>
-      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
-        Google+</a>
-    </div> -->
-    <!-- /.social-auth-links -->
-
-    <!--    <a href="#">I forgot my password</a><br>
-    <a href="register.html" class="text-center">Register a new membership</a> -->
-
   </div>
   <!-- /.login-box-body -->
   </div>
@@ -118,7 +99,7 @@ if (isset($_SESSION['ADMIN_USERID'])) {
         redirect(web_root . "admin/index.php");
         // } 
       } else {
-        message("Account does not exist! Please contact Administrator.", "error");
+        message("La cuenta no existe! Por favor comuniquese con el Administrador", "error");
         redirect(web_root . "admin/login.php");
       }
     }
