@@ -1,5 +1,19 @@
 <section id="banner">
-
+  <!-- Ventana Modal -->
+  <div class="modal fade" id="modalConvocatoria" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Bienvenido a Plan Meriss - Convocatoria de Personal</h4>
+        </div>
+        <div class="modal-body">
+          <p>Haga clic en el siguiente enlace para visualizar el manual de usuario:</p>
+          <a href="applicant\MANUAL_USUARIO_POSTULANTE.pdf" class="btn btn-primary" target="_blank" style="border-radius: 5px;">Manual</a>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Slider -->
   <div id="main-slider" class="flexslider">
     <ul class="slides">
@@ -75,7 +89,7 @@
         <i class="icon-info-blocks fa fa-briefcase"></i>
         <div class="info-blocks-in">
           <h3><?php echo $Convocatoria->CONVOCATORIA; ?></h3>
-          <p><?php echo '<a href="' . web_root . 'index.php?q=hiring&search=' . $Convocatoria->CONVOCATORIA. '">Ver Convocatorias</a>'; ?></p>
+          <p><?php echo '<a href="' . web_root . 'index.php?q=hiring&search=' . $Convocatoria->CONVOCATORIA . '">Ver Convocatorias</a>'; ?></p>
         </div>
       </div>
     <?php } ?>
@@ -101,7 +115,7 @@
         <i class="icon-info-blocks fa fa-bullhorn"></i>
         <div class="info-blocks-in">
           <h3><?php echo $comunicado->CONVOCATORIA; ?></h3>
-          <p><?php echo '<a href="' . web_root . 'index.php?q=listaComunicados&search=' . $comunicado->CONVOCATORIA. '">Ver Comunicados</a>'; ?></p>
+          <p><?php echo '<a href="' . web_root . 'index.php?q=listaComunicados&search=' . $comunicado->CONVOCATORIA . '">Ver Comunicados</a>'; ?></p>
         </div>
       </div>
 
