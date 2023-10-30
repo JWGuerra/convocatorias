@@ -70,11 +70,10 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
       <label class="col-md-4 control-label" for="idno"></label>
       <div class="col-md-8">
         <button class="btn btn-primary btn-sm" name="save" type="submit"><span class="fa fa-save fw-fa"></span> GUARDAR</button>
-        <!-- <a href="index.php" class="btn btn-info"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<strong>Back</strong></a> -->
       </div>
     </div>
   </div>
-
+  
   <div class="form-group">
     <div class="rows">
       <div class="col-md-6">

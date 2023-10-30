@@ -5,7 +5,7 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 	redirect(web_root . "admin/index.php");
 }
 
-
+// Se recibe la varible de list.php
 $action = (isset($_GET['action']) && $_GET['action'] != '') ? $_GET['action'] : '';
 
 switch ($action) {
@@ -22,6 +22,7 @@ switch ($action) {
 		break;
 }
 
+// Función para agregar un comunicado
 function doInsert()
 {
 	if (isset($_POST['save'])) {
@@ -51,6 +52,7 @@ function doInsert()
 	}
 }
 
+// Función para actualizar un comunicado por medio del ID
 function doEdit()
 {
 	if (isset($_POST['save'])) {
@@ -78,6 +80,7 @@ function doEdit()
 	}
 }
 
+// Función para eliminar un comunicado por medio del ID
 function doDelete()
 {
 	$id = $_GET['id'];

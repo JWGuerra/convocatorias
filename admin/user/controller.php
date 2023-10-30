@@ -54,8 +54,6 @@ function doInsert()
 function doEdit()
 {
 	if (isset($_POST['save'])) {
-
-
 		$user = new User();
 		$user->FULLNAME 		= $_POST['U_NAME'];
 		$user->USERNAME			= $_POST['U_USERNAME'];
@@ -108,24 +106,19 @@ function doDelete()
 
 function doupdateimage()
 {
-
 	$errofile = $_FILES['photo']['error'];
 	$type = $_FILES['photo']['type'];
 	$temp = $_FILES['photo']['tmp_name'];
 	$myfile = $_FILES['photo']['name'];
 	$location = "photos/" . $myfile;
-
-
 	if ($errofile > 0) {
 		message("Imgen no seleccionado!", "error");
 		redirect("index.php?view=view&id=" . $_GET['id']);
 	} else {
-
 		@$file = $_FILES['photo']['tmp_name'];
 		@$image = addslashes(file_get_contents($_FILES['photo']['tmp_name']));
 		@$image_name = addslashes($_FILES['photo']['name']);
 		@$image_size = getimagesize($_FILES['photo']['tmp_name']);
-
 		if ($image_size == FALSE) {
 			message("El archivo cargado no es una imagen!", "error");
 			redirect("index.php?view=view&id=" . $_GET['id']);

@@ -8,13 +8,15 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 	<div class="col-lg-12">
 		<h1 class="page-header"></h1>
 	</div>
-	<!-- /.col-lg-12 -->
+	<!-- Creación de botnones para exportar -->
 	<label class="col-md-4 control-label" for="CONVOCATORIA" style="width: 200px;"></label>
-	<div class="row">
-		<div class="col-md-6">
+	<div class="col-lg-12">
+		<div class="col-md-4">
 			<button style="background: #016543;" id="exportToExcel" class="btn btn-success btn-sm">Exportar a Excel</button>
 			<button style="background: #016543;" id="generatePdfButton" class="btn btn-success btn-sm">Imprimir Lista</button>
 		</div>
+		<br>
+		<br>
 	</div>
 </div>
 <form class="wow fadeInDownaction" action="controller.php?action=delete" Method="POST">
@@ -185,11 +187,9 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 
 				rows.push(row);
 			}
-
 			return {
 				body: [headers, ...rows],
 			};
 		}
 	</script>
-
 </form>
