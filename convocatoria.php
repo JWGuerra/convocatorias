@@ -1,6 +1,5 @@
 <section id="content">
     <div class="container content">
-        <!-- Service Blcoks -->
         <div class="row">
             <?php
             $sql = "SELECT * FROM `tblConvocatoria`";

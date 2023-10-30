@@ -21,10 +21,8 @@
                                                                         }  ?>">
                                 <?php echo $comunicado->CONVOCATORIA ?>
                                 <h3><?php echo '<a href="' . web_root . 'index.php?q=listaComunicados&search=' . $comunicado->CONVOCATORIA. '">Ver Comunicados</a>'; ?></h3>
-                                <!--<a href="/convocatorias/index.php?q=viewComunicado"><br>Ver Comunicados</a> -->
                             </li>
                         </h3>
-                        <!-- <p><?php echo $comunicado->IDCOMUNICADO; ?></p> -->
                     </div>
                 </div>
             <?php } ?>

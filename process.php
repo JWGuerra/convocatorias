@@ -30,7 +30,6 @@ function doapplicationform()
 	@$location 		= 	"photos/" . $picture;
 
 	if ($picture == "") {
-		# code...
 		redirect(web_root . "index.php?q=apply&job=" . $IDVACANTE . "&view=personalinfo");
 	} else {
 		if (isset($_SESSION['IDPOSTULANTE'])) {
@@ -176,6 +175,7 @@ function UploadImage($IDVACANTE = 0)
 		message("File Not Supported", "error");
 	}
 }
+
 
 function doPuestoLaboral()
 {

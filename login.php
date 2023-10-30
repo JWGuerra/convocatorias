@@ -1,10 +1,9 @@
- <!-- Modal -->
+ <!-- INTERFAZ DE INICIO DE SESIÓN -->
  <div class="modal fade" id="myModal" tabindex="-1">
    <div class="modal-dialog">
      <div class="modal-content">
        <div class="modal-header">
          <button class="close" data-dismiss="modal" type="button">X</button>
-
          <h4 class="modal-title" id="myModalLabel">INICIAR SESIÓN POSTULANTES</h4>
        </div>
        <div class="modal-body hold-transition login-page">
