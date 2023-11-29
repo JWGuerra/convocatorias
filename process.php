@@ -176,7 +176,6 @@ function UploadImage($IDVACANTE = 0)
 	}
 }
 
-
 function doPuestoLaboral()
 {
 	if (isset($_POST['save'])) {
