@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2023 a las 19:02:53
+-- Tiempo de generación: 04-12-2023 a las 18:20:52
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -62,7 +62,7 @@ CREATE TABLE `tblautonumbers` (
 --
 
 INSERT INTO `tblautonumbers` (`AUTOID`, `AUTOSTART`, `AUTOEND`, `AUTOINC`, `AUTOKEY`) VALUES
-(1, '02983', 7, 1, 'userid'),
+(1, '02983', 8, 1, 'userid'),
 (3, '0', 18, 1, 'POSTULANTE'),
 (4, '69125', 31, 1, 'IDARCHIVO');
 
@@ -201,7 +201,7 @@ CREATE TABLE `tblregistropostulacion` (
 --
 
 INSERT INTO `tblregistropostulacion` (`IDREGISTRO`, `IDCONVOCATORIA`, `IDVACANTE`, `IDPOSTULANTE`, `POSTULANTE`, `FECHAREGISTRO`, `OBSERVACIONES`, `IDARCHIVO`, `SOLICITUDPENDIENTE`, `HVISTA`, `FECHAAPROBACION`, `PUNTAJEENTREVISTA`, `RESULTADOENTREVISTA`) VALUES
-(3, 8, 5, 2023016, 'GUERRA BELLIDO JHON WALDIR', '2023-10-02', 'APTO', '20236912529', 0, 0, '2023-10-02 14:55:03', 100, 'SELECCIONADO'),
+(3, 8, 5, 2023016, 'GUERRA BELLIDO JHON WALDIR', '2023-10-02', 'NO-APTO', '20236912529', 0, 0, '2023-12-01 12:36:10', 100, 'SELECCIONADO'),
 (4, 14, 7, 2023017, 'VALVERDE TORRE YASMANY', '2023-10-12', 'APTO', '20236912530', 0, 0, '2023-10-12 08:53:32', 70, 'SELECCIONADO');
 
 -- --------------------------------------------------------
@@ -252,7 +252,7 @@ CREATE TABLE `tblretroalimentacion` (
 --
 
 INSERT INTO `tblretroalimentacion` (`IDRETROALIMENTACION`, `IDPOSTULANTE`, `IDREGISTRO`, `RETROALIMENTACION`, `MENSAJE`) VALUES
-(2, 2023016, 3, 'APTO', 'Su Curriculum Vitae cumple con el perfil del Servico Solicitado. Esté atento a la publicación del CRONOGRAMA de entrevista, publicado en la página WEB.'),
+(2, 2023016, 3, 'NO-APTO', 'NO CUENTA CON LA EXPERIENCIA LABORAL ESPECÍFICA'),
 (3, 2023017, 4, 'APTO', 'Su Curriculum Vitae cumple con el perfil del Servico Solicitado. Esté atento a la publicación del CRONOGRAMA de entrevista, publicado en la página WEB.');
 
 -- --------------------------------------------------------
@@ -302,6 +302,7 @@ CREATE TABLE `tblusers` (
 
 INSERT INTO `tblusers` (`USERID`, `FULLNAME`, `USERNAME`, `PASS`, `ROLE`, `PICLOCATION`) VALUES
 ('00018', 'Oficina de Recursos Humanos', 'RRHH', 'fee04e51fd4ca188f2d6026d1dc1470ac7b50746', 'Administrator', 'photos/OTRITO-300x218.png'),
+('029837', 'DR. HYPATIA VELASCO ESCALANTE', 'HYPATIA', 'ffab593eeb641ff334009c250218916119840280', 'Administrator', 'photos/asda.jpg'),
 ('2018001', 'Jhon Waldir Guerra Bellido', 'Waldir', 'e667a16955e89707d2c56a840edcf5a588c2ae02', 'Trabajador', '');
 
 -- --------------------------------------------------------
