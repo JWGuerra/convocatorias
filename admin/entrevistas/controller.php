@@ -70,9 +70,9 @@ function doDelete()
 function doSavePoint()
 {
 	global $mydb;
-	$id = 	$_GET['id'];
-	$resultado = $_GET["RESULTADOENTREVISTA"];
-	$puntaje = $_GET["PUNTAJEENTREVISTA"];
+	$id 		= $_GET['id'];
+	$resultado 	= $_GET["RESULTADOENTREVISTA"];
+	$puntaje 	= $_GET["PUNTAJEENTREVISTA"];
 
 	$sql = "UPDATE `tblregistropostulacion` SET `RESULTADOENTREVISTA` = '{$resultado}', `PUNTAJEENTREVISTA` = '{$puntaje}' WHERE `IDREGISTRO` = '{$id}';";
 	$mydb->setQuery($sql);

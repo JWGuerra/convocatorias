@@ -246,14 +246,11 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 					const cell = cells[j];
 					row.push(cell.textContent);
 				}
-
 				rows.push(row);
 			}
-
 			return {
 				body: [headers, ...rows],
 			};
 		}
 	</script>
-
 </form>

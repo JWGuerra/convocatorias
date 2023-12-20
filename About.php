@@ -18,7 +18,7 @@
 		<div class="about">
 			<div class="row">
 				<div class="col-md-6">
-					<!-- Heading and para -->
+					<!-- Heading and para mostrar información de la institución-->
 					<div class="block-heading-two">
 						<h3><span>¿QUIENES SOMOS?</span></h3>
 					</div>
@@ -28,9 +28,7 @@
 					<div class="block-heading-two">
 						<h3><span>OBJETIVOS ESTRATEGICOS</span></h3>
 					</div>
-					<!-- Accordion starts -->
 					<div class="panel-group" id="accordion-alt3">
-						<!-- Panel. Use "panel-XXX" class for different colors. Replace "XXX" with color. -->
 						<div class="panel">
 							<!-- Panel heading -->
 							<div class="panel-heading">

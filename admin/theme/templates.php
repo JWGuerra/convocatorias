@@ -154,7 +154,7 @@
           </li>
           <li class="<?php echo (currentpage() == 'informes') ? "active" : false; ?>">
             <a href="<?php echo web_root; ?>admin/informes/">
-              <i class="fa fa-book"></i> <span>Reportes</span>
+              <i class="fa fa-book"></i> <span>Informes</span>
             </a>
           </li>
 

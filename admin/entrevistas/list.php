@@ -110,7 +110,6 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 				<div class="modal-header">
 					<h6 style="color: white;" id="id-postulante"></h6>
 					<h4 style="text-align:center;" id="postulante"></h4>
-
 				</div>
 				<div class="modal-body">
 					<form action="controller.php?action=puntaje" method="POST">

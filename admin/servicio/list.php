@@ -35,15 +35,6 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 				}
 				?>
 			</tbody>
-
 		</table>
-		<div class="btn-group">
-			<!--  <a href="index.php?view=add" class="btn btn-default">New</a> -->
-			<?php
-			if ($_SESSION['ADMIN_ROLE'] == 'Administrator') {
-					// echo '<button type="submit" class="btn btn-default" name="delete"><span class="glyphicon glyphicon-trash"></span> Delete Selected</button'
-				;
-			} ?>
-		</div>
 	</div>
 </form>
