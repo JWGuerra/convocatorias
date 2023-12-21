@@ -45,7 +45,7 @@
             $singleuser = $user->single_user($_SESSION['ADMIN_USERID']);
 
             ?>
-            <!-- User Account: style can be found in dropdown.less -->
+            <!-- Acceso a cuenta del trabajador -->
             <li class="dropdown user user-menu" style="padding-right: 15px;">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="<?php echo web_root . 'admin/user/' . $singleuser->PICLOCATION; ?>" class="user-image" alt="User Image">

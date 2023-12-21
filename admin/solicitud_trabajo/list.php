@@ -39,7 +39,6 @@ if (!isset($_SESSION['ADMIN_USERID'])) {
 			<?php
 			$mydb->setQuery("SELECT * FROM `tblRegistroPuestoLaboral`");
 			$cur = $mydb->loadResultList();
-
 			foreach ($cur as $result) {
 				echo '<tr>';
 				echo '<td>' . $result->DNI . '</a></td>';
