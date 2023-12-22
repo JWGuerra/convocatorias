@@ -27,8 +27,6 @@ switch ($action) {
 function doInsert()
 {
 	if (isset($_POST['save'])) {
-
-
 		if ($_POST['U_NAME'] == "" or $_POST['U_USERNAME'] == "" or $_POST['U_PASS'] == "") {
 			$messageStats = false;
 			message("All field is required!", "error");
@@ -41,10 +39,8 @@ function doInsert()
 			$user->PASS				= sha1($_POST['U_PASS']);
 			$user->ROLE				=  $_POST['U_ROLE'];
 			$user->create();
-
 			$autonum = new Autonumber();
 			$autonum->auto_update('userid');
-
 			message("La cuenta [" . $_POST['U_NAME'] . "] fue creado exitosamente!", "success");
 			redirect("index.php");
 		}
@@ -60,9 +56,7 @@ function doEdit()
 		$user->PASS				= sha1($_POST['U_PASS']);
 		$user->ROLE				= $_POST['U_ROLE'];
 		$user->update($_POST['USERID']);
-
 		if (isset($_GET['view'])) {
-			# code...
 			message("El perfil fue actualizado!", "success");
 			redirect("index.php?view=view");
 		} else {
@@ -75,32 +69,11 @@ function doEdit()
 
 function doDelete()
 {
-
-	// if (isset($_POST['selector'])==''){
-	// message("Select the records first before you delete!","info");
-	// redirect('index.php');
-	// }else{
-
-	// $id = $_POST['selector'];
-	// $key = count($id);
-
-	// for($i=0;$i<$key;$i++){
-
-	// 	$user = New User();
-	// 	$user->delete($id[$i]);
-
-
 	$id = 	$_GET['id'];
-
 	$user = new User();
 	$user->delete($id);
-
 	message("Usuario eliminado!", "info");
 	redirect('index.php');
-	// }
-	// }
-
-
 }
 
 
