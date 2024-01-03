@@ -9,9 +9,7 @@
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Servicios Postulados</h3> 
-              <!-- /.box-tools -->
             </div>
-            <!-- /.box-header -->
             <div class="box-body no-padding">
               <div class="table-responsive mailbox-messages">
                 <table id="dash-table" class="table table-hover table-striped">
@@ -39,12 +37,9 @@
        
                   </tbody>
                 </table>
-                <!-- /.table -->
               </div>
-              <!-- /.mail-box-messages -->
             </div> 
           </div>
-          <!-- /. box -->
         </div>
         <!-- /.col -->
         <?php }else{

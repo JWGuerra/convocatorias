@@ -69,20 +69,14 @@ if (isset($_SESSION['ADMIN_USERID'])) {
     $email = trim($_POST['user_email']);
     $upass  = trim($_POST['user_pass']);
     $h_upass = sha1($upass);
-
     if ($email == '' or $upass == '') {
-
-      message("Invalid Username and Password!", "error");
+      message("Usuario o Contraseña Inválidoss!", "error");
       redirect("login.php");
     } else {
-      //it creates a new objects of member
       $user = new User();
-      //make use of the static function, and we passed to parameters
       $res = $user->userAuthentication($email, $h_upass);
       if ($res == true) {
         message("Iniciaste sesión como " . $_SESSION['ROLE'] . ".", "success");
-        // if ($_SESSION['ROLE']=='Administrator' || $_SESSION['ROLE']=='Cashier'){
-
         $_SESSION['ADMIN_USERID'] = $_SESSION['USERID'];
         $_SESSION['ADMIN_FULLNAME'] = $_SESSION['FULLNAME'];
         $_SESSION['ADMIN_USERNAME'] = $_SESSION['USERNAME'];
@@ -95,9 +89,7 @@ if (isset($_SESSION['ADMIN_USERID'])) {
         unset($_SESSION['PASS']);
         unset($_SESSION['ROLE']);
         unset($_SESSION['PICLOCATION']);
-
         redirect(web_root . "admin/index.php");
-        // } 
       } else {
         message("La cuenta no existe! Por favor comuniquese con el Administrador", "error");
         redirect(web_root . "admin/login.php");
